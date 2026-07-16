@@ -9,6 +9,7 @@ import {
   MapPin,
 } from 'lucide-react'
 import LogoFsiUcc from '@/assets/logo_fsi_tranparent.png'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
@@ -61,18 +62,13 @@ const Navbar = () => {
             >
               <ImageIcon size={18} /> Galerie
             </a>
-            <a
-              href="#"
+            <Link
+              to="/contact"
               className="flex items-center gap-2 hover:text-blue-600 transition-colors"
             >
               <Mail size={18} /> Contact
-            </a>
-            <a
-              href="#"
-              className="flex items-center gap-2 hover:text-blue-600 transition-colors"
-            >
-              <MapPin size={18} /> Localisation
-            </a>
+            </Link>
+            
           </div>
         </div>
       </div>

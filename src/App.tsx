@@ -1,5 +1,6 @@
 import { Routes, Route, Link } from 'react-router-dom'
 import LadingPage from './pages/LadingPage'
+import ContactPage from './pages/contact'
 
 function NotFound() {
   return (
@@ -29,6 +30,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LadingPage />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/contact" element={<ContactPage />} />
       </Routes>
     </>
   )
