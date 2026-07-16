@@ -1,0 +1,228 @@
+{
+    "faculte": "Faculté des Sciences Informatiques",
+    "filiere": "Sciences Informatiques",
+    "promotions": [
+        {
+            "nom": "Première Licence (L1)",
+            "semestres": [
+                {
+                    "semestre": "1er Semestre",
+                    "total_cours": 6,
+                    "cours": [
+                        "Mathématique",
+                        "Informatique Générale",
+                        "Logique et Argumentation",
+                        "Algorithme 1",
+                        "Programmation",
+                        "Laboratoire"
+                    ]
+                },
+                {
+                    "semestre": "2e Semestre",
+                    "total_cours": 10,
+                    "cours": [
+                        "Expression orale et écrite (EOE)",
+                        "Economie politique",
+                        "Statistique",
+                        "Philosophie",
+                        "Comptabilité Générale",
+                        "Programmation Orientée Objet",
+                        "Méthode de recherche en Sciences computationnelles",
+                        "Initiation à la recherche bibliographique et documentaire",
+                        "Doctrine fondamentale de l’Eglise catholique",
+                        "Education à la citoyenneté",
+                        "Anglais"
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Deuxième Licence (L2)",
+            "semestres": [
+                {
+                    "semestre": "1er Semestre",
+                    "total_cours": 8,
+                    "cours": [
+                        "Algorithme 2",
+                        "Anglais",
+                        "Mathématique",
+                        "Méthode d’analyse informatique",
+                        "Programmation",
+                        "Statistique",
+                        "Structure des ordinateurs",
+                        "Systèmes d’exploitation"
+                    ]
+                },
+                {
+                    "semestre": "2e Semestre",
+                    "total_cours": 6,
+                    "cours": [
+                        "Base de Données",
+                        "Comptabilité analytique d’exploitation",
+                        "Droit et Législation sociale",
+                        "Informatique juridique et cybercriminalité",
+                        "Laboratoire 2",
+                        "Multimédia"
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Troisième Licence (L3)",
+            "semestres": [
+                {
+                    "semestre": "1er Semestre",
+                    "total_cours": 7,
+                    "cours": [
+                        "Technique de Banque de Données",
+                        "Méthode d'analyse informatique",
+                        "RO (Théorie de graphe et programmation linéaire)",
+                        "Etude d'un tableau",
+                        "Marketing, TFC",
+                        "Ethique et déontologie professionnelle",
+                        "Lecteur 1"
+                    ]
+                },
+                {
+                    "semestre": "2e Semestre",
+                    "total_cours": 7,
+                    "cours": [
+                        "Eglise et TIC",
+                        "Gestion des ressources humaines",
+                        "Théorie des organisations",
+                        "Gestion d'un centre de traitement informatique",
+                        "Séminaire des technologies de pointe",
+                        "Langage de programmation 3",
+                        "Stage"
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Master 1 Réseaux (M1 RX)",
+            "semestres": [
+                {
+                    "semestre": "1er Semestre",
+                    "total_cours": 6,
+                    "cours": [
+                        "Théorie des probabilités sur les ILG, Info",
+                        "Marche Informatique",
+                        "Génie Logiciel",
+                        "Audit informatique",
+                        "Internet des objets",
+                        "Recherche opérationnelle",
+                        "Conduite de projet"
+                    ]
+                },
+                {
+                    "semestre": "2e Semestre",
+                    "total_cours": 8,
+                    "cours": [
+                        "Intelligence artificielle et système expert",
+                        "Système serveur",
+                        "Atelier Génie Logiciel",
+                        "Architecture Réseau",
+                        "Question spéciales de programmation avancée",
+                        "Algorithme de distribution",
+                        "Programmation parallèle"
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Master 1 Conception des Systèmes d'Information (M1 CSI)",
+            "semestres": [
+                {
+                    "semestre": "1er Semestre",
+                    "total_cours": 7,
+                    "cours": [
+                        "Théorie des probabilités",
+                        "Marche Informatique",
+                        "Génie Logiciel",
+                        "Audit informatique",
+                        "Question approfondies d'informatique de gestion",
+                        "Analyse des organisations",
+                        "Conduite de projet"
+                    ]
+                },
+                {
+                    "semestre": "2e Semestre",
+                    "total_cours": 7,
+                    "cours": [
+                        "Intelligence artificielle et système expert",
+                        "Conception des systèmes d'information",
+                        "Atelier Génie Logiciel",
+                        "Questions spéciales de programmation système",
+                        "Algorithme de distribution",
+                        "Recherche opérationnelle",
+                        "Programmation parallèle"
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Master 2 Réseaux (M2 RX)",
+            "semestres": [
+                {
+                    "semestre": "1er Semestre",
+                    "total_cours": 8,
+                    "cours": [
+                        "Evaluation des projets",
+                        "Administration de réseau d'entreprise",
+                        "Conception des architectures réseau",
+                        "SE serveur Etude approfondie de NOS",
+                        "Laboratoire (Réseau)",
+                        "Système d'exploitation comparé",
+                        "Séminaire informatique",
+                        "Algorithme de distribution"
+                    ]
+                },
+                {
+                    "semestre": "2e Semestre",
+                    "total_cours": 7,
+                    "cours": [
+                        "Mémoire",
+                        "Stage",
+                        "Télématique et réseau informatique (Management des RX)",
+                        "Système distribué",
+                        "Processus inter protocole",
+                        "LECTEUR 2",
+                        "LECTEUR 1"
+                    ]
+                }
+            ]
+        },
+        {
+            "nom": "Master 2 Conception des Systèmes d'Information (M2 CSI)",
+            "semestres": [
+                {
+                    "semestre": "1er Semestre",
+                    "total_cours": 7,
+                    "cours": [
+                        "Séminaire informatique",
+                        "Evaluation des projets",
+                        "Base de données reparties",
+                        "Atelier Business Intelligence",
+                        "Questions spéciales de programmation avancée",
+                        "Système d'exploitation comparé",
+                        "Algorithme de distribution"
+                    ]
+                },
+                {
+                    "semestre": "2e Semestre",
+                    "total_cours": 8,
+                    "cours": [
+                        "Questions approfondies de la gestion des ressources humaines",
+                        "Business intelligence",
+                        "Questions spéciales de conception de système d'information",
+                        "Questions spéciales de programmation avancée",
+                        "Mémoire",
+                        "Stage",
+                        "LECTEUR 1",
+                        "LECTEUR 2"
+                    ]
+                }
+            ]
+        }
+    ]
+}
