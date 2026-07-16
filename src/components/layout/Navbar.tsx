@@ -6,7 +6,6 @@ import {
   Clock,
   ImageIcon,
   Mail,
-  MapPin,
 } from 'lucide-react'
 import LogoFsiUcc from '@/assets/logo_fsi_tranparent.png'
 import { Link } from 'react-router-dom'
@@ -17,7 +16,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-20 items-center">
           {/* Logo */}
-          <div className="flex items-center gap-3">
+          <Link to="/" className="flex items-center gap-3">
             <img src={LogoFsiUcc} alt="logo-fsi-ucc" className="w-16 h-16" />
             <div className="flex flex-col">
               <span className="font-bold text-xl leading-tight text-slate-900 tracking-tight">
@@ -27,7 +26,7 @@ const Navbar = () => {
                 Faculté des Sciences Informatiques
               </span>
             </div>
-          </div>
+          </Link>
 
           {/* Menu Links */}
           <div className="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-600">
@@ -68,7 +67,6 @@ const Navbar = () => {
             >
               <Mail size={18} /> Contact
             </Link>
-            
           </div>
         </div>
       </div>

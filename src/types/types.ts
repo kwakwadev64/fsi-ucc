@@ -1,1 +1,7 @@
-//ici on mettra tous le type de notre projet
+// contact form
+export interface ContactFormData {
+  name: string
+  email: string
+  subject: string
+  message: string
+}
