@@ -30,18 +30,17 @@ const Navbar = () => {
 
           {/* Menu Links */}
           <div className="hidden lg:flex items-center space-x-8 text-sm font-medium text-slate-600">
-            <a
-              href="#"
+            <Link
+              to="/"
               className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors"
             >
               <Home size={18} /> Accueil
-            </a>
+            </Link>
             <Link
               to="/etude"
               className="flex items-center gap-1 hover:text-blue-600 transition-colors"
             >
               <GraduationCap size={18} /> Études{' '}
-              <ChevronDown size={14} className="mt-0.5" />
             </Link>
             <a
               href="#"
