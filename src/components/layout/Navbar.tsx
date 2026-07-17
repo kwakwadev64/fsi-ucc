@@ -36,13 +36,13 @@ const Navbar = () => {
             >
               <Home size={18} /> Accueil
             </a>
-            <a
-              href="#"
+            <Link
+              to="/etude"
               className="flex items-center gap-1 hover:text-blue-600 transition-colors"
             >
               <GraduationCap size={18} /> Études{' '}
               <ChevronDown size={14} className="mt-0.5" />
-            </a>
+            </Link>
             <a
               href="#"
               className="flex items-center gap-2 hover:text-blue-600 transition-colors"
@@ -55,12 +55,12 @@ const Navbar = () => {
             >
               <Clock size={18} /> Historique
             </a>
-            <a
-              href="#"
+            <Link
+              to="/galerie"
               className="flex items-center gap-2 hover:text-blue-600 transition-colors"
             >
               <ImageIcon size={18} /> Galerie
-            </a>
+            </Link>
             <Link
               to="/contact"
               className="flex items-center gap-2 hover:text-blue-600 transition-colors"
