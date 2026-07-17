@@ -16,20 +16,36 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
 
+  // URL de ton API Laravel (s'adapte à ton .env ou utilise l'adresse locale par défaut)
+  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     setIsSubmitting(true)
 
     try {
-      // Simulation d'appel API
-      await new Promise(resolve => setTimeout(resolve, 1500))
+      // Appel réel à ton API Laravel
+      const response = await fetch(`${API_BASE_URL}/contact-site`, {
+        method: 'POST', // Utilisation de POST pour l'envoi des données
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
 
-      console.log("Données prêtes pour l'API :", formData)
+      if (!response.ok) {
+        throw new Error(`Erreur serveur: ${response.status}`)
+      }
+
+      const data = await response.json()
+      console.log("Réponse de l'API Laravel :", data)
+      
       alert('Votre message a été envoyé avec succès !')
-
       setFormData({ name: '', email: '', subject: '', message: '' })
     } catch (error) {
-      console.error("Erreur lors de l'envoi du formulaire", error)
+      console.error("Erreur lors de l'envoi du formulaire à Laravel :", error)
+      alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.")
     } finally {
       setIsSubmitting(false)
     }
@@ -239,11 +255,11 @@ export default function ContactPage() {
                 {isSubmitting ? (
                   <>
                     <Loader2 className="w-5 h-5 animate-spin" />
-                    Envoi en cours...
+                    <span>Envoi en cours...</span>
                   </>
                 ) : (
                   <>
-                    Envoyer le message
+                    <span>Envoyer le message</span>
                     <Send className="w-5 h-5" />
                   </>
                 )}

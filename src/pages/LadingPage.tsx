@@ -1,12 +1,34 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence, type Variants } from 'framer-motion'
-import { BookOpen, FileText, ChevronDown, Network, Code, ArrowRight, Calendar, User } from 'lucide-react'
+import { BookOpen, FileText, ChevronDown, Network, Code, ArrowRight, Calendar, User, Loader2 } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import LogoFsiUcc from '@/assets/logo_fsi_tranparent.png'
-import reseau from '@/assets/reseau.png';
-import logiciel from '@/assets/conception.png';
-import { accesRapide, faqData, stats } from '@/libs/data'
+import reseau from '@/assets/reseau.png'
+import logiciel from '@/assets/conception.png'
+import { accesRapide, faqData } from '@/libs/data'
+
+// Interface correspondant à la structure de ta migration Laravel
+interface Actualite {
+  id: number
+  titre: string
+  location: string
+  description: string
+  image_url: string
+  rating: string
+  filter_type: string
+  is_published: boolean
+  created_at: string
+  updated_at: string
+}
+
+// Interface pour encapsuler la réponse globale de ton API
+interface HomeData {
+  actualites: Actualite[]
+  cours_count: number
+  photos_count: number
+  bats_count: number
+}
 
 // Données locales pour les Filières (Réseau et Conception)
 const filieresData = [
@@ -21,7 +43,7 @@ const filieresData = [
       'Téléphonie sur IP & Infrastructures Critiques',
       'Configuration Cisco, Huawei & Linux server'
     ],
-    image : reseau
+    image: reseau
   },
   {
     id: 'conception',
@@ -38,42 +60,34 @@ const filieresData = [
   }
 ];
 
-// Données locales pour les Dernières Actualités
-const actualitesData = [
-  {
-    id: 1,
-    title: 'Hackathon FSI Édition 2026 : Le sprint numérique de 48h est lancé',
-    slug: 'hackathon-fsi-2026',
-    category: 'Événement',
-    date: '15 Juil 2026',
-    author: 'Décanat FSI',
-    image: 'https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=600&q=80',
-    desc: 'Les étudiants de la faculté s’affrontent pendant deux jours pour concevoir des solutions applicatives innovantes répondant aux défis locaux.'
-  },
-  {
-    id: 2,
-    title: 'Visite technique guidée au cœur de l’infrastructure d’un partenaire Télécom',
-    slug: 'visite-technique-telecom',
-    category: 'Excursion',
-    date: '02 Juil 2026',
-    author: 'Prof. Réseaux',
-    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=600&q=80',
-    desc: 'Immersion pratique pour nos étudiants de Master dans l’administration des datacenters et la gestion des cœurs de réseaux mobiles.'
-  },
-  {
-    id: 3,
-    title: 'Lancement de la phase de dépôt des sujets de projets de fin de cycle',
-    slug: 'depot-sujets-projets-2026',
-    category: 'Académique',
-    date: '24 Juin 2026',
-    author: 'Secrétariat FSI',
-    image: 'https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=600&q=80',
-    desc: 'Les directives officielles concernant l’analyse, la modélisation et le prototypage des applications de gestion pour les finalistes.'
-  }
-];
-
 export default function LadingPage() {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null)
+  
+  // États pour la gestion des données de l'API Laravel
+  const [data, setData] = useState<HomeData | null>(null)
+  const [loading, setLoading] = useState<boolean>(true)
+  const [error, setError] = useState<string | null>(null)
+
+  // Appel API vers le serveur Laravel au chargement du composant
+  useEffect(() => {
+    const fetchHomeData = async () => {
+      try {
+        // Remplace l'URL par ton adresse de serveur locale ou de production si nécessaire
+        const response = await fetch('http://127.0.0.1:8000/api/accueil-site')
+        if (!response.ok) {
+          throw new Error('Erreur lors de la récupération des données')
+        }
+        const jsonResult = await response.json()
+        setData(jsonResult)
+      } catch (err: any) {
+        setError(err.message || 'Une erreur est survenue')
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    fetchHomeData()
+  }, [])
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -91,6 +105,24 @@ export default function LadingPage() {
       transition: { duration: 0.5, ease: 'easeOut' },
     },
   }
+
+  // Écran de chargement pendant la récupération des données de l'API
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-[#0B132B] flex flex-col items-center justify-center text-white font-['Poppins',sans-serif]">
+        <Loader2 className="w-12 h-12 text-blue-400 animate-spin mb-4" />
+        <p className="text-lg font-light tracking-wide animate-pulse">Chargement de la plateforme...</p>
+      </div>
+    )
+  }
+
+  // Reconstruction dynamique du tableau des statistiques à partir de l'API
+  const dynamicStats = data ? [
+    { count: data.cours_count, label: 'Cours Disponibles', icon: BookOpen },
+    { count: data.actualites.length, label: 'Actualités à la une', icon: FileText },
+    { count: data.photos_count, label: 'Photos de Famille', icon: User },
+    { count: data.bats_count, label: 'Horaires Examens', icon: Calendar },
+  ] : []
 
   return (
     <div className="min-h-screen bg-slate-50 font-['Poppins',sans-serif] text-slate-900">
@@ -161,7 +193,7 @@ export default function LadingPage() {
           viewport={{ once: true, margin: '-50px' }}
           className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
         >
-          {stats.map((stat, index) => (
+          {dynamicStats.map((stat, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -222,7 +254,7 @@ export default function LadingPage() {
         </motion.div>
       </section>
 
-      {/*SECTION FILIÈRES (NOUVEAU) */}
+      {/* SECTION FILIÈRES */}
       <section className="bg-slate-100/60 py-20 border-y border-slate-200/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
@@ -239,24 +271,22 @@ export default function LadingPage() {
           </div>
 
           {/* Liste des filières alternées */}
-          <div className="flex flex-col gap-16"
-          >
+          <div className="flex flex-col gap-16">
             {filieresData.map((filiere, index) => {
-              // Alterne l'ordre : index pair = Image à gauche / index impair = Image à droite (inversé)
               const isEven = index % 2 === 0;
 
               return (
                 <motion.div
                   key={filiere.id}
                   variants={itemVariants}
-                  className={`overflow-hidden shadow-sm  flex flex-col md:flex-row ${
+                  className={`overflow-hidden shadow-sm flex flex-col md:flex-row ${
                     !isEven ? 'md:flex-row-reverse' : ''
                   } gap-8 lg:gap-12 p-6 md:p-8 items-center group hover:shadow-xl transition-all duration-300`}
                 >
                   {/* Bloc Image d'illustration */}
                   <div className="w-full md:w-1/2 overflow-hidden shrink-0 ">
                     <img
-                      src={filiere.image} // Remplace par filiere.image dans tes data
+                      src={filiere.image}
                       alt={filiere.title}
                       className="w-full h-full object-cover transform group-hover:scale-102 transition-transform duration-500"
                     />
@@ -285,11 +315,10 @@ export default function LadingPage() {
               );
             })}
           </div>
-
         </div>
       </section>
 
-      {/* SECTION DERNIÈRES ACTUALITÉS (NOUVEAU) */}
+      {/* SECTION DERNIÈRES ACTUALITÉS (DYNAMISÉE) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 mb-8">
         <div className="text-center mb-16">
           <h2 className="text-3xl font-bold text-slate-900 inline-block relative">
@@ -302,69 +331,79 @@ export default function LadingPage() {
           </p>
         </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: '-20px' }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {actualitesData.map((actu) => (
-            <motion.div
-              key={actu.id}
-              variants={itemVariants}
-              className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer"
-            >
-              {/* Image d'illustration de l'actu */}
-              <div className="relative h-48 w-full overflow-hidden bg-slate-200">
-                <span className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md text-[#0D3B66] text-[10px] font-bold px-3 py-1.5 rounded-full shadow-xs uppercase tracking-wider">
-                  {actu.category}
-                </span>
-                <img 
-                  src={actu.image} 
-                  alt={actu.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
-                />
-              </div>
+        {error ? (
+          <div className="text-center py-8 text-red-500 font-medium">
+            Impossible de charger les dernières actualités ({error}).
+          </div>
+        ) : (
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-20px' }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {data?.actualites.map((actu) => (
+              <motion.div
+                key={actu.id}
+                variants={itemVariants}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-xs hover:shadow-xl transition-all duration-300 flex flex-col group cursor-pointer"
+              >
+                {/* Image d'illustration de l'actu */}
+                <div className="relative h-48 w-full overflow-hidden bg-slate-200">
+                  <span className="absolute top-4 left-4 z-10 bg-white/95 backdrop-blur-md text-[#0D3B66] text-[10px] font-bold px-3 py-1.5 rounded-full shadow-xs uppercase tracking-wider">
+                    {actu.filter_type}
+                  </span>
+                  <img 
+                    src={`http://127.0.0.1:8000/storage/${actu.image_url}`} 
+                    alt={actu.titre} 
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
 
-              {/* Corps textuel de l'actu */}
-              <div className="p-6 flex flex-col flex-grow justify-between">
-                <div>
-                  {/* Métadonnées */}
-                  <div className="flex items-center gap-4 text-slate-400 text-[11px] font-bold uppercase tracking-wide mb-3">
-                    <span className="flex items-center gap-1.5">
-                      <Calendar size={13} />
-                      {actu.date}
-                    </span>
-                    <span className="flex items-center gap-1.5">
-                      <User size={13} />
-                      {actu.author}
-                    </span>
+                {/* Corps textuel de l'actu */}
+                <div className="p-6 flex flex-col flex-grow justify-between">
+                  <div>
+                    {/* Métadonnées */}
+                    <div className="flex items-center gap-4 text-slate-400 text-[11px] font-bold uppercase tracking-wide mb-3">
+                      <span className="flex items-center gap-1.5">
+                        <Calendar size={13} />
+                        {new Date(actu.created_at).toLocaleDateString('fr-FR', {
+                          day: '2-digit',
+                          month: 'short',
+                          year: 'numeric'
+                        })}
+                      </span>
+                      <span className="flex items-center gap-1.5">
+                        <User size={13} />
+                        {actu.location}
+                      </span>
+                    </div>
+
+                    <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug mb-3">
+                      {actu.titre}
+                    </h3>
+                    
+                    <p className="text-xs text-slate-500 font-medium line-clamp-3 leading-relaxed mb-6">
+                      {actu.description}
+                    </p>
                   </div>
 
-                  <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors line-clamp-2 leading-snug mb-3">
-                    {actu.title}
-                  </h3>
-                  
-                  <p className="text-xs text-slate-500 font-medium line-clamp-3 leading-relaxed mb-6">
-                    {actu.desc}
-                  </p>
+                  {/* BOUTON LIRE LA SUITE */}
+                  <div className="pt-4 border-t border-slate-50">
+                    <a 
+                      href={`/actualites/${actu.id}`}
+                      className="inline-flex items-center gap-2 text-xs font-bold text-[#0D3B66] group-hover:text-blue-600 transition-colors uppercase tracking-wider"
+                    >
+                      <span>Lire la suite</span>
+                      <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
+                    </a>
+                  </div>
                 </div>
-
-                {/* BOUTON LIRE LA SUITE */}
-                <div className="pt-4 border-t border-slate-50">
-                  <a 
-                    href={`/actualites/${actu.slug}`}
-                    className="inline-flex items-center gap-2 text-xs font-bold text-[#0D3B66] group-hover:text-blue-600 transition-colors uppercase tracking-wider"
-                  >
-                    <span>Lire la suite</span>
-                    <ArrowRight size={14} className="transform group-hover:translate-x-1 transition-transform" />
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        )}
       </section>
 
       {/* FAQ SECTION */}
