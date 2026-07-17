@@ -1,9 +1,9 @@
 import { Routes, Route, Link } from 'react-router-dom'
-import LadingPage from './pages/LadingPage'
-import ContactPage from './pages/contact'
-import EtudePage from './pages/etude'
-import GalerieFSI from './pages/galerie'
-import LoginPage from './pages/login'
+import LadingPage from '@/pages/LadingPage'
+import ContactPage from '@/pages/contact'
+import EtudePage from '@/pages/etude'
+import GalerieFSI from '@/pages/galerie'
+import LoginPage from '@/pages/login'
 
 function NotFound() {
   return (
@@ -31,12 +31,13 @@ export default function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<LadingPage />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/" element={<LadingPage />} />{' '}
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/etude" element={<EtudePage />} />
         <Route path="/galerie" element={<GalerieFSI />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   )

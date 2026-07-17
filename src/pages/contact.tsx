@@ -100,7 +100,7 @@ export default function ContactPage() {
 
       {/* CARTES D'INFORMATIONS */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-12 relative z-20 mb-16">
-        <div className="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {contactInfo.map((info, index) => (
             <motion.div
               key={info.title}

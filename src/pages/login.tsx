@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import LogoFsiUcc from '@/assets/logo_fsi_tranparent.png'
 import GooglePlayIcon from '@/assets/logo-playsotre.png'
  
