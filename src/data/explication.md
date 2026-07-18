@@ -1,1 +1,0 @@
-Le fichier programme-fsi contient les cours que la page etude.tsx va exploiter pour afficher les cours par promotion au sein de la faculté

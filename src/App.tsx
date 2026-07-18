@@ -3,7 +3,11 @@ import LadingPage from '@/pages/LadingPage'
 import ContactPage from '@/pages/contact'
 import EtudePage from '@/pages/etude'
 import GalerieFSI from '@/pages/galerie'
-import LoginPage from '@/pages/login'
+import LoginPage from '@/pages/forms/login'
+import RegisterPage from './pages/forms/RegisterPage'
+import { Toaster } from 'sonner'
+import HistoriquePage from './pages/HistoriquePage'
+import EquipePage from './pages/EquipePage'
 
 function NotFound() {
   return (
@@ -30,12 +34,16 @@ function NotFound() {
 export default function App() {
   return (
     <>
+      <Toaster position="top-right" richColors closeButton />
       <Routes>
         <Route path="/" element={<LadingPage />} />{' '}
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/etude" element={<EtudePage />} />
+        <Route path="/equipe" element={<EquipePage />} />
+        <Route path="/historique" element={<HistoriquePage />} />
         <Route path="/galerie" element={<GalerieFSI />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/register" element={<RegisterPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

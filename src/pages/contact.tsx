@@ -1,54 +1,35 @@
-import { useState } from 'react'
 import { motion } from 'framer-motion'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
+import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { Phone, MapPin, Clock, Mail, Send, Loader2 } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import uccbatiment from '@/assets/DJI_0349-1536x864.jpg'
+import { useMutateData } from '@/hooks/useQuery'
 import type { ContactFormData } from '@/types/types'
+import { contactSchema } from '@/validators/contactSchema'
+import { env } from '@/config/env'
+import axios from 'axios'
+import { getErrorMessage } from '@/utils/api-error'
+import { toast } from 'sonner'
 
 export default function ContactPage() {
-  const [formData, setFormData] = useState<ContactFormData>({
+  const { mutate, isPending } = useMutateData<unknown, Error, ContactFormData>(
+    async formData => {
+      const response = await axios.post(
+        `${env.VITE_API_URL}/contact-site`,
+        formData
+      )
+
+      return response.data
+    }
+  )
+
+  const initialValues: ContactFormData = {
     name: '',
     email: '',
     subject: '',
     message: '',
-  })
-
-  const [isSubmitting, setIsSubmitting] = useState<boolean>(false)
-
-  // URL de ton API Laravel (s'adapte à ton .env ou utilise l'adresse locale par défaut)
-  const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000/api'
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-
-    try {
-      // Appel réel à ton API Laravel
-      const response = await fetch(`${API_BASE_URL}/contact-site`, {
-        method: 'POST', // Utilisation de POST pour l'envoi des données
-        headers: {
-          'Content-Type': 'application/json',
-          'Accept': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      })
-
-      if (!response.ok) {
-        throw new Error(`Erreur serveur: ${response.status}`)
-      }
-
-      const data = await response.json()
-      console.log("Réponse de l'API Laravel :", data)
-      
-      alert('Votre message a été envoyé avec succès !')
-      setFormData({ name: '', email: '', subject: '', message: '' })
-    } catch (error) {
-      console.error("Erreur lors de l'envoi du formulaire à Laravel :", error)
-      alert("Une erreur est survenue lors de l'envoi. Veuillez réessayer.")
-    } finally {
-      setIsSubmitting(false)
-    }
   }
 
   const contactInfo = [
@@ -88,7 +69,6 @@ export default function ContactPage() {
           className="px-4 md:px-20 w-full h-112.5 flex flex-col items-center justify-center text-center bg-cover bg-center relative"
           style={{ backgroundImage: `url(${uccbatiment})` }}
         >
-          {/* Overlay pour améliorer la lisibilité */}
           <div className="absolute inset-0 bg-black/50"></div>
           <div className="relative z-10 max-w-3xl">
             <motion.div
@@ -96,18 +76,16 @@ export default function ContactPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="inline-block px-4 py-1.5 bg-white/20 backdrop-blur-sm rounded-full text-white text-sm font-medium mb-4 border border-white/20">
+              <span className="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-blue-400 text-sm font-medium mb-4">
                 Nous contacter
               </span>
               <h1 className="text-4xl md:text-5xl font-bold text-white mb-4">
-                Contactez-nous
+                Contactez- <span className="text-blue-400">nous</span>
               </h1>
               <div className="w-20 h-1 bg-amber-400 mx-auto mb-6"></div>
               <p className="text-gray-300 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Debitis voluptates nisi necessitatibus a commodi saepe nam
-                facere quia quasi aut amet dolor perferendis, accusamus
-                molestias quaerat est adipisci. Id, officia.
+                Faculté des Sciences Informatiques - UCC. Envoyez vos requêtes
+                administratives ou académiques.
               </p>
             </motion.div>
           </div>
@@ -143,9 +121,8 @@ export default function ContactPage() {
 
       {/* SECTION FORMULAIRE + CARTE */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 mb-16">
-        {/* Ajout de la grille principale pour gérer le 3/5 et 2/5 proprement */}
         <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-start">
-          {/* FORMULAIRE - 3/5 */}
+          {/* Formulaire managé par Formik - 3/5 */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -161,113 +138,138 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="name"
-                    className="block text-sm font-medium text-slate-700 mb-1.5"
+            <Formik
+              initialValues={initialValues}
+              validationSchema={toFormikValidationSchema(contactSchema)}
+              onSubmit={(values, { resetForm }) => {
+                mutate(values, {
+                  onSuccess: () => {
+                    toast.success('Votre message a été envoyé avec succès !')
+                    resetForm()
+                  },
+                  onError: error => {
+                    const clearMessage = getErrorMessage(error)
+                    toast.error(clearMessage)
+                  },
+                })
+              }}
+            >
+              {() => (
+                <Form className="space-y-5">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label
+                        htmlFor="name"
+                        className="block text-sm font-medium text-slate-700 mb-1.5"
+                      >
+                        Nom complet <span className="text-red-500">*</span>
+                      </label>
+                      <Field
+                        id="name"
+                        name="name"
+                        type="text"
+                        placeholder="Jean Dupont"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
+                      />
+                      <ErrorMessage
+                        name="name"
+                        component="span"
+                        className="text-xs text-red-500 mt-1 block"
+                      />
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="email"
+                        className="block text-sm font-medium text-slate-700 mb-1.5"
+                      >
+                        Email <span className="text-red-500">*</span>
+                      </label>
+                      <Field
+                        id="email"
+                        name="email"
+                        type="email"
+                        placeholder="jean.dupont@email.com"
+                        className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
+                      />
+                      <ErrorMessage
+                        name="email"
+                        component="span"
+                        className="text-xs text-red-500 mt-1 block"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="subject"
+                      className="block text-sm font-medium text-slate-700 mb-1.5"
+                    >
+                      Sujet <span className="text-red-500">*</span>
+                    </label>
+                    <Field
+                      id="subject"
+                      name="subject"
+                      type="text"
+                      placeholder="Objet de votre message"
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
+                    />
+                    <ErrorMessage
+                      name="subject"
+                      component="span"
+                      className="text-xs text-red-500 mt-1 block"
+                    />
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="message"
+                      className="block text-sm font-medium text-slate-700 mb-1.5"
+                    >
+                      Message <span className="text-red-500">*</span>
+                    </label>
+                    <Field
+                      id="message"
+                      name="message"
+                      as="textarea"
+                      placeholder="Décrivez votre demande en détail..."
+                      rows={5}
+                      className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200 resize-none"
+                    />
+                    <ErrorMessage
+                      name="message"
+                      component="span"
+                      className="text-xs text-red-500 mt-1 block"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    disabled={isPending}
+                    className={`w-full py-4 px-6 rounded-xl text-sm font-bold tracking-wide text-white transition-all duration-300 flex items-center justify-center gap-3 ${
+                      isPending
+                        ? 'bg-slate-400 cursor-not-allowed'
+                        : 'bg-[#0D3B66] hover:bg-[#0a2d4a] hover:shadow-lg hover:shadow-[#0D3B66]/25 active:scale-[0.98]'
+                    }`}
                   >
-                    Nom complet <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="name"
-                    type="text"
-                    placeholder="Jean Dupont"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
-                    value={formData.name}
-                    onChange={e =>
-                      setFormData({ ...formData, name: e.target.value })
-                    }
-                  />
-                </div>
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-sm font-medium text-slate-700 mb-1.5"
-                  >
-                    Email <span className="text-red-500">*</span>
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    placeholder="jean.dupont@email.com"
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
-                    value={formData.email}
-                    onChange={e =>
-                      setFormData({ ...formData, email: e.target.value })
-                    }
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label
-                  htmlFor="subject"
-                  className="block text-sm font-medium text-slate-700 mb-1.5"
-                >
-                  Sujet <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id="subject"
-                  type="text"
-                  placeholder="Objet de votre message"
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
-                  value={formData.subject}
-                  onChange={e =>
-                    setFormData({ ...formData, subject: e.target.value })
-                  }
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium text-slate-700 mb-1.5"
-                >
-                  Message <span className="text-red-500">*</span>
-                </label>
-                <textarea
-                  id="message"
-                  placeholder="Décrivez votre demande en détail..."
-                  rows={5}
-                  required
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200 resize-none"
-                  value={formData.message}
-                  onChange={e =>
-                    setFormData({ ...formData, message: e.target.value })
-                  }
-                />
-              </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className={`w-full py-4 px-6 rounded-xl text-sm font-bold tracking-wide text-white transition-all duration-300 flex items-center justify-center gap-3 ${
-                  isSubmitting
-                    ? 'bg-slate-400 cursor-not-allowed'
-                    : 'bg-[#0D3B66] hover:bg-[#0a2d4a] hover:shadow-lg hover:shadow-[#0D3B66]/25 active:scale-[0.98]'
-                }`}
-              >
-                {isSubmitting ? (
-                  <>
-                    <Loader2 className="w-5 h-5 animate-spin" />
-                    <span>Envoi en cours...</span>
-                  </>
-                ) : (
-                  <>
-                    <span>Envoyer le message</span>
-                    <Send className="w-5 h-5" />
-                  </>
-                )}
-              </button>
-            </form>
+                    {isPending ? (
+                      <>
+                        <Loader2 className="w-5 h-5 animate-spin" />
+                        <span>Envoi en cours...</span>
+                      </>
+                    ) : (
+                      <>
+                        <span>Envoyer le message</span>
+                        <Send className="w-5 h-5" />
+                      </>
+                    )}
+                  </button>
+                </Form>
+              )}
+            </Formik>
           </motion.div>
 
-          {/* CARTE - 2/5 */}
+          {/* LOCALISATION - 2/5 */}
           <motion.div
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}

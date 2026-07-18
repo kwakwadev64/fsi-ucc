@@ -1,4 +1,5 @@
 import { Clock, Mail, MapPin } from 'lucide-react'
+import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
@@ -51,29 +52,35 @@ const Footer = () => {
           </h3>
           <ul className="space-y-3 text-sm text-slate-400 font-medium">
             <li>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <Link to="#" className="hover:text-blue-400 transition-colors">
                 Notes de cours
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <Link to="#" className="hover:text-blue-400 transition-colors">
                 Annales
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <Link to="#" className="hover:text-blue-400 transition-colors">
                 Horaires
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <Link
+                to="/historique"
+                className="hover:text-blue-400 transition-colors"
+              >
                 Historique
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="hover:text-blue-400 transition-colors">
+              <Link
+                to="/equipe"
+                className="hover:text-blue-400 transition-colors"
+              >
                 Équipe facultaire
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
