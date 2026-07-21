@@ -62,25 +62,28 @@ export interface HistoriqueData {
   epoques: Epoque[]
 }
 
-// équipe
-export interface MembreEquipe {
+// Interface pour un membre individuel
+export interface Membre {
   nom: string
   role: string
   description: string
+  photo?: string
+  avatarUrl?: string
   sujetMemoire?: string
-  avatarUrl?: string // URL de l'image (si non fournie, le composant génère un fallback premium avec initiales)
   github?: string
   linkedin?: string
   portfolio?: string
 }
 
+// Interface pour une section d'équipe
 export interface SectionEquipe {
-  id: string
+  id: 'faculte' | 'gouvernement' | 'cp_cpa' | 'developpeurs' | string
   titre: string
   description: string
-  membres: MembreEquipe[]
+  membres: Membre[]
 }
 
+// Interface principale pour la structure globale de equipeData
 export interface EquipeData {
   sections: SectionEquipe[]
 }
