@@ -35,7 +35,7 @@ const itemVariants: Variants = {
 }
 
 const fetchHomeData = async (): Promise<HomeData> => {
-  const response = await fetch(`${import.meta.env.VITE_URL_API}/accueil-site`)
+  const response = await fetch(`http://127.0.0.1:8000/api/accueil-site`)
   if (!response.ok) {
     throw new Error('Erreur lors de la récupération des données')
   }
@@ -235,7 +235,7 @@ export default function LadingPage() {
                   } gap-6 lg:gap-12 p-5 sm:p-6 md:p-8 items-center group hover:shadow-xl transition-all duration-300`}
                 >
                   {/* Bloc Image d'illustration */}
-                  <div className="w-full md:w-1/2 aspect-video md:aspect-auto md:h-64 overflow-hidden rounded-2xl shrink-0">
+                  <div className="w-full md:w-1/2 aspect-video md:aspect-auto overflow-hidden rounded-2xl shrink-0">
                     <img
                       src={filiere.image}
                       alt={filiere.title}
