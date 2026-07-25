@@ -376,7 +376,7 @@ export default function RegisterPage() {
                   <button
                     type="button"
                     onClick={nextStep}
-                    className="flex-1 bg-[#0D3B66] text-white py-3.5 rounded-xl font-bold hover:bg-opacity-95 hover:shadow-lg active:scale-[0.99] transition duration-200 text-sm"
+                    className="flex-1 bg-blue-600 text-white py-3.5 rounded-xl font-bold hover:bg-opacity-95 hover:shadow-lg active:scale-[0.99] transition duration-200 text-sm"
                   >
                     Suivant
                   </button>
