@@ -34,7 +34,7 @@ export const equipeData: EquipeData = {
           role: 'Ministre de la Communication & Porte-parole',
           description:
             'Chargée de la communication officielle et porte-parole de la délégation.',
-          photo: '',
+          photo: '/sephora.jpeg',
         },
         {
           nom: 'Grady NLANDU',
@@ -67,7 +67,7 @@ export const equipeData: EquipeData = {
           nom: 'Kevin MANGUNZA',
           role: 'Vice-Ministre des Sports',
           description: 'Assistant au ministère des Sports.',
-          photo: '',
+          photo: 'kevin.jpeg',
         },
         {
           nom: 'Jenovic ILAMBU',
@@ -110,7 +110,7 @@ export const equipeData: EquipeData = {
           role: 'CPA - L1 FSI',
           description:
             'Chef de promotion adjoint - Première année de Licence en Sciences Informatiques.',
-          photo: '',
+          photo: '/rk.jpeg',
         },
         /* --- L2 FSI --- */
         {
@@ -118,7 +118,7 @@ export const equipeData: EquipeData = {
           role: 'CP - L2 FSI',
           description:
             'Chef de promotion - Deuxième année de Licence en Sciences Informatiques.',
-          photo: '',
+          photo: '/christella.jpeg',
         },
         {
           nom: 'KAPAY KUSAKA Dan',
@@ -243,7 +243,7 @@ export const equipeData: EquipeData = {
           role: 'Développeur Backend laravel',
           description:
             'Membre de la cellule technique impliquée dans le développement des fonctionnalités Backend.',
-          photo: '',
+          photo: '/kaps.jpg',
           github: 'https://github.com/Kaps-stack',
           linkedin: 'lien',
           portfolio: 'lien',
