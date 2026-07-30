@@ -13,7 +13,7 @@ export const env = createEnv({
    * TypeScript hurlera si elles ne commencent pas par VITE_.
    */
   client: {
-    VITE_API_URL: z.string().url('VITE_API_URL doit être une URL valide'),
+    VITE_API_URL: z.string().min(1),
   },
 
   runtimeEnv: import.meta.env,

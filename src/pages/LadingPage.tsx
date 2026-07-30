@@ -16,6 +16,7 @@ import { accesRapide, faqData } from '@/data/data'
 import type { HomeData } from '@/types/types'
 import { filieresData } from '@/data/filiere'
 import { useFetchData } from '@/hooks/useQuery'
+import { env } from '@/config/env'
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -35,7 +36,7 @@ const itemVariants: Variants = {
 }
 
 const fetchHomeData = async (): Promise<HomeData> => {
-  const response = await fetch(`http://127.0.0.1:8000/api/accueil-site`)
+  const response = await fetch(`${env.VITE_API_URL}/accueil-site`)
   if (!response.ok) {
     throw new Error('Erreur lors de la récupération des données')
   }
@@ -310,7 +311,7 @@ export default function LadingPage() {
                     {actu.filter_type}
                   </span>
                   <img
-                    src={`http://127.0.0.1:8000/storage/${actu.image_url}`}
+                    src={`http://frnagrmi.fsiucc.com/storage/${actu.image_url}`}
                     alt={actu.titre}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />

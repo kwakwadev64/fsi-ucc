@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import fsi from '@/assets/image-info.webp'
 import { type Galerie } from '@/types/types'
 
 export default function GalerieFSI() {
@@ -31,7 +32,7 @@ export default function GalerieFSI() {
       try {
         setLoading(true)
         // Remplace par l'URL de ton serveur API Laravel (ex: http://127.0.0.1:8000/api/galerie-famille)
-        const response = await fetch('http://127.0.0.1:8000/api/galerie-site')
+        const response = await fetch('http://frnagrmi.fsiucc.com/api/galerie-site')
         const json = await response.json()
 
         if (json.success) {
@@ -165,7 +166,7 @@ export default function GalerieFSI() {
           <div className="absolute inset-0 bg-[#0D3B66]/10 rounded-bl-[100px] md:rounded-bl-[200px] rounded-tr-[50px] transform translate-x-4 translate-y-4 -z-10"></div>
           <div className="w-full h-full overflow-hidden rounded-bl-[100px] md:rounded-bl-[200px] rounded-tr-[50px] border-4 border-white shadow-2xl shadow-blue-600/20">
             <img
-              src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
+              src={fsi}
               alt="Promotion FSI UCC"
               onContextMenu={e => e.preventDefault()}
               className="w-full h-full object-cover transform hover:scale-105 transition duration-700 select-none pointer-events-none"

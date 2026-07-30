@@ -41,7 +41,7 @@ export default function EtudePage() {
         style={{ backgroundImage: `url(${uccbatiment})` }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+        <div className="relative w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-center flex flex-col items-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-blue-400 text-sm font-medium mb-4 mx-auto md:mx-0">
             <GraduationCap size={16} />
             Cursus Académique LMD

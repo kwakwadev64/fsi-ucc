@@ -140,15 +140,16 @@ export const equipeData: EquipeData = {
           role: 'CPA - L3 FSI',
           description:
             'Chef de promotion adjointe - Troisième année de Licence en Sciences Informatiques.',
-          photo: '',
+          photo: 'cpaL3.jpeg',
         },
         {
           nom: 'RACHIDI AMISI Prisca',
           role: 'CPA - L3 FSI',
           description:
             'Chef de promotion adjointe - Troisième année de Licence en Sciences Informatiques.',
-          photo: '/cpaL3.jpeg',
+          photo: '/Rachidi-amisi.jpeg',
         },
+        
         /* --- M1 CSI --- */
         {
           nom: 'KANANGILA MUTEBA Benally',
@@ -162,7 +163,7 @@ export const equipeData: EquipeData = {
           role: 'CPA - M1 CSI',
           description:
             'Chef de promotion adjointe - Master 1 Conception des Systèmes d’Information.',
-          photo: '',
+          photo: 'carmela-imbwele.jpeg',
         },
         /* --- M1 RX --- */
         {
@@ -234,7 +235,7 @@ export const equipeData: EquipeData = {
             'Membre de l’équipe de développement participant à la mise en place de la plateforme Web et Mobile.',
           photo: '/kwakwa.jpg',
           github: 'https://github.com/kwakwadev64',
-          linkedin: 'lien',
+          linkedin: 'www.linkedin.com/in/michee-kwakwa-2156b5351',
           portfolio: 'http://micadev.365chrono.org',
         },
         {

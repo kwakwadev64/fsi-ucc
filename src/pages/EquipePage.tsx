@@ -75,7 +75,7 @@ export default function EquipePage() {
         style={{ backgroundImage: `url(${uccbatiment})` }}
       >
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-left">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-center">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-blue-400 text-sm font-medium mb-4">
             <Users className="w-4 h-4" />
             Membres & Collaborateurs

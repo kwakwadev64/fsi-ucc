@@ -8,20 +8,46 @@ import uccbatiment from '@/assets/DJI_0349-1536x864.jpg'
 import { useMutateData } from '@/hooks/useQuery'
 import type { ContactFormData } from '@/types/types'
 import { contactSchema } from '@/validators/contactSchema'
-import { env } from '@/config/env'
-import axios from 'axios'
-import { getErrorMessage } from '@/utils/api-error'
 import { toast } from 'sonner'
 
 export default function ContactPage() {
   const { mutate, isPending } = useMutateData<unknown, Error, ContactFormData>(
     async formData => {
-      const response = await axios.post(
-        `${env.VITE_API_URL}/contact-site`,
-        formData
+      // 1. Transformation des données en URLSearchParams pour contourner le Preflight CORS (OPTIONS)
+      const params = new URLSearchParams()
+      params.append('name', formData.name)
+      params.append('nom', formData.name)
+      params.append('email', formData.email)
+      params.append('subject', formData.subject)
+      params.append('sujet', formData.subject)
+      params.append('message', formData.message)
+
+      // 2. Appel natif fetch configuré en "Requête Simple"
+      const response = await fetch(
+        'https://frnagrmi.fsiucc.com/api/contact-site',
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Accept': 'application/json',
+          },
+          body: params.toString(),
+        }
       )
 
-      return response.data
+      // 3. Gestion des erreurs HTTP (fetch ne throw pas automatiquement sur 4xx/5xx)
+      if (!response.ok) {
+        let errorMessage = `Erreur serveur (${response.status})`
+        try {
+          const errorData = await response.json()
+          errorMessage = errorData.message || errorData.error || errorMessage
+        } catch {
+          // Si la réponse n'est pas du JSON
+        }
+        throw new Error(errorMessage)
+      }
+
+      return await response.json()
     }
   )
 
@@ -147,9 +173,8 @@ export default function ContactPage() {
                     toast.success('Votre message a été envoyé avec succès !')
                     resetForm()
                   },
-                  onError: error => {
-                    const clearMessage = getErrorMessage(error)
-                    toast.error(clearMessage)
+                  onError: (error: Error) => {
+                    toast.error(error.message || 'Une erreur est survenue.')
                   },
                 })
               }}

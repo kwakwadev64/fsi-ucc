@@ -7,6 +7,16 @@ import path from 'node:path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths()],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'https://frnagrmi.fsiucc.com',
+        changeOrigin: true,
+        secure: false,
+        followRedirects: true,
+      },
+    },
+  },
   resolve: {
     alias: { '@': path.resolve(__dirname, './src') },
   },
