@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
 import { ArrowLeft, Calendar, MapPin, Star, Tag, Share2 } from 'lucide-react'
+import Navbar from '@/components/layout/Navbar'
+import Footer from '@/components/layout/Footer'
 
 interface ActualiteDetail {
   id: number
@@ -84,10 +86,10 @@ export default function NewsDetailPage() {
           <h2 className="text-lg font-bold text-gray-900 mb-2">Oups !</h2>
           <p className="text-gray-600 text-sm mb-6">{error}</p>
           <button
-            onClick={() => navigate('/actualites')}
+            onClick={() => navigate('/')}
             className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white text-sm font-medium rounded-lg hover:bg-blue-700 transition"
           >
-            <ArrowLeft className="w-4 h-4" /> Retour aux actualités
+            <ArrowLeft className="w-4 h-4" /> Retour à l'accueil
           </button>
         </div>
       </div>
@@ -95,95 +97,96 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 py-10 px-4 sm:px-6 lg:px-8 font-['Poppins',sans-serif]">
-      <div className="max-w-4xl mx-auto">
-        {/* Bouton Retour */}
-        <Link
-          to="/actualites"
-          className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-blue-600 mb-6 font-medium transition"
-        >
-          <ArrowLeft className="w-4 h-4" />
-          Retour aux actualités
-        </Link>
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
+      {/* NAVBAR */}
+      <Navbar />
+      <div className="min-h-screen bg-gray-50 py-10 font-['Poppins',sans-serif]">
+        <div className="w-full">
+          {/* Bouton Retour */}
+          <Link
+            to="/actualites"
+            className="inline-flex items-center px-4 gap-2 text-sm text-gray-600 hover:text-blue-600 mb-6 font-medium transition"
+          >
+            <ArrowLeft className="w-4 h-4" />
+            Retour aux actualités
+          </Link>
 
-        {/* Article principal */}
-        <article className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden">
-          
-          {/* Header & Badges */}
-          <div className="p-6 sm:p-8 border-b border-gray-100">
-            <div className="flex flex-wrap items-center gap-3 mb-4">
-              {/* Type / Categorie */}
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full">
-                <Tag className="w-3.5 h-3.5" />
-                {actualite.filter_type}
-              </span>
+          {/* Article principal */}
+          <article className=" overflow-hidden">
+            
+            {/* Header & Badges */}
+            <div className="p-6 sm:p-8 border-b border-gray-100">
+              <div className="flex flex-wrap items-center gap-3 mb-4">
+                {/* Type / Categorie */}
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-blue-50 text-blue-700 text-xs font-semibold rounded-full">
+                  <Tag className="w-3.5 h-3.5" />
+                  {actualite.filter_type}
+                </span>
 
-              {/* Lieu / Location */}
-              <span className="inline-flex items-center gap-1.5 text-xs text-gray-500 font-medium">
-                <MapPin className="w-3.5 h-3.5 text-red-500" />
-                {actualite.location}
-              </span>
+                {/* Lieu / Location */}
+                <span className="inline-flex items-center gap-1.5 text-xs text-gray-500 font-medium">
+                  <MapPin className="w-3.5 h-3.5 text-red-500" />
+                  {actualite.location}
+                </span>
 
-              {/* Note / Rating */}
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 bg-yellow-50 text-yellow-700 text-xs font-bold rounded-md">
-                <Star className="w-3.5 h-3.5 fill-yellow-400 text-yellow-400" />
-                {actualite.rating}
-              </span>
+                
+              </div>
 
+              <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight">
+                {actualite.titre}
+              </h1>
               {/* Date */}
-              <span className="inline-flex items-center gap-1.5 text-xs text-gray-400 ml-auto">
-                <Calendar className="w-3.5 h-3.5" />
-                {actualite.created_at}
+                <span className="inline-flex items-center gap-1.5 text-xs text-gray-400 mt-4">
+                  <Calendar className="w-3.5 h-3.5" />
+                  {actualite.created_at}
+                </span>
+            </div>
+
+            {/* Image de couverture */}
+            {actualite.image_url && (
+              <div className="w-full h-72 sm:h-96 overflow-hidden bg-gray-100">
+                <img
+                  src={actualite.image_url}
+                  alt={actualite.titre}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            )}
+
+            {/* Description / Contenu */}
+            <div className="p-6 sm:p-8 text-gray-700 leading-relaxed whitespace-pre-line text-base">
+              {actualite.description}
+            </div>
+
+            {/* Footer Article */}
+            <div className="p-6 border-t border-gray-100 bg-gray-50 flex items-center justify-between">
+              <span className="text-xs text-gray-500">
+                UCC Hub — Modifié récemment
               </span>
+
+              <button
+                onClick={() => {
+                  if (navigator.share) {
+                    navigator.share({
+                      title: actualite.titre,
+                      url: window.location.href,
+                    })
+                  } else {
+                    navigator.clipboard.writeText(window.location.href)
+                    alert('Lien copié dans le presse-papier !')
+                  }
+                }}
+                className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition shadow-sm"
+              >
+                <Share2 className="w-3.5 h-3.5" />
+                Partager
+              </button>
             </div>
-
-            <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight">
-              {actualite.titre}
-            </h1>
-          </div>
-
-          {/* Image de couverture */}
-          {actualite.image_url && (
-            <div className="w-full h-72 sm:h-96 overflow-hidden bg-gray-100">
-              <img
-                src={actualite.image_url}
-                alt={actualite.titre}
-                className="w-full h-full object-cover"
-              />
-            </div>
-          )}
-
-          {/* Description / Contenu */}
-          <div className="p-6 sm:p-8 text-gray-700 leading-relaxed whitespace-pre-line text-base">
-            {actualite.description}
-          </div>
-
-          {/* Footer Article */}
-          <div className="p-6 border-t border-gray-100 bg-gray-50 flex items-center justify-between">
-            <span className="text-xs text-gray-500">
-              UCC Hub — Modifié récemment
-            </span>
-
-            <button
-              onClick={() => {
-                if (navigator.share) {
-                  navigator.share({
-                    title: actualite.titre,
-                    url: window.location.href,
-                  })
-                } else {
-                  navigator.clipboard.writeText(window.location.href)
-                  alert('Lien copié dans le presse-papier !')
-                }
-              }}
-              className="inline-flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-gray-700 bg-white border border-gray-200 rounded-lg hover:bg-gray-50 transition shadow-sm"
-            >
-              <Share2 className="w-3.5 h-3.5" />
-              Partager
-            </button>
-          </div>
-        </article>
+          </article>
+        </div>
+        
       </div>
+      <Footer/>
     </div>
   )
 }
