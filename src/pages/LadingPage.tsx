@@ -17,6 +17,7 @@ import type { HomeData } from '@/types/types'
 import { filieresData } from '@/data/filiere'
 import { useFetchData } from '@/hooks/useQuery'
 import { env } from '@/config/env'
+import { Link } from 'react-router-dom'
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -109,14 +110,14 @@ export default function LadingPage() {
             </p>
 
             <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 max-w-md mx-auto lg:mx-0">
-              <button className="inline-flex justify-center items-center gap-2 px-6 py-3.5 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base">
+              <Link to="/etude" className="inline-flex justify-center items-center gap-2 px-6 py-3.5 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 transition-all shadow-lg shadow-blue-600/30 hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base">
                 <BookOpen size={18} />
                 Accéder aux cours
-              </button>
-              <button className="inline-flex justify-center items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 border border-white/20 text-white font-semibold hover:bg-white/10 backdrop-blur-sm transition-all hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base">
+              </Link>
+              {/* <button className="inline-flex justify-center items-center gap-2 px-6 py-3.5 rounded-full bg-white/5 border border-white/20 text-white font-semibold hover:bg-white/10 backdrop-blur-sm transition-all hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base">
                 <FileText size={18} />
                 Voir les annales
-              </button>
+              </button> */}
             </div>
           </motion.div>
 

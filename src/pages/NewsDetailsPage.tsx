@@ -104,11 +104,11 @@ export default function NewsDetailPage() {
         <div className="w-full">
           {/* Bouton Retour */}
           <Link
-            to="/actualites"
+            to="/"
             className="inline-flex items-center px-4 gap-2 text-sm text-gray-600 hover:text-blue-600 mb-6 font-medium transition"
           >
             <ArrowLeft className="w-4 h-4" />
-            Retour aux actualités
+            Retour à l'accueil
           </Link>
 
           {/* Article principal */}
@@ -161,7 +161,7 @@ export default function NewsDetailPage() {
             {/* Footer Article */}
             <div className="p-6 border-t border-gray-100 bg-gray-50 flex items-center justify-between">
               <span className="text-xs text-gray-500">
-                UCC Hub — Modifié récemment
+                Faculté de science informatique
               </span>
 
               <button
