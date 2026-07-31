@@ -31,8 +31,7 @@ export default function GalerieFSI() {
     const fetchGalerie = async () => {
       try {
         setLoading(true)
-        // Remplace par l'URL de ton serveur API Laravel (ex: http://127.0.0.1:8000/api/galerie-famille)
-        const response = await fetch('http://frnagrmi.fsiucc.com/api/galerie-site')
+        const response = await fetch('https://frnagrmi.fsiucc.com/api/galerie-site')
         const json = await response.json()
 
         if (json.success) {
