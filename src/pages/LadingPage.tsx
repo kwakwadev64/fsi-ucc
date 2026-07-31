@@ -311,7 +311,7 @@ export default function LadingPage() {
                     {actu.filter_type}
                   </span>
                   <img
-                    src={`http://frnagrmi.fsiucc.com/storage/${actu.image_url}`}
+                    src={`https://frnagrmi.fsiucc.com/storage/${actu.image_url}`}
                     alt={actu.titre}
                     className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
                   />
@@ -349,7 +349,7 @@ export default function LadingPage() {
                     <a
                       href={`/actualites/${actu.id}`}
                       className="inline-flex items-center gap-2 text-[11px] sm:text-xs font-bold text-[#0D3B66] group-hover:text-blue-600 transition-colors uppercase tracking-wider"
-                    >
+                    > 
                       <span>Lire la suite</span>
                       <ArrowRight
                         size={12}

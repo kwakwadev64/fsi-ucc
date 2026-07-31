@@ -8,6 +8,7 @@ import RegisterPage from './pages/forms/RegisterPage'
 import { Toaster } from 'sonner'
 import HistoriquePage from './pages/HistoriquePage'
 import EquipePage from './pages/EquipePage'
+import NewsDetailPage from './pages/NewsDetailsPage'
 
 function NotFound() {
   return (
@@ -37,6 +38,7 @@ export default function App() {
       <Toaster position="top-right" richColors closeButton />
       <Routes>
         <Route path="/" element={<LadingPage />} />{' '}
+        <Route path="/actualites/:id" element={<NewsDetailPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/etude" element={<EtudePage />} />
         <Route path="/equipe" element={<EquipePage />} />
