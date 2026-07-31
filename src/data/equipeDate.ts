@@ -149,7 +149,7 @@ export const equipeData: EquipeData = {
             'Chef de promotion adjointe - Troisième année de Licence en Sciences Informatiques.',
           photo: '/Rachidi-amisi.jpeg',
         },
-        
+
         /* --- M1 CSI --- */
         {
           nom: 'KANANGILA MUTEBA Benally',
@@ -223,7 +223,7 @@ export const equipeData: EquipeData = {
           role: 'Développeur Frontend & Mobile',
           description:
             'Membre de l’équipe technique en charge du développement web et mobile de la plateforme facultaire.',
-          photo: '/vansiem.jpeg',
+          photo: '/vanProfil1.jpeg',
           github: 'https://github.com/VANSIEM190',
           linkedin: 'https://www.linkedin.com/in/gracia-van-siem-575865347',
           portfolio: 'https://vansiem-portfolio.vercel.app/',
