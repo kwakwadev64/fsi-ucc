@@ -3,18 +3,82 @@ import { type EquipeData } from '@/types/types'
 export const equipeData: EquipeData = {
   sections: [
     {
-      id: 'doyens-faculataire',
+      id: 'faculte',
       annee: '2025-2026',
-      titre: 'doyens FSI',
+      titre: 'Équipe Facultaire',
       description:
         " L’Équipe Décanale de la Faculté des Sciences Informatiques pour l’année académique 2025-2026 : les autorités facultaires engagées à guider, encadrer et impulser l'excellence académique et scientifique de notre communauté.",
       membres: [
         {
-          nom: 'Sangopamba',
+          nom: 'Professeure Odette SANGUPAMBA',
           role: 'Doyenne de la  Faculté',
           description:
             "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
           photo: '/doyenne.jpeg',
+        },
+
+        {
+          nom: 'Professeure Lueteta',
+          role: 'secrétaire administratif',
+          description:
+            'Coordinateur des affaires académiques et administratives, garant du bon déroulement des procédures pédagogiques de la Faculté des Sciences Informatiques (FSI).',
+          photo: '/doyenne.jpeg',
+        },
+        {
+          nom: 'Papa Serge',
+          role: 'Secrétaire Général Académique Facultaire',
+          description:
+            'Garant du bon fonctionnement administratif et de la gestion des ressources matérielles et humaines de la Faculté des Sciences Informatiques (FSI).',
+          photo: '/doyenne.jpeg',
+        },
+        {
+          nom: 'assistant Médard',
+          role: 'assistant de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/doyenne.jpeg',
+        },
+        {
+          nom: 'assistant Tene Nzinga Jean Teddy',
+          role: 'assistant de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/teddy.jpeg',
+        },
+        {
+          nom: 'Assistant Marcellin Mbulu Kikalakamba',
+          role: 'assistant de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/mbulu.jpeg',
+        },
+        {
+          nom: 'Assistant Jeanstive Mobanza',
+          role: 'assistant de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/mobanza.jpeg',
+        },
+        {
+          nom: 'Assistante Ntswila Prisca',
+          role: 'assistante de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/prisca.jpeg',
+        },
+        {
+          nom: 'Assistant Jeanstive Mobanza',
+          role: 'assistant de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/mobanza.jpeg',
+        },
+        {
+          nom: 'Assistant Jeanstive Mobanza',
+          role: 'assistant de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/mobanza.jpeg',
         },
       ],
     },
@@ -58,7 +122,7 @@ export const equipeData: EquipeData = {
           role: 'Ministre des Affaires Scientifiques',
           description:
             'Chargé de la promotion et de l’organisation des activités scientifiques facultaires.',
-          photo: '',
+          photo: 'deo.jpeg',
         },
         {
           nom: 'Nathan MONGA',

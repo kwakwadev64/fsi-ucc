@@ -63,17 +63,17 @@ export default function EquipePage() {
   // section "faculte" absente dans les données -> on la construit nous-mêmes
   // pour qu'elle soit toujours disponible en premier onglet.
   const sectionsCombinees = useMemo(() => {
-    const autresSections = sectionsAnnee.filter(s => s.id !== 'faculte')
+    const autresSections = sectionsAnnee.filter(s => s.id !== 'equipe')
     const tousLesMembres = autresSections.flatMap(s => s.membres)
     const membresUniques = tousLesMembres.filter(
       (membre, idx, self) => self.findIndex(m => m.nom === membre.nom) === idx
     )
 
-    const sectionFaculteExistante = sectionsAnnee.find(s => s.id === 'faculte')
+    const sectionFaculteExistante = sectionsAnnee.find(s => s.id === 'equipe')
     const sectionFaculte = {
       ...(sectionFaculteExistante ?? {
-        id: 'faculte',
-        titre: 'Équipe Facultaire',
+        id: 'equipe',
+        titre: 'faculté',
         description:
           "L'ensemble des forces vives de notre faculté : membres du gouvernement étudiant, chefs de promotion et équipe de développement.",
       }),
