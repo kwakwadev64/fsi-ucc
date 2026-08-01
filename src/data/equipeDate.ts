@@ -3,15 +3,25 @@ import { type EquipeData } from '@/types/types'
 export const equipeData: EquipeData = {
   sections: [
     {
-      id: 'faculte',
-      titre: 'Équipe Facultaire',
+      id: 'doyens-faculataire',
+      annee: '2025-2026',
+      titre: 'doyens FSI',
       description:
-        'L’ensemble des forces vives de notre faculté : membres du gouvernement étudiant, chefs de promotion et équipe de développement.',
-      membres: [], // Peuplé dynamiquement dans le composant
+        " L’Équipe Décanale de la Faculté des Sciences Informatiques pour l’année académique 2025-2026 : les autorités facultaires engagées à guider, encadrer et impulser l'excellence académique et scientifique de notre communauté.",
+      membres: [
+        {
+          nom: 'Sangopamba',
+          role: 'Doyenne de la  Faculté',
+          description:
+            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+          photo: '/doyenne.jpeg',
+        },
+      ],
     },
     {
       id: 'gouvernement',
-      titre: 'Gouvernement FSI 2025-2026',
+      annee: '2025-2026',
+      titre: 'Gouvernement FSI',
       description:
         'Les représentants et ministres de la délégation facultaire de la Faculté des Sciences Informatiques pour l’année académique 2025-2026.',
       membres: [
@@ -20,7 +30,7 @@ export const equipeData: EquipeData = {
           role: 'Délégué Facultaire',
           description:
             'Représentant principal des étudiants de la Faculté des Sciences Informatiques (FSI).',
-          photo: '/images/equipe/andy_bimi.jpg',
+          photo: '/andi.jpeg',
         },
         {
           nom: 'Ange NKEMBI',
@@ -93,6 +103,7 @@ export const equipeData: EquipeData = {
     },
     {
       id: 'cp_cpa',
+      annee: '2025-2026',
       titre: 'Chefs de Promotion (CP & CPA)',
       description:
         'Les représentants des étudiants (CP et CPA) à travers les différents niveaux de Licence et Master de la FSI.',
@@ -125,7 +136,7 @@ export const equipeData: EquipeData = {
           role: 'CPA - L2 FSI',
           description:
             'Chef de promotion adjoint - Deuxième année de Licence en Sciences Informatiques.',
-          photo: '',
+          photo: '/kapay.jpeg',
         },
         /* --- L3 FSI --- */
         {
@@ -133,7 +144,7 @@ export const equipeData: EquipeData = {
           role: 'CP - L3 FSI',
           description:
             'Chef de promotion - Troisième année de Licence en Sciences Informatiques.',
-          photo: '',
+          photo: '/okito.jpeg',
         },
         {
           nom: 'BIMPE NTANGA Estelle',
@@ -156,14 +167,14 @@ export const equipeData: EquipeData = {
           role: 'CP - M1 CSI',
           description:
             'Chef de promotion - Master 1 Conception des Systèmes d’Information.',
-          photo: '/cpM1.jpeg',
+          photo: '/benally.jpeg',
         },
         {
           nom: 'IMBWELE MATONDO Carmela',
           role: 'CPA - M1 CSI',
           description:
             'Chef de promotion adjointe - Master 1 Conception des Systèmes d’Information.',
-          photo: 'carmela-imbwele.jpeg',
+          photo: '/carmela-imbwele.jpeg',
         },
         /* --- M1 RX --- */
         {
@@ -171,14 +182,14 @@ export const equipeData: EquipeData = {
           role: 'CP - M1 RX',
           description:
             'Chef de promotion - Master 1 Réseaux & Télécommunications.',
-          photo: '',
+          photo: '/cpM1.jpeg',
         },
         {
           nom: 'KALENGA KAPENA Jordi',
           role: 'CPA - M1 RX',
           description:
             'Chef de promotion adjoint - Master 1 Réseaux & Télécommunications.',
-          photo: '',
+          photo: '/jordycpa.jpeg',
         },
         /* --- M2 CSI --- */
         {
@@ -186,7 +197,7 @@ export const equipeData: EquipeData = {
           role: 'CP - M2 CSI',
           description:
             'Chef de promotion - Master 2 Conception des Systèmes d’Information.',
-          photo: '',
+          photo: '/jordy.jpeg',
         },
         {
           nom: 'RAMAZANI Gabriel',
@@ -214,6 +225,7 @@ export const equipeData: EquipeData = {
     },
     {
       id: 'developpeurs',
+      annee: '2025-2026',
       titre: 'Équipe Développeur',
       description:
         'La cellule technique en charge de la conception, de l’architecture et du développement de la plateforme.',

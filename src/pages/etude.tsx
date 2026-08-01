@@ -60,7 +60,7 @@ export default function EtudePage() {
       {/* CONTENU PRINCIPAL */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         {/* SÉLECTEUR DE PROMOTION (ONGLETS DE NAVIGATION RESPONSIVE) */}
-        <div className="flex gap-2 justify-start md:justify-center bg-white p-2 rounded-2xl md:rounded-full border border-slate-100 shadow-xs mb-8 md:mb-12 overflow-x-auto scrollbar-none snap-x custom-scrollbar">
+        <div className="flex gap-2 justify-start bg-white p-2 rounded-2xl md:rounded-full border border-slate-100 shadow-xs mb-8 md:mb-12 overflow-x-auto scrollbar-none snap-x custom-scrollbar">
           {programmeData.promotions.map((promo, index) => {
             const isSelected = selectedPromoIndex === index
             return (

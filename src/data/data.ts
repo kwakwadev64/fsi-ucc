@@ -62,11 +62,11 @@ export const faqData = [
   {
     question: 'Quelles sont les filières disponibles au sein de la FSI ?',
     answer:
-      "La FSI propose des spécialisations adaptées aux exigences technologiques modernes, notamment le Génie Logiciel, l'Administration des Réseaux & Systèmes, et l'Intelligence Artificielle.",
+      "La FSI propose des spécialisations adaptées aux exigences technologiques modernes, notamment  l'Administration des Réseaux & Systèmes, et la conception de système informatique",
   },
   {
     question: "Où puis-je retrouver les annales et ressources d'examen ?",
     answer:
-      "Les annales et supports de cours sont accessibles directement depuis notre espace numérique en cliquant sur le bouton dédié de la section d'accueil ou via l'accès rapide.",
+      "Les annales et supports de cours sont accessibles directement depuis notre espace numérique en cliquant sur le bouton dédié de la section d'accueil ou via l'application mobile.",
   },
 ]

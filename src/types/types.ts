@@ -70,6 +70,7 @@ export interface Membre {
   photo?: string
   avatarUrl?: string
   sujetMemoire?: string
+  annee?: string
   github?: string
   linkedin?: string
   portfolio?: string
@@ -78,6 +79,7 @@ export interface Membre {
 // Interface pour une section d'équipe
 export interface SectionEquipe {
   id: 'faculte' | 'gouvernement' | 'cp_cpa' | 'developpeurs' | string
+  annee: string
   titre: string
   description: string
   membres: Membre[]
