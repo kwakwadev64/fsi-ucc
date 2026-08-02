@@ -39,7 +39,7 @@ export const equipeData: EquipeData = {
           photo: '',
         },
         {
-          nom: 'Assistant TENE NZINGA Jean Teddy',
+          nom: 'Assistant Jean Teddy TENE NZINGA',
           role: 'Assistant Scientifique de la Faculté',
           description:
             "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
@@ -53,7 +53,7 @@ export const equipeData: EquipeData = {
           photo: '/mbulu.jpeg',
         },
         {
-          nom: 'Assistant Jeanstive MOBANZA',
+          nom: 'Assistant Jean Steve Mobanza Mobando',
           role: 'Assistant Scientifique de la Faculté',
           description:
             "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
