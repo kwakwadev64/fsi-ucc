@@ -18,67 +18,74 @@ export const equipeData: EquipeData = {
         },
 
         {
-          nom: 'Professeure Lueteta',
-          role: 'secrétaire administratif',
-          description:
-            'Coordinateur des affaires académiques et administratives, garant du bon déroulement des procédures pédagogiques de la Faculté des Sciences Informatiques (FSI).',
-          photo: '/doyenne.jpeg',
-        },
-        {
-          nom: 'Papa Serge',
+          nom: 'Professeur Jean-Pierre LUETETA',
           role: 'Secrétaire Général Académique Facultaire',
           description:
+            'Coordinateur des affaires académiques et administratives, garant du bon déroulement des procédures pédagogiques de la Faculté des Sciences Informatiques (FSI).',
+          photo: '/jeanlueteta.jpg',
+        },
+        {
+          nom: 'Monsieur Serge',
+          role: 'secrétaire administratif',
+          description:
             'Garant du bon fonctionnement administratif et de la gestion des ressources matérielles et humaines de la Faculté des Sciences Informatiques (FSI).',
-          photo: '/doyenne.jpeg',
+          photo: '',
         },
         {
-          nom: 'assistant Médard',
-          role: 'assistant de la  Faculté',
+          nom: 'Assistant Médard',
+          role: 'Assistant Scientifique de la Faculté',
           description:
-            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
-          photo: '/doyenne.jpeg',
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
+          photo: '',
         },
         {
-          nom: 'assistant Tene Nzinga Jean Teddy',
-          role: 'assistant de la  Faculté',
+          nom: 'Assistant TENE NZINGA Jean Teddy',
+          role: 'Assistant Scientifique de la Faculté',
           description:
-            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
           photo: '/teddy.jpeg',
         },
         {
           nom: 'Assistant Marcellin Mbulu Kikalakamba',
-          role: 'assistant de la  Faculté',
+          role: 'Assistant Scientifique de la Faculté',
           description:
-            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
           photo: '/mbulu.jpeg',
         },
         {
-          nom: 'Assistant Jeanstive Mobanza',
-          role: 'assistant de la  Faculté',
+          nom: 'Assistant Jeanstive MOBANZA',
+          role: 'Assistant Scientifique de la Faculté',
           description:
-            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
           photo: '/mobanza.jpeg',
         },
         {
-          nom: 'Assistante Ntswila Prisca',
+          nom: 'Assistante Prisca NTSWILA ',
           role: 'assistante de la  Faculté',
           description:
-            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
           photo: '/prisca.jpeg',
         },
         {
-          nom: 'Assistant Jeanstive Mobanza',
-          role: 'assistant de la  Faculté',
+          nom: 'Assistant Guy MANDAY',
+          role: 'Assistant Scientifique de la Faculté',
           description:
-            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
-          photo: '/mobanza.jpeg',
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
+          photo: 'guymanday.jpg',
         },
         {
-          nom: 'Assistant Jeanstive Mobanza',
-          role: 'assistant de la  Faculté',
+          nom: 'Assistant Christian NGALULA',
+          role: 'Assistant Scientifique de la Faculté',
           description:
-            "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
-          photo: '/mobanza.jpeg',
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
+          photo: '',
+        },
+        {
+          nom: 'Assistant Ekofo',
+          role: 'Assistant Scientifique de la Faculté',
+          description:
+            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
+          photo: '',
         },
       ],
     },
@@ -90,75 +97,75 @@ export const equipeData: EquipeData = {
         'Les représentants et ministres de la délégation facultaire de la Faculté des Sciences Informatiques pour l’année académique 2025-2026.',
       membres: [
         {
-          nom: 'Andy BIMI',
+          nom: 'Andy BIMI SIELA',
           role: 'Délégué Facultaire',
           description:
             'Représentant principal des étudiants de la Faculté des Sciences Informatiques (FSI).',
           photo: '/andi.jpeg',
         },
         {
-          nom: 'Ange NKEMBI',
+          nom: 'Ange NKEMBI BUNGIENA',
           role: 'Directeur de Cabinet',
           description:
             'Direction et coordination du cabinet de la délégation facultaire.',
           photo: '/ange-nkembi.jpeg',
         },
         {
-          nom: 'Sephora KABUYA',
+          nom: 'Sephora KABUYA MUJINGA',
           role: 'Ministre de la Communication & Porte-parole',
           description:
             'Chargée de la communication officielle et porte-parole de la délégation.',
           photo: '/sephora.jpeg',
         },
         {
-          nom: 'Grady NLANDU',
+          nom: 'Grady NLANDU NLANDU',
           role: 'Ministre des Audiovisuels',
           description:
             'Chargé de la production et de la gestion audiovisuelle de la faculté.',
           photo: '/grady.jpeg',
         },
         {
-          nom: 'Déogratias DISANOA',
+          nom: 'Deogratias DISANOA EFALE',
           role: 'Ministre des Affaires Scientifiques',
           description:
             'Chargé de la promotion et de l’organisation des activités scientifiques facultaires.',
           photo: 'deo.jpeg',
         },
         {
-          nom: 'Nathan MONGA',
+          nom: 'Nathan MONGA NGOY',
           role: 'Vice-Ministre des Affaires Scientifiques',
           description: 'Assistant au ministère des Affaires Scientifiques.',
           photo: '/nathan.jpg',
         },
         {
-          nom: 'Dave BESONGO',
+          nom: 'Dave BESONGO EWANGE',
           role: 'Ministre des Sports',
           description:
             'Chargé de l’organisation et de la promotion des activités sportives.',
           photo: '',
         },
         {
-          nom: 'Kevin MANGUNZA',
+          nom: 'Kevin MANGUNZA YABA',
           role: 'Vice-Ministre des Sports',
           description: 'Assistant au ministère des Sports.',
           photo: 'kevin.jpeg',
         },
         {
-          nom: 'Jenovic ILAMBU',
+          nom: 'Jenovic ILAMBU DARABU',
           role: 'Ministre des Affaires Externes & Marketing',
           description:
             'Chargé des relations extérieures, des partenariats et du marketing facultaire.',
           photo: '/jenovic.jpeg',
         },
         {
-          nom: 'Jordy MOSEI',
+          nom: 'Jordy MOSEI MBONGO',
           role: 'Ministre de l’Économie & Finances',
           description:
             'Chargé de la gestion financière et économique de la délégation.',
           photo: '/jordy.jpeg',
         },
         {
-          nom: 'Emmanuella MODJU',
+          nom: 'Emmanuella MODJU KIELE',
           role: 'Vice-Ministre de l’Économie & Finances',
           description: 'Assistante au ministère de l’Économie et des Finances.',
           photo: '/emanuella.jpeg',

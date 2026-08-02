@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useParams, useNavigate, Link } from 'react-router-dom'
 import axios from 'axios'
-import { ArrowLeft, Calendar, MapPin, Star, Tag, Share2 } from 'lucide-react'
+import { ArrowLeft, Calendar, MapPin, Tag, Share2 } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
@@ -26,51 +26,53 @@ export default function NewsDetailPage() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
-  const fetchActualite = async () => {
-    setLoading(true)
-    setError(null)
+    const fetchActualite = async () => {
+      setLoading(true)
+      setError(null)
 
-    try {
-      // 1. Récupération du token
-      const token = localStorage.getItem('auth_token')
+      try {
+        // 1. Récupération du token
+        const token = localStorage.getItem('auth_token')
 
-      // 2. Requête Axios avec le Header Authorization
-      const response = await axios.get(
-        `https://frnagrmi.fsiucc.com/api/actualites/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            Accept: 'application/json',
-          },
+        // 2. Requête Axios avec le Header Authorization
+        const response = await axios.get(
+          `https://frnagrmi.fsiucc.com/api/actualites/${id}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              Accept: 'application/json',
+            },
+          }
+        )
+
+        setActualite(response.data.data)
+      } catch (err: any) {
+        console.error('Erreur lors du chargement :', err)
+        if (err.response?.status === 401) {
+          setError('Vous devez être connecté pour consulter cette actualité.')
+        } else if (err.response?.status === 404) {
+          setError('Cette actualité n’existe pas ou a été retirée.')
+        } else {
+          setError('Impossible de charger l’actualité.')
         }
-      )
-
-      setActualite(response.data.data)
-    } catch (err: any) {
-      console.error('Erreur lors du chargement :', err)
-      if (err.response?.status === 401) {
-        setError('Vous devez être connecté pour consulter cette actualité.')
-      } else if (err.response?.status === 404) {
-        setError('Cette actualité n’existe pas ou a été retirée.')
-      } else {
-        setError('Impossible de charger l’actualité.')
+      } finally {
+        setLoading(false)
       }
-    } finally {
-      setLoading(false)
     }
-  }
 
-  if (id) {
-    fetchActualite()
-  }
-}, [id])
+    if (id) {
+      fetchActualite()
+    }
+  }, [id])
 
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="flex flex-col items-center gap-3">
           <div className="w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-          <p className="text-gray-500 font-medium text-sm">Chargement de l'actualité...</p>
+          <p className="text-gray-500 font-medium text-sm">
+            Chargement de l'actualité...
+          </p>
         </div>
       </div>
     )
@@ -113,7 +115,6 @@ export default function NewsDetailPage() {
 
           {/* Article principal */}
           <article className=" overflow-hidden">
-            
             {/* Header & Badges */}
             <div className="p-6 sm:p-8 border-b border-gray-100">
               <div className="flex flex-wrap items-center gap-3 mb-4">
@@ -128,18 +129,16 @@ export default function NewsDetailPage() {
                   <MapPin className="w-3.5 h-3.5 text-red-500" />
                   {actualite.location}
                 </span>
-
-                
               </div>
 
               <h1 className="text-2xl sm:text-3xl font-extrabold text-gray-900 leading-tight">
                 {actualite.titre}
               </h1>
               {/* Date */}
-                <span className="inline-flex items-center gap-1.5 text-xs text-gray-400 mt-4">
-                  <Calendar className="w-3.5 h-3.5" />
-                  {actualite.created_at}
-                </span>
+              <span className="inline-flex items-center gap-1.5 text-xs text-gray-400 mt-4">
+                <Calendar className="w-3.5 h-3.5" />
+                {actualite.created_at}
+              </span>
             </div>
 
             {/* Image de couverture */}
@@ -184,9 +183,8 @@ export default function NewsDetailPage() {
             </div>
           </article>
         </div>
-        
       </div>
-      <Footer/>
+      <Footer />
     </div>
   )
 }
