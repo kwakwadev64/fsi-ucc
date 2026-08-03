@@ -25,7 +25,7 @@ export const equipeData: EquipeData = {
           photo: '/jeanlueteta.jpg',
         },
         {
-          nom: 'Monsieur Serge',
+          nom: 'Monsieur Serge KAZAMBA AMISI',
           role: 'secrétaire administratif',
           description:
             'Garant du bon fonctionnement administratif et de la gestion des ressources matérielles et humaines de la Faculté des Sciences Informatiques (FSI).',
@@ -81,11 +81,11 @@ export const equipeData: EquipeData = {
           photo: '',
         },
         {
-          nom: 'Assistant Ekofo',
+          nom: 'Assistant Jean-Pierre BANKEKE EKOFO',
           role: 'Assistant Scientifique de la Faculté',
           description:
             "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
-          photo: '',
+          photo: '/ekofo.jpeg',
         },
       ],
     },
