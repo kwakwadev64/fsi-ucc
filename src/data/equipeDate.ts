@@ -15,6 +15,8 @@ export const equipeData: EquipeData = {
           description:
             "Dirigeante et garante de l'excellence académique de la Faculté des Sciences Informatiques (FSI).",
           photo: '/doyenne.jpeg',
+          linkedin:
+            'https://www.linkedin.com/in/odette-sangupamba-mwilu-5906b73b/',
         },
 
         {
@@ -23,27 +25,71 @@ export const equipeData: EquipeData = {
           description:
             'Coordinateur des affaires académiques et administratives, garant du bon déroulement des procédures pédagogiques de la Faculté des Sciences Informatiques (FSI).',
           photo: '/jeanlueteta.jpg',
+          linkedin: 'https://www.linkedin.com/in/jean-pierre-lueteta-9007725b/',
         },
         {
           nom: 'Monsieur Serge KAZAMBA AMISI',
           role: 'secrétaire administratif',
           description:
             'Garant du bon fonctionnement administratif et de la gestion des ressources matérielles et humaines de la Faculté des Sciences Informatiques (FSI).',
-          photo: '',
+          photo: 'serge.jpeg',
         },
         {
-          nom: 'Assistant Médard',
+          nom: 'Assistant Médard MESOLONGO',
           role: 'Assistant Scientifique de la Faculté',
           description:
             "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
-          photo: '',
+          photo: 'medard.jpeg',
+        },
+        {
+          nom: 'Assistant Dieumerci MAMBOKO MAMBOKO',
+          role: 'Assistant Scientifique de la Faculté',
+          description: `Détenteur d’un diplôme de licence (système PADEM) en sciences informatiques,  orientation : Gestion et actuellement détenteur DEA en mathématiques appliquées
+domaine de recherche : Recherche opérationnelle
+spécialité : Optimisation multicritère
+Passionné de la recherche scientifique et de la formation au niveau universitaire.
+Assistant scientifique à l'université catholique du congo depuis avril 2023`,
+          photo: 'dieumerci.jpeg',
+          sources: [
+            {
+              label: 'article 1',
+              url: 'https://jafrisci.org/?pg=viewarticle&vol=13&art=284',
+            },
+            {
+              label: 'article 2',
+              url: 'https://jafrisci.org/FICHIER_PLUS/ARTICLES/PUBLIES/INTEGRALITES/Xarticle_3_4_15_2026.pdf#toolbar=0',
+            },
+            {
+              label: 'article 3',
+              url: 'https://jafrisci.org/FICHIER_PLUS/ARTICLES/PUBLIES/INTEGRALITES/Xarticle_3_3_2_2026.pdf',
+            },
+          ],
+          linkedin: 'https://www.linkedin.com/in/dieumerci-mamboko-b34a0232a/',
         },
         {
           nom: 'Assistant Jean Teddy TENE NZINGA',
           role: 'Assistant Scientifique de la Faculté',
-          description:
-            "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
+          description: `Détenteur d’un Diplôme de licence ( système PADEM) en sciences informatiques à l’UNIKIN, 
+Orientation : Gestion Informatique et Actuellement détenteur d’un Diplôme d’Etudes Approfondie (DEA) mention mathématique, statistiques et informatiques.
+Spécialité : Datascience et Intelligence Artificielle.
+Émouvant de la recherche scientifique et de la formation au niveau Universitaire.
+
+Assistant scientifique à l’université catholique du Congo depuis Avril 2023.`,
           photo: '/teddy.jpeg',
+          sources: [
+            {
+              label: 'article 1',
+              url: 'https://jafrisci.org/FICHIER_PLUS/ARTICLES/PUBLIES/INTEGRALITES/Xarticle_3_6_9_2026.pdf',
+            },
+            {
+              label: 'article 2',
+              url: 'https://jurnal-itsi.org/index.php/jitsi/article/view/601',
+            },
+            {
+              label: 'article 3',
+              url: 'https://jafrisci.org/FICHIER_PLUS/ARTICLES/PUBLIES/INTEGRALITES/Xarticle_3_5_5_2026.pdf',
+            },
+          ],
         },
         {
           nom: 'Assistant Marcellin Mbulu Kikalakamba',
@@ -51,6 +97,8 @@ export const equipeData: EquipeData = {
           description:
             "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
           photo: '/mbulu.jpeg',
+          linkedin:
+            'https://www.linkedin.com/in/marcellin-mbulu-kikalakamba-084531336?utm_source=share_via&utm_content=profile&utm_medium=member_android',
         },
         {
           nom: 'Assistant Jean Steve Mobanza Mobando',
@@ -65,6 +113,7 @@ export const equipeData: EquipeData = {
           description:
             "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
           photo: '/prisca.jpeg',
+          linkedin: 'https://www.linkedin.com/in/prisca-ntswila-bb9874302/',
         },
         {
           nom: 'Assistant Guy MANDAY',
@@ -72,6 +121,7 @@ export const equipeData: EquipeData = {
           description:
             "Apporte un appui aux professeur(e)s et assure l'encadrement des étudiants au sein de la Faculté des Sciences Informatiques (FSI).",
           photo: 'guymanday.jpg',
+          linkedin: 'https://www.linkedin.com/in/guy-manday-582624132/',
         },
         {
           nom: 'Assistant Christian NGALULA',
@@ -102,6 +152,7 @@ export const equipeData: EquipeData = {
           description:
             'Représentant principal des étudiants de la Faculté des Sciences Informatiques (FSI).',
           photo: '/andi.jpeg',
+          linkedin: 'https://www.linkedin.com/in/andy-bimi-250449370/',
         },
         {
           nom: 'Ange NKEMBI BUNGIENA',
@@ -118,11 +169,20 @@ export const equipeData: EquipeData = {
           photo: '/sephora.jpeg',
         },
         {
+          nom: 'Joyce SALA KWABULEKE',
+          role: 'vice-Ministre de la Communication & Porte-parole',
+          description:
+            'Chargée de la communication officielle et porte-parole de la délégation.',
+          photo: '/sala.jpeg',
+        },
+        {
           nom: 'Grady NLANDU NLANDU',
           role: 'Ministre des Audiovisuels',
           description:
             'Chargé de la production et de la gestion audiovisuelle de la faculté.',
           photo: '/grady.jpeg',
+          linkedin:
+            'https://www.linkedin.com/in/grady-nlandu-29ab53410/?skipRedirect=true',
         },
         {
           nom: 'Deogratias DISANOA EFALE',
@@ -136,6 +196,9 @@ export const equipeData: EquipeData = {
           role: 'Vice-Ministre des Affaires Scientifiques',
           description: 'Assistant au ministère des Affaires Scientifiques.',
           photo: '/nathan.jpg',
+          github: 'http://github.com/nathmn14',
+          linkedin: 'https://www.linkedin.com/in/nathan-monga-ngoy',
+          portfolio: 'https://nathanmonga.com/',
         },
         {
           nom: 'Dave BESONGO EWANGE',
@@ -158,11 +221,19 @@ export const equipeData: EquipeData = {
           photo: '/jenovic.jpeg',
         },
         {
+          nom: 'Christvie LUMBALA',
+          role: 'vice-Ministre des Affaires Externes & Marketing',
+          description:
+            'Chargé des relations extérieures, des partenariats et du marketing facultaire.',
+          photo: '',
+        },
+        {
           nom: 'Jordy MOSEI MBONGO',
           role: 'Ministre de l’Économie & Finances',
           description:
             'Chargé de la gestion financière et économique de la délégation.',
           photo: '/jordy.jpeg',
+          linkedin: 'https://www.linkedin.com/in/jordy-mosei-99232526b/',
         },
         {
           nom: 'Emmanuella MODJU KIELE',
@@ -269,13 +340,15 @@ export const equipeData: EquipeData = {
           description:
             'Chef de promotion - Master 2 Conception des Systèmes d’Information.',
           photo: '/jordy.jpeg',
+          linkedin: 'https://www.linkedin.com/in/jordy-mosei-99232526b/',
         },
         {
           nom: 'RAMAZANI Gabriel',
           role: 'CPA - M2 CSI',
           description:
             'Chef de promotion adjoint - Master 2 Conception des Systèmes d’Information.',
-          photo: '',
+          photo: 'ramazani.jpeg',
+          linkedin: 'https://www.linkedin.com/in/gabriel-ramazani-222964291/',
         },
         /* --- M2 RX --- */
         {
@@ -284,6 +357,8 @@ export const equipeData: EquipeData = {
           description:
             'Chef de promotion - Master 2 Réseaux & Télécommunications.',
           photo: '/cpM2.jpeg',
+          linkedin:
+            'https://www.linkedin.com/in/fran%C3%A7ois-xavier-kabasele-802b5118a/',
         },
         {
           nom: 'MUTOMBO BALENGEJAYI Léonard',

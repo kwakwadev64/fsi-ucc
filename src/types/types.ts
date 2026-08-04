@@ -63,6 +63,11 @@ export interface HistoriqueData {
 }
 
 // Interface pour un membre individuel
+export interface Lien {
+  label: string
+  url: string
+}
+
 export interface Membre {
   nom: string
   role: string
@@ -74,6 +79,7 @@ export interface Membre {
   github?: string
   linkedin?: string
   portfolio?: string
+  sources?: Lien[]
 }
 
 // Interface pour une section d'équipe
