@@ -11,7 +11,7 @@ export default function MembreCard({ membre }: { membre: Membre }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
 
   const initiales = membre.nom
-    .split(' ')
+    .split(' ') 
     .map(n => n[0])
     .join('')
     .slice(0, 2)
@@ -74,8 +74,8 @@ export default function MembreCard({ membre }: { membre: Membre }) {
           {/* PHOTO OU INITIALES */}
           <div className="w-full aspect-4/5 sm:h-72 overflow-hidden bg-slate-100 relative">
             {photoSrc ? (
-              <img
-                src={photoSrc}
+              <img 
+                src={photoSrc.startsWith('http') ? photoSrc : `http://127.0.0.1:8000${photoSrc.startsWith('/') ? '' : '/'}${photoSrc}`}
                 alt={membre.nom}
                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
                 loading="lazy"
@@ -111,7 +111,7 @@ export default function MembreCard({ membre }: { membre: Membre }) {
               )}
             </p>
 
-            {membre.sujetMemoire && (
+            {/* {membre.sujetMemoire && (
               <div className="pt-2 border-t border-slate-100 space-y-1">
                 <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400">
                   <BookOpen className="w-3.5 h-3.5 text-blue-500 shrink-0" />
@@ -121,7 +121,7 @@ export default function MembreCard({ membre }: { membre: Membre }) {
                   "{membre.sujetMemoire}"
                 </p>
               </div>
-            )}
+            )}*/}
           </div>
         </div>
 

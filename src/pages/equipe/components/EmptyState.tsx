@@ -12,7 +12,7 @@ export default function EmptyState({
   variant,
   selectedAnnee,
   sectionId,
-  sectionTitre,
+  sectionTitre, 
 }: EmptyStateProps) {
   if (variant === 'annee') {
     return (

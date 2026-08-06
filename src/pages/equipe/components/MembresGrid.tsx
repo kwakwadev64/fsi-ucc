@@ -13,7 +13,7 @@ export default function MembresGrid({
   animationKey,
 }: MembresGridProps) {
   return (
-    <AnimatePresence mode="wait">
+    <AnimatePresence mode="wait"> 
       <motion.div
         key={animationKey}
         initial="hidden"
