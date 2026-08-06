@@ -40,7 +40,7 @@ export default function EquipePage() {
         {currentSection?.description && (
           <div className="text-center max-w-2xl mx-auto mb-12">
             <p className="text-sm md:text-base text-slate-500 font-light leading-relaxed">
-              L'ensemble des forces vives de notre faculté : autorités facultaires, gouvernement étudiant, chefs de promotion et équipe de développement.
+              {currentSection.description}
             </p>
           </div>
         )}
