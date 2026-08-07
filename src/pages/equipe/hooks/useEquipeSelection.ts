@@ -10,8 +10,11 @@ const ORDRE_FILIERE = ['CSI', 'RX']
 const ORDRE_TYPE = ['CP', 'CPA']
 
 function parserRole(role: string) {
-  // Exemple de role : "CP - L1 FSI" ou "CPA - M2 RX"
-  const match = role.match(/^(CP|CPA)\s*-\s*(L\d|M\d)\s*(CSI|RX)?/i)
+  // Exemple de role : "CP - L1 FSI", "CPA - M2 RX",
+  // ou un role combiné comme "Ministre de l'Économie & Finances et CP - M2 CSI"
+  // → on cherche le motif n'importe où dans la chaîne (pas seulement au début),
+  //   et "CPA" est testé avant "CP" pour éviter de matcher "CP" à l'intérieur de "CPA"
+  const match = role.match(/(CPA|CP)\s*-\s*(L\d|M\d)\s*(CSI|RX)?/i)
 
   if (!match) {
     return { type: '', niveau: '', filiere: '' }
