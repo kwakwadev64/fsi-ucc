@@ -181,8 +181,7 @@ Assistant scientifique à l’université catholique du Congo depuis Avril 2023.
           description:
             'Chargé de la production et de la gestion audiovisuelle de la faculté.',
           photo: '/grady.jpeg',
-          linkedin:
-            'https://www.linkedin.com/in/grady-nlandu-29ab53410/?skipRedirect=true',
+          linkedin: '',
         },
         {
           nom: 'Deogratias DISANOA EFALE',
