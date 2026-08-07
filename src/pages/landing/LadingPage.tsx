@@ -1,4 +1,5 @@
 import { Loader2 } from 'lucide-react'
+import axios from 'axios'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import HeroSection from '@/pages/landing/components/HeroSection'
@@ -13,11 +14,8 @@ import { useFetchData } from '@/hooks/useQuery'
 import { env } from '@/config/env'
 
 const fetchHomeData = async (): Promise<HomeData> => {
-  const response = await fetch(`${env.VITE_API_URL}/accueil-site`)
-  if (!response.ok) {
-    throw new Error('Erreur lors de la récupération des données')
-  }
-  return response.json()
+  const { data } = await axios.get<HomeData>(`${env.VITE_API_URL}/accueil-site`)
+  return data
 }
 
 export default function LandingPage() {

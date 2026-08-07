@@ -1,36 +1,39 @@
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useMemo } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 import type { Galerie } from '@/types/types'
 
+type GalerieResponse = {
+  success: boolean
+  data: Galerie[]
+}
+
+async function fetchGalerie(): Promise<Galerie[]> {
+  const { data } = await axios.get<GalerieResponse>(
+    'https://frnagrmi.fsiucc.com/api/galerie-site'
+  )
+
+  if (!data.success) {
+    throw new Error('Erreur lors de la récupération des données')
+  }
+
+  return data.data
+}
+
 export function useGalerieAlbums() {
-  const [albums, setAlbums] = useState<Galerie[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
-  const [error, setError] = useState<string | null>(null)
   const [filter, setFilter] = useState('Tous')
 
-  useEffect(() => {
-    const fetchGalerie = async () => {
-      try {
-        setLoading(true)
-        const response = await fetch(
-          'https://frnagrmi.fsiucc.com/api/galerie-site'
-        )
-        const json = await response.json()
+  const {
+    data: albums = [],
+    isLoading: loading,
+    isError,
+  } = useQuery({
+    queryKey: ['galerie-site'],
+    queryFn: fetchGalerie,
+    staleTime: 5 * 60 * 1000,
+  })
 
-        if (json.success) {
-          setAlbums(json.data)
-        } else {
-          setError('Erreur lors de la récupération des données')
-        }
-      } catch (err) {
-        console.error(err)
-        setError('Impossible de se connecter au serveur.')
-      } finally {
-        setLoading(false)
-      }
-    }
-
-    fetchGalerie()
-  }, [])
+  const error = isError ? 'Impossible de se connecter au serveur.' : null
 
   const filteredData = useMemo(
     () =>

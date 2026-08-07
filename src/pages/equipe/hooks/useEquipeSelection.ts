@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
+import { useQuery } from '@tanstack/react-query'
+import axios from 'axios'
 import type { SectionEquipe } from '@/types/types'
 import { env } from '@/config/env'
 
@@ -8,6 +10,15 @@ const ORDRE_NIVEAU = ['L1', 'L2', 'L3', 'M1', 'M2']
 const ORDRE_FILIERE = ['CSI', 'RX']
 // CP avant CPA
 const ORDRE_TYPE = ['CP', 'CPA']
+
+// Id + libellé de la section virtuelle qui regroupe tout le monde
+const ID_TOUTES_EQUIPES = 'toutes'
+const TITRE_TOUTES_EQUIPES = 'Toutes les équipes'
+
+type EquipesResponse = {
+  annees: string[]
+  donnees: Record<string, SectionEquipe[]>
+}
 
 function parserRole(role: string) {
   // Exemple de role : "CP - L1 FSI", "CPA - M2 RX",
@@ -35,74 +46,99 @@ function comparerMembresCpCpa(
   const roleA = parserRole(a.role)
   const roleB = parserRole(b.role)
 
-  // 1. Comparer par niveau (L1 < L2 < L3 < M1 < M2)
   const indexNiveauA = ORDRE_NIVEAU.indexOf(roleA.niveau)
   const indexNiveauB = ORDRE_NIVEAU.indexOf(roleB.niveau)
   if (indexNiveauA !== indexNiveauB) {
     return indexNiveauA - indexNiveauB
   }
 
-  // 2. Si même niveau (M1 ou M2), comparer par filière (CSI < RX)
   const indexFiliereA = ORDRE_FILIERE.indexOf(roleA.filiere)
   const indexFiliereB = ORDRE_FILIERE.indexOf(roleB.filiere)
   if (indexFiliereA !== indexFiliereB) {
     return indexFiliereA - indexFiliereB
   }
 
-  // 3. Enfin, CP avant CPA
   const indexTypeA = ORDRE_TYPE.indexOf(roleA.type)
   const indexTypeB = ORDRE_TYPE.indexOf(roleB.type)
   return indexTypeA - indexTypeB
 }
 
+async function fetchEquipesData(): Promise<EquipesResponse> {
+  const { data } = await axios.get<EquipesResponse>(
+    `${env.VITE_API_URL}/equipes-site`
+  )
+  return data
+}
+
 export function useEquipeSelection() {
-  const [anneesDisponibles, setAnneesDisponibles] = useState<string[]>([])
-  const [equipesData, setEquipesData] = useState<
-    Record<string, SectionEquipe[]>
-  >({})
   const [selectedAnnee, setSelectedAnnee] = useState<string>('')
   const [selectedSectionId, setSelectedSectionId] =
     useState<string>('developpeurs')
-  const [loading, setLoading] = useState<boolean>(true)
 
-  useEffect(() => {
-    fetch(`${env.VITE_API_URL}/equipes-site`)
-      .then(res => res.json())
-      .then(data => {
-        setAnneesDisponibles(data.annees)
-        setEquipesData(data.donnees)
-        if (data.annees.length > 0) {
-          setSelectedAnnee(data.annees[0])
+  const {
+    data,
+    isLoading: loading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ['equipes-site'],
+    queryFn: fetchEquipesData,
+    staleTime: 5 * 60 * 1000,
+    select: result => {
+      if (!selectedAnnee && result.annees.length > 0) {
+        setSelectedAnnee(result.annees[0])
+      }
+      return result
+    },
+  })
+
+  const anneesDisponibles = data?.annees ?? []
+  const equipesData = data?.donnees ?? {}
+
+  const sectionsBrutes = selectedAnnee ? equipesData[selectedAnnee] || [] : []
+
+  // Section virtuelle qui regroupe tous les membres de toutes les sections de l'année,
+  // triés (CP/CPA en premier via comparerMembresCpCpa si le role matche, sinon ordre d'origine)
+  const sectionToutesEquipes: SectionEquipe | null =
+    sectionsBrutes.length > 0
+      ? {
+          id: ID_TOUTES_EQUIPES,
+          annee: selectedAnnee,
+          titre: TITRE_TOUTES_EQUIPES,
+          description:
+            'Vue d’ensemble de tous les membres, toutes sections confondues, pour l’année sélectionnée.',
+          membres: sectionsBrutes.flatMap(section => section.membres),
         }
-        setLoading(false)
-      })
-      .catch(err => {
-        console.error('Erreur chargement équipe:', err)
-        setLoading(false)
-      })
-  }, [])
+      : null
 
-  const sectionsCombinees = selectedAnnee
-    ? equipesData[selectedAnnee] || []
-    : []
+  // On ajoute la section "Toutes les équipes" en tête de la liste des onglets
+  const sectionsCombinees = sectionToutesEquipes
+    ? [sectionToutesEquipes, ...sectionsBrutes]
+    : sectionsBrutes
+
   const currentSectionBrute = sectionsCombinees.find(
     s => s.id === selectedSectionId
   )
 
-  // Pour la section CP/CPA, on trie les membres par niveau (L1 -> L2 -> L3 -> M1 -> M2)
-  // Pour les autres sections, on garde l'ordre tel quel
+  // Pour la section CP/CPA (et pour "Toutes les équipes", qui peut contenir des CP/CPA
+  // mélangés à d'autres rôles), on trie les membres reconnus comme CP/CPA par niveau ;
+  // les autres membres gardent leur position relative d'origine
   const currentSection =
-    currentSectionBrute && currentSectionBrute.id === 'cp_cpa'
+    currentSectionBrute &&
+    (currentSectionBrute.id === 'cp_cpa' ||
+      currentSectionBrute.id === ID_TOUTES_EQUIPES)
       ? {
           ...currentSectionBrute,
           membres: [...currentSectionBrute.membres].sort(comparerMembresCpCpa),
         }
       : currentSectionBrute
 
-  const aucuneDonneeAnnee = sectionsCombinees.length === 0
+  const aucuneDonneeAnnee = sectionsBrutes.length === 0
 
   return {
     loading,
+    isError,
+    error,
     anneesDisponibles,
     selectedAnnee,
     setSelectedAnnee,

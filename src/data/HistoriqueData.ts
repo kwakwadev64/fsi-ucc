@@ -52,7 +52,7 @@ export const historiqueData: HistoriqueData = {
           annee: '2020-2021',
           titre: 'Renfort du corps professoral',
           description:
-            "Aux côtés des professeurs fondateurs Tshibaka et Éphrem, l'équipe s'enrichit avec l'arrivée du Prof. Lueteta, puis du Prof. Kabiya.",
+            "Aux côtés des professeurs fondateurs Emmanuel TSHIBAKA et Efrem MBAKI, l'équipe s'enrichit avec l'arrivée du Prof. Jean-Pierre LUETETA, puis du Prof. Cédric KABEYA.",
         },
         {
           annee: '2020-2021',
@@ -77,15 +77,16 @@ export const historiqueData: HistoriqueData = {
       evenements: [
         {
           annee: '2022',
-          titre: 'La Sœur Odette Sangu Bamba devient doyenne',
+          titre: 'La Sœur Odette SANGUPAMBA devient doyenne',
           description:
             'Suite au départ à la retraite du Prof. Mwenze, la Révérende Sœur Odette Sangu Bamba est nommée doyenne de la faculté. Le Prof. Lueteta lui succède au poste de secrétaire académique.',
         },
         {
           annee: '2022',
-          titre: 'Renfort en Master 1 : Ataki et Kasengedia',
+          titre:
+            'Renfort en Master 1 : le Prof Jeannot FATAKI et le Prof Pierre KASENGEDIA',
           description:
-            'Les professeurs Ataki et Kasengedia rejoignent le corps professoral de la faculté.',
+            'Les professeurs Jeannot FATAKI et Pierre KASENGEDIA rejoignent le corps professoral de la faculté.',
         },
         {
           annee: '2022-2023',
