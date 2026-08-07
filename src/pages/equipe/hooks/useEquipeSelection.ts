@@ -73,7 +73,7 @@ async function fetchEquipesData(): Promise<EquipesResponse> {
 export function useEquipeSelection() {
   const [selectedAnnee, setSelectedAnnee] = useState<string>('')
   const [selectedSectionId, setSelectedSectionId] =
-    useState<string>('developpeurs')
+    useState<string>(ID_TOUTES_EQUIPES)
 
   const {
     data,
