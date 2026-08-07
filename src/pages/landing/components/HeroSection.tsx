@@ -17,11 +17,6 @@ export default function HeroSection() {
           transition={{ duration: 0.5 }}
           className="text-center lg:text-left max-w-2xl"
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-sm text-white/90 text-sm font-medium mb-6">
-            <span className="w-2 h-2 rounded-full bg-blue-400 animate-pulse"></span>
-            FSI-UCC Officiel
-          </div>
-
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight leading-tight">
             Bienvenue à la Faculté des <br className="hidden md:block" />
             <span className="text-blue-400">Sciences Informatiques</span>
