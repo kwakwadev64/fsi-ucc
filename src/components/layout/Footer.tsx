@@ -17,7 +17,7 @@ const Footer = () => {
           <div className="flex gap-3">
             {/* Facebook SVG */}
             <a
-              href="#"
+              href="https://web.facebook.com/profile.php?id=61592770722242"
               className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
             >
               <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24">
@@ -35,7 +35,7 @@ const Footer = () => {
             </a>
             {/* Linkedin SVG */}
             <a
-              href="#"
+              href="https://www.linkedin.com/company/facult%C3%A9-des-sciences-informatique-ucc/?viewAsMember=true"
               className="w-10 h-10 rounded-full bg-slate-800 flex items-center justify-center hover:bg-blue-700 hover:text-white transition-colors"
             >
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -52,7 +52,10 @@ const Footer = () => {
           </h3>
           <ul className="space-y-3 text-sm text-slate-400 font-medium">
             <li>
-              <Link to="/etude" className="hover:text-blue-400 transition-colors">
+              <Link
+                to="/etude"
+                className="hover:text-blue-400 transition-colors"
+              >
                 Notes de cours
               </Link>
             </li>
