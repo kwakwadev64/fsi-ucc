@@ -38,14 +38,14 @@ export default function StatsSection({ data }: StatsSectionProps) {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: '-50px' }}
-        className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
+        className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6"
       >
         {stats.map((stat, index) => (
           <motion.div
             key={index}
             variants={itemVariants}
             whileHover={{ y: -4 }}
-            className="bg-white p-5 sm:p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 flex items-center gap-4 sm:gap-5 transition-all duration-300"
+            className="bg-white p-5 sm:p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-wrap items-center gap-4 sm:gap-5 transition-all duration-300"
           >
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
               <stat.icon className="text-blue-600" size={24} />

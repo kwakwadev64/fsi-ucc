@@ -40,13 +40,13 @@ export default function AlbumModal({
 
           <button
             onClick={onPrev}
-            className="absolute left-4 bg-white/20 text-white p-3 rounded-full"
+            className="absolute left-4 bg-gray-700 text-white p-3 rounded-full"
           >
             ‹
           </button>
           <button
             onClick={onNext}
-            className="absolute right-4 bg-white/20 text-white p-3 rounded-full"
+            className="absolute right-4 bg-gray-700 text-white p-3 rounded-full"
           >
             ›
           </button>
