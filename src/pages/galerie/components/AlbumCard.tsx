@@ -28,7 +28,6 @@ export default function AlbumCard({ album, onClick }: AlbumCardProps) {
         <h3 className="text-lg font-bold text-gray-900 mt-2">
           {album.evenement}
         </h3>
-        <p className="text-gray-500 text-xs line-clamp-2 mt-1">{album.desc}</p>
       </div>
     </div>
   )
