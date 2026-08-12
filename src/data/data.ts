@@ -35,6 +35,7 @@ export const accesRapide = [
     icon: BookOpen,
     title: 'Notes de cours',
     desc: 'Téléchargez les supports de cours par promotion en un clic.',
+    link: '/etude',
   },
   {
     icon: Archive,
@@ -50,6 +51,7 @@ export const accesRapide = [
     icon: UserCheck,
     title: 'Délégués',
     desc: 'Restez en contact permanent avec vos représentants de promotion.',
+    link: '/delegue',
   },
 ]
 
