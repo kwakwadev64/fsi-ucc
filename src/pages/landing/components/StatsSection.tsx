@@ -45,7 +45,7 @@ export default function StatsSection({ data }: StatsSectionProps) {
             key={index}
             variants={itemVariants}
             whileHover={{ y: -4 }}
-            className="bg-white p-5 sm:p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 flex items-center gap-4 sm:gap-5 transition-all duration-300"
+            className="bg-white p-5 sm:p-6 rounded-2xl shadow-xl shadow-slate-200/50 border border-slate-100 flex flex-wrap items-center gap-4 sm:gap-5 transition-all duration-300"
           >
             <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-blue-50 flex items-center justify-center shrink-0">
               <stat.icon className="text-blue-600" size={24} />
