@@ -6,8 +6,10 @@ import type { DelegueHistorique } from '@/data/equipeDate'
 
 export default function DelegueHistoriqueCard({
   delegue,
+  onLireLaSuite,
 }: {
   delegue: DelegueHistorique
+  onLireLaSuite: (delegue: DelegueHistorique) => void
 }) {
   const initiales = delegue.nom
     .split(' ')
@@ -54,10 +56,17 @@ export default function DelegueHistoriqueCard({
         </div>
 
         {delegue.description && (
-          <p className="text-xs text-slate-500 leading-relaxed font-normal">
+          <p className="text-xs text-slate-500 leading-relaxed font-normal line-clamp-3">
             {delegue.description}
           </p>
         )}
+
+        <button
+          onClick={() => onLireLaSuite(delegue)}
+          className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline text-left w-fit transition-colors"
+        >
+          Lire la suite
+        </button>
 
         {hasSocials && (
           <div className="flex items-center gap-3 text-slate-400 pt-2 mt-auto">
