@@ -17,7 +17,7 @@ export default function DelegueHistoriqueModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-md"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
           onClick={onClose}
         >
           <motion.div
@@ -25,7 +25,7 @@ export default function DelegueHistoriqueModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 10 }}
             transition={{ duration: 0.2 }}
-            className="relative bg-white rounded-3xl w-full max-w-2xl overflow-hidden shadow-2xl max-h-[90vh] overflow-y-auto my-auto"
+            className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto relative"
             onClick={e => e.stopPropagation()}
           >
             <button
@@ -40,7 +40,7 @@ export default function DelegueHistoriqueModal({
                 <img
                   src={delegue.photo || delegue.avatarUrl}
                   alt={delegue.nom}
-                  className="w-full h-full object-cover object-top"
+                  className="w-full h-full object-cover object-[center_10%]"
                 />
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-slate-200 to-slate-300 text-slate-500 font-bold text-5xl">

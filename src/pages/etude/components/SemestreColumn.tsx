@@ -3,10 +3,16 @@ import { Calendar } from 'lucide-react'
 import { containerVariants } from '@/lib/motionVariants'
 import CoursItem from './CoursItem'
 
+interface CoursInfo {
+  nom: string
+  professeur: string
+  description: string
+}
+
 interface SemestreInfo {
   semestre: string
   total_cours: number
-  cours: string[]
+  cours: CoursInfo[]
 }
 
 interface SemestreColumnProps {
@@ -20,7 +26,6 @@ export default function SemestreColumn({
 }: SemestreColumnProps) {
   return (
     <div className="space-y-4 md:space-y-6">
-      {/* Entête du Semestre */}
       <div className="flex items-center justify-between border-b border-slate-200 pb-4">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
@@ -35,7 +40,6 @@ export default function SemestreColumn({
         </span>
       </div>
 
-      {/* Liste des cours animée */}
       <motion.div
         key={animationKey}
         variants={containerVariants}
@@ -43,8 +47,13 @@ export default function SemestreColumn({
         animate="visible"
         className="grid grid-cols-1 gap-3"
       >
-        {semestreInfo.cours.map((coursNom, coursIndex) => (
-          <CoursItem key={coursIndex} nom={coursNom} />
+        {semestreInfo.cours.map((cours, coursIndex) => (
+          <CoursItem
+            key={coursIndex}
+            nom={cours.nom}
+            professeur={cours.professeur}
+            description={cours.description}
+          />
         ))}
       </motion.div>
     </div>

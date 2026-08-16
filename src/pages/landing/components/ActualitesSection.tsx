@@ -13,6 +13,7 @@ export default function ActualitesSection({
   data,
   isError,
 }: ActualitesSectionProps) {
+  // const annoncesAffichees = filtrerAnnoncesRecentes(data, 'createdAt')
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 mb-8">
       <SectionTitle

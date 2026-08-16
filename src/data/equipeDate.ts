@@ -17,17 +17,17 @@ export const historiqueDelegueData: DelegueHistorique[] = [
   {
     nom: 'Grâce MIBULUMUKINI',
     role: 'Délégué Facultaire',
-    annee: '2024-2025',
+    annee: '2023-2025',
     description:
-      'Représentant principal des étudiants de la Faculté des Sciences Informatiques (FSI) 2024-2025.',
+      'Représentant principal des étudiants de la Faculté des Sciences Informatiques (FSI) 2023-2025.',
     photo: '/del.jpg',
   },
   {
-    nom: 'Cindy Tatiana Tshidibi tezo',
+    nom: 'Cindy Tatiana TSHIDIBI TEZO',
     role: 'Délégué Facultaire',
-    annee: '2022-2024',
+    annee: '2022-2023',
     description:
-      'Représentant principal des étudiants de la Faculté des Sciences Informatiques (FSI) 2022-2024.',
+      'Représentant principal des étudiants de la Faculté des Sciences Informatiques (FSI) 2022-2023.',
     photo: '/cyndy.jpeg',
   },
 ]

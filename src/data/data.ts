@@ -41,13 +41,13 @@ export const accesRapide = [
     icon: Archive,
     title: 'Annales',
     desc: 'Consultez et préparez vos examens avec les sessions précédentes.',
-    link: '/contact',
+    link: '/archive',
   },
   {
     icon: Calendar,
     title: 'Horaires',
     desc: "Suivez en temps réel l'évolution des emplois du temps.",
-    link: '/contact',
+    link: '/Calendar',
   },
   {
     icon: UserCheck,
