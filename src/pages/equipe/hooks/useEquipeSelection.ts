@@ -67,22 +67,19 @@ function comparerMembresCpCpa(
 
 /**
  * Clé unique d'un membre.
- * On utilise l'id renvoyé par le back si présent (le plus fiable),
- * sinon on retombe sur nom + prénom pour ne pas casser si le champ id
- * n'existe pas encore côté API.
  *
- * ⚠️ À adapter si le nom du champ id diffère dans SectionEquipe['membres'][number]
- * (ex: matricule, code, etc.)
+ * ⚠️ On dédupliquait avant par `id`, mais un même membre peut correspondre
+ * à plusieurs lignes en base (une par section : CP, délégué, etc.), donc
+ * avec des id différents pour la même personne. On se base donc sur le nom
+ * complet (champ `nom`), normalisé (minuscule + espaces superflus retirés),
+ * qui identifie la vraie personne.
+ *
+ * ⚠️ Adapte le nom du champ ci-dessous si ce n'est pas `nom` dans
+ * SectionEquipe['membres'][number] (ex: nomComplet, fullName...).
  */
 function cleUniqueMembre(membre: MembreEquipe): string {
-  const idEventuel = (membre as { id?: string | number }).id
-  if (idEventuel !== undefined && idEventuel !== null) {
-    return String(idEventuel)
-  }
-  const nomEventuel = (membre as { nom?: string; prenom?: string }).nom ?? ''
-  const prenomEventuel =
-    (membre as { nom?: string; prenom?: string }).prenom ?? ''
-  return `${nomEventuel}|${prenomEventuel}`.toLowerCase()
+  const nomComplet = (membre as { nom?: string }).nom ?? ''
+  return nomComplet.trim().toLowerCase().replace(/\s+/g, ' ')
 }
 
 /**
