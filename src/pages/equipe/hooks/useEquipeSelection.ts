@@ -4,6 +4,8 @@ import axios from 'axios'
 import type { SectionEquipe } from '@/types/types'
 import { env } from '@/config/env'
 
+type MembreEquipe = SectionEquipe['membres'][number]
+
 // Ordre de priorité des niveaux
 const ORDRE_NIVEAU = ['L1', 'L2', 'L3', 'M1', 'M2']
 // Pour les niveaux Master, ordre des filières (CSI avant RX)
@@ -63,6 +65,44 @@ function comparerMembresCpCpa(
   return indexTypeA - indexTypeB
 }
 
+/**
+ * Clé unique d'un membre.
+ * On utilise l'id renvoyé par le back si présent (le plus fiable),
+ * sinon on retombe sur nom + prénom pour ne pas casser si le champ id
+ * n'existe pas encore côté API.
+ *
+ * ⚠️ À adapter si le nom du champ id diffère dans SectionEquipe['membres'][number]
+ * (ex: matricule, code, etc.)
+ */
+function cleUniqueMembre(membre: MembreEquipe): string {
+  const idEventuel = (membre as { id?: string | number }).id
+  if (idEventuel !== undefined && idEventuel !== null) {
+    return String(idEventuel)
+  }
+  const nomEventuel = (membre as { nom?: string; prenom?: string }).nom ?? ''
+  const prenomEventuel =
+    (membre as { nom?: string; prenom?: string }).prenom ?? ''
+  return `${nomEventuel}|${prenomEventuel}`.toLowerCase()
+}
+
+/**
+ * Supprime les doublons d'une liste de membres en gardant la première
+ * occurrence rencontrée (donc l'ordre d'origine renvoyé par le back/DB
+ * est préservé).
+ */
+function dedupliquerMembres(membres: MembreEquipe[]): MembreEquipe[] {
+  const vus = new Set<string>()
+  const resultat: MembreEquipe[] = []
+  for (const membre of membres) {
+    const cle = cleUniqueMembre(membre)
+    if (!vus.has(cle)) {
+      vus.add(cle)
+      resultat.push(membre)
+    }
+  }
+  return resultat
+}
+
 async function fetchEquipesData(): Promise<EquipesResponse> {
   const { data } = await axios.get<EquipesResponse>(
     `${env.VITE_API_URL}/equipes-site`
@@ -95,10 +135,25 @@ export function useEquipeSelection() {
   const anneesDisponibles = data?.annees ?? []
   const equipesData = data?.donnees ?? {}
 
-  const sectionsBrutes = selectedAnnee ? equipesData[selectedAnnee] || [] : []
+  const sectionsBrutesInitiales = selectedAnnee
+    ? equipesData[selectedAnnee] || []
+    : []
 
-  // Section virtuelle qui regroupe tous les membres de toutes les sections de l'année,
-  // triés (CP/CPA en premier via comparerMembresCpCpa si le role matche, sinon ordre d'origine)
+  // Chaque section garde son propre ordre (donc le classement tel qu'envoyé
+  // par le back), mais on retire les doublons internes à la section :
+  // un même membre présent deux fois dans la même section ne s'affichera
+  // qu'une seule fois dans cette section.
+  const sectionsBrutes: SectionEquipe[] = sectionsBrutesInitiales.map(
+    section => ({
+      ...section,
+      membres: dedupliquerMembres(section.membres),
+    })
+  )
+
+  // Section virtuelle qui regroupe tous les membres de toutes les sections
+  // de l'année. Un membre présent dans plusieurs sections (ex: CP ET délégué)
+  // n'apparaît ici qu'une seule fois, en gardant l'ordre des sections (donc
+  // l'ordre de la DB) pour déterminer quelle occurrence est conservée.
   const sectionToutesEquipes: SectionEquipe | null =
     sectionsBrutes.length > 0
       ? {
@@ -107,7 +162,9 @@ export function useEquipeSelection() {
           titre: TITRE_TOUTES_EQUIPES,
           description:
             'Vue d’ensemble de tous les membres, toutes sections confondues, pour l’année sélectionnée.',
-          membres: sectionsBrutes.flatMap(section => section.membres),
+          membres: dedupliquerMembres(
+            sectionsBrutes.flatMap(section => section.membres)
+          ),
         }
       : null
 
