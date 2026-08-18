@@ -24,17 +24,6 @@ export default function LandingPage() {
     fetchHomeData
   )
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-[#0B132B] flex flex-col items-center justify-center text-white font-sans px-4">
-        <Loader2 className="w-12 h-12 text-blue-400 animate-spin mb-4" />
-        <p className="text-base sm:text-lg font-light tracking-wide text-center animate-pulse">
-          Chargement de la plateforme...
-        </p>
-      </div>
-    )
-  }
-
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
       <Navbar />
@@ -43,7 +32,7 @@ export default function LandingPage() {
       {data && <StatsSection data={data} />}
       <QuickAccessSection />
       <FilieresSection />
-      <ActualitesSection data={data} isError={isError} />
+      <ActualitesSection data={data} isError={isError} loading={isLoading} />
       <FaqSection />
       <Footer />
     </div>

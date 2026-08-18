@@ -33,6 +33,15 @@ export default function EquipePage() {
               Chargement de l&apos;équipe...
             </p>
           </div>
+        ) : aucuneDonneeAnnee ? (
+          <EmptyState variant="annee" selectedAnnee={selectedAnnee} />
+        ) : currentSection && currentSection.membres.length === 0 ? (
+          <EmptyState
+            variant="section"
+            selectedAnnee={selectedAnnee}
+            sectionId={currentSection.id}
+            sectionTitre={currentSection.titre}
+          />
         ) : (
           <>
             <AnneeSelector
@@ -55,22 +64,11 @@ export default function EquipePage() {
               </div>
             )}
 
-            {aucuneDonneeAnnee ? (
-              <EmptyState variant="annee" selectedAnnee={selectedAnnee} />
-            ) : currentSection && currentSection.membres.length === 0 ? (
-              <EmptyState
-                variant="section"
-                selectedAnnee={selectedAnnee}
-                sectionId={currentSection.id}
-                sectionTitre={currentSection.titre}
+            {currentSection && (
+              <MembresGrid
+                membres={currentSection.membres}
+                animationKey={`${selectedAnnee}-${selectedSectionId}`}
               />
-            ) : (
-              currentSection && (
-                <MembresGrid
-                  membres={currentSection.membres}
-                  animationKey={`${selectedAnnee}-${selectedSectionId}`}
-                />
-              )
             )}
           </>
         )}

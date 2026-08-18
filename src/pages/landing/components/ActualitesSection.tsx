@@ -7,11 +7,13 @@ import SectionTitle from './SectionTitle'
 interface ActualitesSectionProps {
   data?: HomeData
   isError: boolean
+  loading: boolean
 }
 
 export default function ActualitesSection({
   data,
   isError,
+  loading,
 }: ActualitesSectionProps) {
   // const annoncesAffichees = filtrerAnnoncesRecentes(data, 'createdAt')
   return (
@@ -21,7 +23,14 @@ export default function ActualitesSection({
         subtitle="Restez informé sur les événements majeurs, les hackathons et la vie académique au sein de la FSI."
       />
 
-      {isError ? (
+      {loading ? (
+        <div className="flex flex-col items-center justify-center py-24">
+          <div className="h-10 w-10 animate-spin rounded-full border-4 border-slate-200 border-t-slate-900" />
+          <p className="mt-4 text-sm text-slate-500 font-light">
+            Chargement des actualités...
+          </p>
+        </div>
+      ) : isError ? (
         <div className="text-center py-8 text-red-500 font-medium text-sm sm:text-base">
           Impossible de charger les dernières actualités.
         </div>

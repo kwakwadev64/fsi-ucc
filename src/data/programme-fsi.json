@@ -12,7 +12,7 @@
             {
               "nom": "Mathématique",
               "professeur": "AKATSHI",
-              "description": "Professeur des université "
+              "description": ""
             },
             {
               "nom": "Informatique Générale",
@@ -52,22 +52,22 @@
             },
             {
               "nom": "Economie politique",
-              "professeur": "",
+              "professeur": "Lueteta",
               "description": ""
             },
             {
               "nom": "Statistique",
-              "professeur": "",
+              "professeur": "A.Phongi",
               "description": ""
             },
             {
               "nom": "Philosophie",
-              "professeur": "",
+              "professeur": "C.Bwangila",
               "description": ""
             },
             {
               "nom": "Comptabilité Générale",
-              "professeur": "Kazadi",
+              "professeur": "K.Kazadi",
               "description": ""
             },
             {
@@ -77,27 +77,27 @@
             },
             {
               "nom": "Méthode de recherche en Sciences computationnelles",
-              "professeur": "",
+              "professeur": "Soeur Odette Sangopamba",
               "description": ""
             },
             {
               "nom": "Initiation à la recherche bibliographique et documentaire",
-              "professeur": "",
+              "professeur": "Katubadi",
               "description": ""
             },
             {
               "nom": "Doctrine fondamentale de l’Eglise catholique",
-              "professeur": "",
+              "professeur": "E. Lievin",
               "description": ""
             },
             {
               "nom": "Education à la citoyenneté",
-              "professeur": "",
+              "professeur": "R.Ongendangenda",
               "description": ""
             },
             {
               "nom": "Anglais",
-              "professeur": "",
+              "professeur": "A. Libwa",
               "description": ""
             }
           ]
@@ -220,7 +220,7 @@
             },
             {
               "nom": "Marketing, TFC",
-              "professeur": "",
+              "professeur": "Mampuya",
               "description": ""
             },
             {
@@ -230,7 +230,7 @@
             },
             {
               "nom": "Lecteur 1",
-              "professeur": "",
+              "professeur": "J.Lueteta",
               "description": ""
             }
           ]
@@ -241,12 +241,12 @@
           "cours": [
             {
               "nom": "Eglise et TIC",
-              "professeur": "",
+              "professeur": "P.Nzinga",
               "description": ""
             },
             {
               "nom": "Gestion des ressources humaines",
-              "professeur": "",
+              "professeur": "G.Iyenda",
               "description": ""
             },
             {
@@ -256,7 +256,7 @@
             },
             {
               "nom": "Gestion d'un centre de traitement informatique",
-              "professeur": "",
+              "professeur": "E.Tshibaka",
               "description": ""
             },
             {
@@ -271,7 +271,7 @@
             },
             {
               "nom": "Stage",
-              "professeur": "",
+              "professeur": "J.Lueteta",
               "description": ""
             }
           ]
