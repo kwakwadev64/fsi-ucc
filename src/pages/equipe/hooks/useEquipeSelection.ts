@@ -1,8 +1,8 @@
 import { useState } from 'react'
-import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import type { SectionEquipe } from '@/types/types'
+import type { SectionEquipe } from '../types/types'
 import { env } from '@/config/env'
+import { useFetchData } from '@/hooks/useQuery'
 
 type MembreEquipe = SectionEquipe['membres'][number]
 
@@ -18,6 +18,7 @@ const ID_TOUTES_EQUIPES = 'toutes'
 const TITRE_TOUTES_EQUIPES = 'Toutes les équipes'
 
 type EquipesResponse = {
+  success: boolean
   annees: string[]
   donnees: Record<string, SectionEquipe[]>
 }
@@ -68,13 +69,13 @@ function comparerMembresCpCpa(
 /**
  * Clé unique d'un membre.
  *
- * ⚠️ On dédupliquait avant par `id`, mais un même membre peut correspondre
+ *  On dédupliquait avant par `id`, mais un même membre peut correspondre
  * à plusieurs lignes en base (une par section : CP, délégué, etc.), donc
  * avec des id différents pour la même personne. On se base donc sur le nom
  * complet (champ `nom`), normalisé (minuscule + espaces superflus retirés),
  * qui identifie la vraie personne.
  *
- * ⚠️ Adapte le nom du champ ci-dessous si ce n'est pas `nom` dans
+ *  Adapte le nom du champ ci-dessous si ce n'est pas `nom` dans
  * SectionEquipe['membres'][number] (ex: nomComplet, fullName...).
  */
 function cleUniqueMembre(membre: MembreEquipe): string {
@@ -104,7 +105,10 @@ async function fetchEquipesData(): Promise<EquipesResponse> {
   const { data } = await axios.get<EquipesResponse>(
     `${env.VITE_API_URL}/equipes-site`
   )
-  return data
+  if (!data.success) {
+    throw new Error('Erreur lors de la récupération des données')
+  }
+  return data || []
 }
 
 export function useEquipeSelection() {
@@ -117,9 +121,7 @@ export function useEquipeSelection() {
     isLoading: loading,
     isError,
     error,
-  } = useQuery({
-    queryKey: ['equipes-site'],
-    queryFn: fetchEquipesData,
+  } = useFetchData(['equipes-site'], fetchEquipesData, {
     staleTime: 5 * 60 * 1000,
     select: result => {
       if (!selectedAnnee && result.annees.length > 0) {

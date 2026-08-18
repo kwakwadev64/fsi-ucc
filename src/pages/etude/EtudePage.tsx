@@ -1,16 +1,17 @@
 import { useState } from 'react'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import programmeData from '@/data/programme-fsi.json'
+import Navbar from '@/layout/Navbar'
+import Footer from '@/layout/Footer'
+import { PROMOTIONS } from './data/cours'
 import EtudeHero from './components/EtudeHero'
 import PromotionTabs from './components/PromotionTabs'
 import SemestreColumn from './components/SemestreColumn'
+import { type Promotion } from './types/types'
 
 export default function EtudePage() {
-  // Par défaut, on sélectionne la première promotion du JSON (L1)
+  // Par défaut, on sélectionne la première promotion du tableau (L1)
   const [selectedPromoIndex, setSelectedPromoIndex] = useState<number>(0)
 
-  const currentPromo = programmeData.promotions[selectedPromoIndex]
+  const currentPromo: Promotion = PROMOTIONS[selectedPromoIndex]
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
@@ -19,7 +20,7 @@ export default function EtudePage() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-12">
         <PromotionTabs
-          promotions={programmeData.promotions}
+          promotions={PROMOTIONS}
           selectedIndex={selectedPromoIndex}
           onSelect={setSelectedPromoIndex}
         />

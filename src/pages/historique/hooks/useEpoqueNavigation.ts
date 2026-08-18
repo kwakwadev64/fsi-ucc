@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { historiqueData } from '@/data/HistoriqueData'
+import { historiqueData } from '@/pages/historique/data/HistoriqueData'
 
 export function useEpoqueNavigation() {
   const [activeEpoque, setActiveEpoque] = useState<string>(

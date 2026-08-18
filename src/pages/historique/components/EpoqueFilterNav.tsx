@@ -1,5 +1,5 @@
 import { Calendar } from 'lucide-react'
-import type { Epoque } from '@/types/types'
+import type { Epoque } from '../types/types'
 
 interface EpoqueFilterNavProps {
   epoques: Epoque[]
@@ -14,7 +14,7 @@ export default function EpoqueFilterNav({
 }: EpoqueFilterNavProps) {
   return (
     <div className="relative w-full mb-12 md:mb-16 sticky top-4 z-40">
-      <div className="flex gap-2 justify-start md:justify-center items-center bg-white/90 p-2 rounded-2xl md:rounded-full border border-slate-100 shadow-sm overflow-x-auto select-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden backdrop-blur-md snap-x px-4 md:px-2">
+      <div className="flex gap-2 justify-start md:justify-center items-center bg-white/90 p-2 rounded-2xl md:rounded-full border border-slate-100 shadow-sm overflow-x-auto select-none scrollbar-none [&::-webkit-scrollbar]:hidden backdrop-blur-md snap-x px-4 md:px-2">
         {epoques.map(epoque => {
           const isSelected = activeEpoque === epoque.id
           return (

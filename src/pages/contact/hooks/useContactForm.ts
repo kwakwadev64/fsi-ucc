@@ -1,6 +1,6 @@
 import { toast } from 'sonner'
 import { useMutateData } from '@/hooks/useQuery'
-import type { ContactFormData } from '@/types/types'
+import type { ContactFormData } from '../types/types'
 
 const initialValues: ContactFormData = {
   name: '',

@@ -1,4 +1,4 @@
-import { historiqueDelegueData } from '@/data/equipeDate'
+import { historiqueDelegueData } from '@/pages/delegue/data/equipeDate'
 
 export function useDelegueHistorique() {
   const delegues = [...historiqueDelegueData].sort((a, b) =>

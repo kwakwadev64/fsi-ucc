@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { containerVariants } from '@/lib/motionVariants'
 import DelegueHistoriqueCard from './DelegueHistoriqueCard'
 import DelegueHistoriqueModal from './DelegueHistoriqueModal'
-import type { DelegueHistorique } from '@/data/equipeDate'
+import type { DelegueHistorique } from '@/pages/delegue/data/equipeDate'
 
 export default function DelegueHistoriqueGrid({
   delegues,

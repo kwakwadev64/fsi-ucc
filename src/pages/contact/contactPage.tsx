@@ -1,5 +1,5 @@
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+import Navbar from '@/layout/Navbar'
+import Footer from '@/layout/Footer'
 import { useContactForm } from './hooks/useContactForm'
 import ContactHero from './components/ContactHero'
 import ContactInfoCards from './components/ContactInfoCards'

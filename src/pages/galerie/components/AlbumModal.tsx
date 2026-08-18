@@ -1,5 +1,5 @@
 import { X, ChevronLeft, ChevronRight } from 'lucide-react'
-import type { Galerie } from '@/types/types'
+import type { Galerie } from '../types/types'
 
 interface AlbumModalProps {
   album: Galerie

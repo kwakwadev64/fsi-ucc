@@ -2,8 +2,8 @@ import { motion } from 'framer-motion'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { Send, Loader2 } from 'lucide-react'
-import { contactSchema } from '@/validators/contactSchema'
-import type { ContactFormData } from '@/types/types'
+import { contactSchema } from '@/pages/contact/schemas/contactSchema'
+import type { ContactFormData } from '../types/types'
 
 interface ContactFormProps {
   initialValues: ContactFormData

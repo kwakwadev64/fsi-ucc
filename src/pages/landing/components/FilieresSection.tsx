@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { itemVariants } from '@/lib/motionVariants'
-import { filieresData } from '@/data/filiere'
+import { filieresData } from '@/pages/landing/data/filiere'
 import SectionTitle from './SectionTitle'
 
 export default function FilieresSection() {

@@ -3,12 +3,10 @@ import LadingPage from '@/pages/landing/LadingPage'
 import ContactPage from '@/pages/contact/contactPage'
 import EtudePage from '@/pages/etude/EtudePage'
 import GalerieFSI from '@/pages/galerie/galeriePage'
-import LoginPage from '@/pages/forms/login'
-import RegisterPage from './pages/forms/RegisterPage'
 import { Toaster } from 'sonner'
 import HistoriquePage from './pages/historique/HistoriquePage'
 import EquipePage from './pages/equipe/EquipePage'
-import NewsDetailPage from './pages/NewsDetailsPage'
+import NewsDetailPage from './pages/detailActualite/NewsDetailPage'
 import DeleguePage from './pages/delegue/DeleguePage'
 
 function NotFound() {
@@ -45,8 +43,6 @@ export default function App() {
         <Route path="/equipe" element={<EquipePage />} />
         <Route path="/historique" element={<HistoriquePage />} />
         <Route path="/galerie" element={<GalerieFSI />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/register" element={<RegisterPage />} />
         <Route path="/contact" element={<ContactPage />} />
         <Route path="/delegue" element={<DeleguePage />} />
         <Route path="*" element={<NotFound />} />

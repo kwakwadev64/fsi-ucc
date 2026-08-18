@@ -1,5 +1,5 @@
 import IconeSection from './IconeSection'
-import type { SectionEquipe } from '@/types/types'
+import type { SectionEquipe } from '../types/types'
 
 interface SectionTabsProps {
   sections: SectionEquipe[]

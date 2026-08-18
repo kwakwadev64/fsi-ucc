@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { LuLinkedin, LuGithub, LuGlobe } from 'react-icons/lu'
 import { CalendarDays } from 'lucide-react'
 import { itemVariants } from '@/lib/motionVariants'
-import type { DelegueHistorique } from '@/data/equipeDate'
+import type { DelegueHistorique } from '@/pages/delegue/data/equipeDate'
 
 export default function DelegueHistoriqueCard({
   delegue,

@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import { itemVariants } from '@/lib/motionVariants'
-import type { Evenement } from '@/types/types'
+import type { Evenement } from '../types/types'
 import EvenementModal from './EvenementModal'
 
 interface EvenementCardProps {
@@ -25,12 +25,6 @@ export default function EvenementCard({
           isEven ? 'lg:text-right lg:items-end' : 'lg:col-start-2'
         }`}
       >
-        <div
-          className={`hidden lg:block absolute top-7 w-4 h-4 rounded-full bg-white border-4 border-blue-600 z-10 transition-transform duration-300 group-hover:scale-125 ${
-            isEven ? '-right-8.5' : '-left-8.5'
-          }`}
-        />
-
         <div className="flex items-center gap-2 mb-3">
           <span
             className={`text-base md:text-lg font-black text-blue-600 bg-blue-50/70 px-3 py-0.5 rounded-lg group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300 ${

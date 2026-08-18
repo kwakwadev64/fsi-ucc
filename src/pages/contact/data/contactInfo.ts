@@ -10,7 +10,7 @@ export const contactInfo: ContactInfoItem[] = [
   {
     icon: Phone,
     title: 'Téléphone',
-    details: ['+243 (0) 81 234 5678', '+243 (0) 99 876 5432'],
+    details: ['+243 (0) 81 509 0910'],
   },
   {
     icon: Mail,

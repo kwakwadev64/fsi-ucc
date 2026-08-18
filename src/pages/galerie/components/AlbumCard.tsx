@@ -1,5 +1,5 @@
 import { Images } from 'lucide-react'
-import type { Galerie } from '@/types/types'
+import type { Galerie } from '../types/types'
 
 interface AlbumCardProps {
   album: Galerie

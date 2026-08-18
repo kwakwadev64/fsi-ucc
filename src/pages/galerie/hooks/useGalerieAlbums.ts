@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import axios from 'axios'
-import type { Galerie } from '@/types/types'
+import type { Galerie } from '../types/types'
+import { env } from '@/config/env'
 
 type GalerieResponse = {
   success: boolean
@@ -10,7 +11,7 @@ type GalerieResponse = {
 
 async function fetchGalerie(): Promise<Galerie[]> {
   const { data } = await axios.get<GalerieResponse>(
-    'https://frnagrmi.fsiucc.com/api/galerie-site'
+    `${env.VITE_API_URL}/galerie-site`
   )
 
   if (!data.success) {

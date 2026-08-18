@@ -1,7 +1,6 @@
-import { Loader2 } from 'lucide-react'
 import axios from 'axios'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+import Navbar from '@/layout/Navbar'
+import Footer from '@/layout/Footer'
 import HeroSection from '@/pages/landing/components/HeroSection'
 import FloatingDownloadButton from '@/pages/landing/components/FloatingDownloadButton'
 import StatsSection from '@/pages/landing/components/StatsSection'
@@ -9,13 +8,25 @@ import QuickAccessSection from '@/pages/landing/components/QuickAccessSection'
 import FilieresSection from '@/pages/landing/components/FilieresSection'
 import ActualitesSection from '@/pages/landing/components/ActualitesSection'
 import FaqSection from '@/pages/landing/components/FaqSection'
-import type { HomeData } from '@/types/types'
+import type { HomeData } from './types/types'
 import { useFetchData } from '@/hooks/useQuery'
 import { env } from '@/config/env'
 
-const fetchHomeData = async (): Promise<HomeData> => {
-  const { data } = await axios.get<HomeData>(`${env.VITE_API_URL}/accueil-site`)
-  return data
+type HomeResponse = {
+  success: boolean
+  data: HomeData[]
+}
+
+const fetchHomeData = async (): Promise<HomeData[]> => {
+  const { data } = await axios.get<HomeResponse>(
+    `${env.VITE_API_URL}/accueil-site`
+  )
+
+  if (!data.success) {
+    throw new Error('Erreur lors de la récupération des données')
+  }
+
+  return data.data || []
 }
 
 export default function LandingPage() {

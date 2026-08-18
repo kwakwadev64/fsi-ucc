@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import { faqData } from '@/data/data'
+import { faqData } from '../data/faqData'
 import SectionTitle from './SectionTitle'
 
 export default function FaqSection() {

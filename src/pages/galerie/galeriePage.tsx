@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+import Navbar from '@/layout/Navbar'
+import Footer from '@/layout/Footer'
 import { useGalerieAlbums } from './hooks/useGalerieAlbums'
 import { useAlbumModal } from './hooks/useAlbumModal'
 import { useAutoDownload } from './hooks/useAutoDownload'

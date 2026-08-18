@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { X, CalendarDays } from 'lucide-react'
 import { LuLinkedin, LuGithub, LuGlobe } from 'react-icons/lu'
-import type { DelegueHistorique } from '@/data/equipeDate'
+import type { DelegueHistorique } from '@/pages/delegue/data/equipeDate'
 
 export default function DelegueHistoriqueModal({
   delegue,

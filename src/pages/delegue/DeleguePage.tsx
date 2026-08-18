@@ -1,5 +1,5 @@
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
+import Navbar from '@/layout/Navbar'
+import Footer from '@/layout/Footer'
 import { useDelegueHistorique } from './hooks/useDelegueHistorique'
 import HistoriqueHero from './components/HistoriqueHero'
 import EmptyState from './components/EmptyState'

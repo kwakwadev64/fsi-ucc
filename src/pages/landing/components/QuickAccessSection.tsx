@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { containerVariants, itemVariants } from '@/lib/motionVariants'
-import { accesRapide } from '@/data/data'
+import { accesRapide } from '../data/accesRapide'
 import SectionTitle from './SectionTitle'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'

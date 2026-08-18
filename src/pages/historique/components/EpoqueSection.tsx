@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { containerVariants } from '@/lib/motionVariants'
 import EvenementCard from './EvenementCard'
-import type { Epoque } from '@/types/types'
+import type { Epoque } from '../types/types'
 
 export default function EpoqueSection({ epoque }: { epoque: Epoque }) {
   return (

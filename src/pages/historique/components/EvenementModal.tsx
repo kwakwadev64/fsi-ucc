@@ -1,6 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { X, Calendar } from 'lucide-react'
-import type { Evenement } from '@/types/types'
+import type { Evenement } from '../types/types'
 
 interface EvenementModalProps {
   evenement: Evenement | null
