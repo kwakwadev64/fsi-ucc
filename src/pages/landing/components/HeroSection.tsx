@@ -16,7 +16,7 @@ export default function HeroSection() {
     loop: true,
   })
   return (
-    <section className="relative pt-24 pb-23 lg:pt-36 lg:pb-10 overflow-hidden">
+    <section className="relative pt-24 pb-23 lg:pt-36 lg:pb-22 overflow-hidden">
       <div className="absolute inset-0 bg-[#0B132B]">
         <div className="absolute inset-0 bg-linear-to-br from-blue-900/40 via-transparent to-blue-800/20" />
       </div>
