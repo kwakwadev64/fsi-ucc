@@ -105,9 +105,7 @@ async function fetchEquipesData(): Promise<EquipesResponse> {
   const { data } = await axios.get<EquipesResponse>(
     `${env.VITE_API_URL}/equipes-site`
   )
-  if (!data.success) {
-    throw new Error('Erreur lors de la récupération des données')
-  }
+
   return data || []
 }
 
