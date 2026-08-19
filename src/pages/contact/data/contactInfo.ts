@@ -15,7 +15,7 @@ export const contactInfo: ContactInfoItem[] = [
   {
     icon: Mail,
     title: 'Email',
-    details: ['contact@fsi-ucc.org', 'info@ucc-rdc.org'],
+    details: ['contact@fsiucc.com', 'infosupport@fsiucc.com'],
   },
   {
     icon: MapPin,
