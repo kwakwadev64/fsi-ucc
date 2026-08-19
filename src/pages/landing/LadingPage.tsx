@@ -12,21 +12,14 @@ import type { HomeData } from './types/types'
 import { useFetchData } from '@/hooks/useQuery'
 import { env } from '@/config/env'
 
-type HomeResponse = {
-  success: boolean
-  data: HomeData[]
-}
+const fetchHomeData = async (): Promise<HomeData> => {
+  const { data } = await axios.get<HomeData>(`${env.VITE_API_URL}/accueil-site`)
 
-const fetchHomeData = async (): Promise<HomeData[]> => {
-  const { data } = await axios.get<HomeResponse>(
-    `${env.VITE_API_URL}/accueil-site`
-  )
-
-  if (!data.success) {
+  if (!data) {
     throw new Error('Erreur lors de la récupération des données')
   }
 
-  return data.data || []
+  return data || []
 }
 
 export default function LandingPage() {
