@@ -20,8 +20,6 @@ export default function EquipePage() {
     aucuneDonneeAnnee,
   } = useEquipeSelection()
 
-  console.log(currentSection)
-
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
       <Navbar />
