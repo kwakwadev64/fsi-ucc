@@ -1,4 +1,4 @@
-import type { HistoriqueData } from '@/types/types'
+import type { HistoriqueData } from '../types/types'
 
 export const historiqueData: HistoriqueData = {
   epoques: [
