@@ -59,11 +59,7 @@ const Footer = () => {
                 Notes de cours
               </Link>
             </li>
-            <li>
-              <Link to="#" className="hover:text-blue-400 transition-colors">
-                Annales
-              </Link>
-            </li>
+
             <li>
               <Link
                 to="/historique"
