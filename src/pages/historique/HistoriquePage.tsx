@@ -1,6 +1,6 @@
 import Navbar from '@/layout/Navbar'
 import Footer from '@/layout/Footer'
-import { historiqueData } from '@/pages/historique/data/HistoriqueData'
+import { historiqueData } from './data/HistoriqueData'
 import { useEpoqueNavigation } from './hooks/useEpoqueNavigation'
 import HistoriqueHero from './components/HistoriqueHero'
 import EpoqueFilterNav from './components/EpoqueFilterNav'
@@ -35,5 +35,3 @@ export default function HistoriquePage() {
     </div>
   )
 }
-
-//ok

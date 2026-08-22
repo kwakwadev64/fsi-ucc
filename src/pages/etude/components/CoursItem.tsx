@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { BookOpen, User, ChevronDown, Download } from 'lucide-react'
+import { FileText, User, ChevronDown, Download } from 'lucide-react'
 import { itemVariants } from '@/lib/motionVariants'
 import MobileOnlyPopup from '@/pages/landing/components/MobileOnlyPoppup'
 
@@ -18,80 +18,101 @@ export default function CoursItem({
   fichierUrl,
 }: CoursItemProps) {
   const [ouvert, setOuvert] = useState(false)
-  const [isvisible, setisVisible] = useState(false)
+  const [isVisible, setIsVisible] = useState(false)
+
+  const hasDescription = Boolean(description)
 
   return (
     <>
       <motion.div
         variants={itemVariants}
-        whileHover={{ x: 4 }}
-        onClick={() => setOuvert(prev => !prev)}
-        className="bg-white p-4 rounded-2xl border border-slate-100 shadow-2xs hover:shadow-md hover:border-blue-100 transition-all duration-200 group cursor-pointer"
+        onClick={() => hasDescription && setOuvert(prev => !prev)}
+        className={`group bg-white rounded-2xl border border-slate-100
+          shadow-[0_2px_10px_rgba(15,23,42,0.03)] hover:shadow-[0_8px_24px_rgba(37,99,235,0.08)]
+          hover:border-blue-100 transition-all duration-300
+          ${hasDescription ? 'cursor-pointer' : ''}`}
       >
-        <div className="flex items-center justify-between gap-4">
-          <div className="flex items-center gap-3 md:gap-4 min-w-0">
-            <div className="w-2.5 h-2.5 rounded-full bg-slate-300 group-hover:bg-blue-500 transition-colors shrink-0"></div>
-            <div className="min-w-0">
-              <span className="block text-xs sm:text-sm font-semibold text-slate-700 group-hover:text-slate-900 transition-colors truncate-3-lines">
-                {nom}
-              </span>
-              {professeur && (
-                <span className="flex items-center gap-1 text-[11px] sm:text-xs text-slate-400 mt-0.5 truncate">
-                  <User size={11} className="shrink-0" />
-                  {professeur}
-                </span>
-              )}
-            </div>
+        <div className="flex items-start sm:items-center gap-4 p-4 sm:p-5 flex-wrap sm:flex-nowrap">
+          {/* Pastille document */}
+          <div
+            className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl
+              bg-blue-50 text-blue-600
+              group-hover:bg-blue-600 group-hover:text-white
+              transition-colors duration-300"
+          >
+            <FileText size={19} strokeWidth={2} />
           </div>
 
-          <div className="flex items-center gap-2 shrink-0 pl-2">
-            <a
-              href={fichierUrl}
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setisVisible(true)}
-              aria-label={`Télécharger le support de ${nom}`}
-              className="flex items-center gap-1.5 px-2 py-1.5 sm:px-2.5 rounded-full text-slate-400 hover:text-blue-600 hover:bg-blue-50 transition-colors"
-            >
-              <Download size={16} className="shrink-0" />
-              <span className="hidden sm:inline text-xs font-medium">
-                Télécharger
-              </span>
-            </a>
+          {/* Titre + enseignant */}
+          <div className="min-w-0 flex-1">
+            <h3 className="text-sm sm:text-[15px] font-bold text-slate-800 leading-snug group-hover:text-blue-700 transition-colors line-clamp-2">
+              {nom}
+            </h3>
+            {professeur && (
+              <p className="flex items-center gap-1.5 text-xs text-slate-400 mt-1">
+                <User size={12} className="shrink-0" />
+                <span className="truncate">{professeur}</span>
+              </p>
+            )}
+          </div>
 
-            <div className="text-slate-300 group-hover:text-blue-500 transition-colors">
-              <BookOpen size={16} />
-            </div>
-            {description && (
+          {/* Actions */}
+          <div className="flex items-center gap-2 shrink-0 ml-auto sm:ml-0">
+            {fichierUrl && (
+              <a
+                href={fichierUrl}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={e => {
+                  e.stopPropagation()
+                  setIsVisible(true)
+                }}
+                aria-label={`Télécharger le support de ${nom}`}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-full
+                  bg-blue-50 text-blue-600 text-xs font-semibold
+                  hover:bg-blue-600 hover:text-white
+                  transition-colors duration-200"
+              >
+                <Download size={14} />
+                <span className="hidden sm:inline">Télécharger le cours</span>
+                <span className="sm:hidden">Télécharger</span>
+              </a>
+            )}
+
+            {hasDescription && (
               <motion.div
                 animate={{ rotate: ouvert ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
-                className="text-slate-300 group-hover:text-blue-500 transition-colors"
+                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-300 group-hover:text-blue-500 transition-colors"
               >
-                <ChevronDown size={16} />
+                <ChevronDown size={17} />
               </motion.div>
             )}
           </div>
         </div>
 
+        {/* Description dépliable */}
         <AnimatePresence initial={false}>
-          {ouvert && description && (
+          {ouvert && hasDescription && (
             <motion.div
-              initial={{ height: 0, opacity: 0, marginTop: 0 }}
-              animate={{ height: 'auto', opacity: 1, marginTop: 12 }}
-              exit={{ height: 0, opacity: 0, marginTop: 0 }}
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.2 }}
               className="overflow-hidden"
             >
-              <p className="text-xs sm:text-sm text-slate-500 leading-relaxed pl-5.5 md:pl-6.5">
-                {description}
-              </p>
+              <div className="px-4 sm:px-5 pb-4 sm:pb-5 pl-[3.75rem] sm:pl-[4.25rem]">
+                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed border-t border-slate-50 pt-3">
+                  {description}
+                </p>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.div>
-      <MobileOnlyPopup isOpen={isvisible} onClose={() => setisVisible(false)} />
+
+      <MobileOnlyPopup isOpen={isVisible} onClose={() => setIsVisible(false)} />
     </>
   )
 }

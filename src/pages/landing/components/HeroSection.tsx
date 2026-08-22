@@ -1,77 +1,64 @@
-import { motion } from 'framer-motion'
-import { BookOpen, FileText } from 'lucide-react'
-import { Link } from 'react-router-dom'
-import LogoFsiUcc from '@/assets/logo_fsi_tranparent.png'
-import { useTypewriter, Cursor } from 'react-simple-typewriter'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useHeroSlide } from '../hooks/useHeroSilde'
+import PrevNextButton from './PrevNextButton'
+import { HeroPhotoSlide } from './HeroPhotoSlide'
+import HeroLogoSlide from './HeroLogoSlide'
+import Dots from './Dots'
 
-export default function HeroSection() {
-  const [text] = useTypewriter({
-    words: [
-      'Formons ensemble les ingénieurs et informaticiens de demain.',
-      "Cultivons l'excellence, façonnons l'innovation.",
-      'Du savoir académique à la maîtrise du numérique.',
-      "L'intelligence au service du progrès congolais.",
-      'Apprendre aujourd’hui pour bâtir le futur digital..',
-    ],
-    loop: true,
-  })
+export default function HeroSlider() {
+  const { setIsPaused, slide } = useHeroSlide()
+
   return (
-    <section className="relative pt-24 pb-23 lg:pt-36 lg:pb-28 overflow-hidden">
-      <div className="absolute inset-0 bg-[#0B132B]">
-        <div className="absolute inset-0 bg-linear-to-br from-blue-900/40 via-transparent to-blue-800/20" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-12">
+    <section
+      className="relative h-150 sm:h-150 lg:h-155 w-full overflow-hidden bg-[#0B132B]"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      <AnimatePresence mode="sync">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
-          className="text-center lg:text-left max-w-2xl"
+          key={`${slide.id}-bg`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: 'easeInOut' }}
+          className="absolute inset-0"
         >
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6 tracking-tight leading-tight">
-            Bienvenue à la Faculté des <br className="hidden md:block" />
-            <span className="text-blue-400">Sciences Informatiques</span>
-          </h1>
-
-          <p className="text-base sm:text-lg md:text-xl text-slate-300 mb-8 max-w-xl mx-auto lg:mx-0 font-light">
-            {text}
-            <Cursor />
-          </p>
-
-          <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 max-w-md mx-auto lg:mx-0">
-            <Link
-              to="/etude"
-              className="inline-flex justify-center items-center gap-2 px-4 py-3.5 rounded-full bg-blue-600 text-white font-semibold hover:bg-blue-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B132B] transition-all shadow-lg shadow-blue-600/30 hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base"
-            >
-              <BookOpen size={18} />
-              Accéder aux cours
-            </Link>
-
-            <a
-              href="http://e-acade.ucc.ac.cd/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex justify-center items-center gap-2 px-4 py-3.5 rounded-full bg-white/5 border border-white/20 text-white font-semibold hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 focus-visible:ring-offset-2 focus-visible:ring-offset-[#0B132B] backdrop-blur-sm transition-all hover:-translate-y-0.5 cursor-pointer text-sm sm:text-base"
-            >
-              <FileText size={18} />
-              Voir mes résultats
-            </a>
-          </div>
+          {slide.layout === 'photo' ? (
+            <>
+              <img
+                src={slide.image}
+                alt=""
+                className="h-full w-full object-cover"
+              />
+              {/* voile uniforme léger : laisse voir l'image, juste assez pour lire le texte */}
+              <div className="absolute inset-0 bg-black/45" />
+              <div className="absolute inset-0 bg-linear-to-t from-black/60 via-transparent to-transparent" />
+            </>
+          ) : (
+            <>
+              <div className="absolute inset-0 bg-[#0B132B]" />
+              <div className="absolute inset-0 bg-linear-to-br from-blue-900/40 via-transparent to-blue-800/20" />
+            </>
+          )}
         </motion.div>
+      </AnimatePresence>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          className="w-full max-w-[320px] max-sm:hidden lg:max-w-100 aspect-square flex items-center justify-center"
-        >
-          <img
-            src={LogoFsiUcc}
-            alt="Logo de la Faculté des Sciences Informatiques - UCC"
-            className="w-full h-full object-contain drop-shadow-2xl"
-          />
-        </motion.div>
-      </div>
+      {/* -------- Contenu -------- */}
+      <AnimatePresence mode="wait">
+        {slide.layout === 'photo' ? (
+          //  LAYOUT "photo" : contenu centré
+          <HeroPhotoSlide slide={slide} />
+        ) : (
+          // LAYOUT logo : texte à gauche + logo à droite (ancien hero)
+          <HeroLogoSlide />
+        )}
+      </AnimatePresence>
+
+      {/* -------- Flèches précédent / suivant -------- */}
+      <PrevNextButton />
+
+      {/* -------- Indicateurs (dots) -------- */}
+      <Dots />
     </section>
   )
 }

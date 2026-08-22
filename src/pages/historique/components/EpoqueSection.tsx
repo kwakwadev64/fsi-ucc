@@ -27,6 +27,12 @@ export default function EpoqueSection({ epoque }: { epoque: Epoque }) {
         viewport={{ once: true, margin: '-100px' }}
         className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 relative pl-10 lg:pl-0"
       >
+        {/* Rail mobile — ligne verticale continue dans la gouttière pl-10 */}
+        <div className="lg:hidden absolute left-4 top-1 bottom-1 w-px bg-linear-to-b from-blue-200 via-blue-100 to-transparent -z-10" />
+
+        {/* Colonne vertébrale desktop — ligne verticale centrale */}
+        <div className="hidden lg:block absolute left-1/2 top-1 bottom-1 w-px bg-linear-to-b from-blue-200 via-blue-100 to-transparent -translate-x-1/2 -z-10" />
+
         {epoque.evenements.map((evenement, evIndex) => (
           <EvenementCard
             key={evIndex}

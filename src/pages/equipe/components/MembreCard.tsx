@@ -1,11 +1,9 @@
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
-import { BookOpen, ExternalLink, Link2, X } from 'lucide-react'
+import { motion } from 'framer-motion'
 import { LuLinkedin, LuGithub, LuGlobe } from 'react-icons/lu'
 import { itemVariants } from '@/lib/motionVariants'
-import type { Membre } from '@/types/types'
-
-const DESCRIPTION_MAX_LENGTH = 50
+import type { Membre } from '../types/types'
+import MembreModal from './MembreModal'
 
 export default function MembreCard({ membre }: { membre: Membre }) {
   const [isModalOpen, setIsModalOpen] = useState(false)
@@ -17,26 +15,23 @@ export default function MembreCard({ membre }: { membre: Membre }) {
     .slice(0, 2)
 
   const hasSocials = membre.portfolio || membre.github || membre.linkedin
-  const description = membre.description ?? ''
-  const isLong = description.length > DESCRIPTION_MAX_LENGTH
-  const descriptionApercu = isLong
-    ? `${description.slice(0, DESCRIPTION_MAX_LENGTH).trim()}…`
-    : description
 
   const photoSrc = membre.photo || membre.avatarUrl
 
+  // Icônes réseaux sociaux — flottantes sur la photo, couleurs conservées
   const Socials = ({ className = '' }: { className?: string }) =>
     hasSocials ? (
-      <div className={`flex items-center gap-3 text-slate-400 ${className}`}>
+      <div className={`flex flex-col items-center gap-2 ${className}`}>
         {membre.portfolio && (
           <a
             href={membre.portfolio}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-emerald-600 transition-colors"
+            onClick={e => e.stopPropagation()}
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-emerald-500 hover:border-emerald-500 transition-colors"
             title="Portfolio"
           >
-            <LuGlobe className="w-4 h-4" />
+            <LuGlobe className="w-3.5 h-3.5" />
           </a>
         )}
         {membre.github && (
@@ -44,10 +39,11 @@ export default function MembreCard({ membre }: { membre: Membre }) {
             href={membre.github}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-slate-900 transition-colors"
+            onClick={e => e.stopPropagation()}
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-slate-900 hover:border-slate-900 transition-colors"
             title="GitHub"
           >
-            <LuGithub className="w-4 h-4" />
+            <LuGithub className="w-3.5 h-3.5" />
           </a>
         )}
         {membre.linkedin && (
@@ -55,10 +51,11 @@ export default function MembreCard({ membre }: { membre: Membre }) {
             href={membre.linkedin}
             target="_blank"
             rel="noreferrer"
-            className="hover:text-blue-600 transition-colors"
+            onClick={e => e.stopPropagation()}
+            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-blue-600 hover:border-blue-600 transition-colors"
             title="LinkedIn"
           >
-            <LuLinkedin className="w-4 h-4" />
+            <LuLinkedin className="w-3.5 h-3.5" />
           </a>
         )}
       </div>
@@ -66,173 +63,52 @@ export default function MembreCard({ membre }: { membre: Membre }) {
 
   return (
     <>
+      {/* -------- CARTE : photo plein cadre + texte/icônes en overlay -------- */}
       <motion.div
         variants={itemVariants}
-        className="bg-white rounded-2xl border border-slate-100 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 overflow-hidden flex flex-col justify-between group"
+        onClick={() => setIsModalOpen(true)}
+        role="button"
+        tabIndex={0}
+        onKeyDown={e => e.key === 'Enter' && setIsModalOpen(true)}
+        className="group relative aspect-3/4 sm:aspect-4/5 w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
       >
-        <div>
-          {/* PHOTO OU INITIALES */}
-          <div className="w-full aspect-4/5 sm:h-72 overflow-hidden bg-slate-100 relative">
-            {photoSrc ? (
-              <img
-                src={photoSrc}
-                alt={membre.nom}
-                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
-                loading="lazy"
-              />
-            ) : (
-              <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-slate-200 to-slate-300 text-slate-500 font-bold text-3xl">
-                {initiales}
-              </div>
-            )}
+        {/* PHOTO OU INITIALES (plein cadre) */}
+        {photoSrc ? (
+          <img
+            src={photoSrc}
+            alt={membre.nom}
+            className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+            loading="lazy"
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center bg-linear-to-br from-slate-200 to-slate-300 text-slate-500 font-bold text-4xl">
+            {initiales}
           </div>
+        )}
 
-          {/* TEXTE & INFOS */}
-          <div className="p-5 space-y-3">
-            <div>
-              <h3 className="text-base font-bold text-slate-900 group-hover:text-blue-600 transition-colors duration-200">
-                {membre.nom}
-              </h3>
-              <p className="text-xs font-semibold text-blue-600 mt-1">
-                {membre.role}
-              </p>
-            </div>
+        {/* Voile dégradé pour la lisibilité du texte */}
+        <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/10 to-transparent" />
 
-            <p className="text-xs text-slate-500 leading-relaxed font-normal">
-              {descriptionApercu}
-              {isLong && (
-                <button
-                  type="button"
-                  onClick={() => setIsModalOpen(true)}
-                  className="ml-1 text-blue-600 font-semibold hover:text-blue-700 hover:underline transition-colors"
-                >
-                  Lire la suite
-                </button>
-              )}
-            </p>
+        {/* Icônes réseaux — pilule flottante en haut à droite */}
+        {hasSocials && <Socials className="absolute top-3 right-3 z-10" />}
 
-            {/* {membre.sujetMemoire && (
-              <div className="pt-2 border-t border-slate-100 space-y-1">
-                <div className="flex items-center gap-1.5 text-[11px] font-bold text-slate-400">
-                  <BookOpen className="w-3.5 h-3.5 text-blue-500 shrink-0" />
-                  <span>Mémoire soutenu</span>
-                </div>
-                <p className="text-[11px] text-slate-600 italic leading-snug">
-                  "{membre.sujetMemoire}"
-                </p>
-              </div>
-            )} */}
-          </div>
+        {/* Nom & rôle — en bas de la photo */}
+        <div className="absolute inset-x-0 bottom-0 p-4 sm:p-5">
+          <h3 className="text-base sm:text-lg font-bold text-white leading-snug drop-shadow-sm">
+            {membre.nom}
+          </h3>
+          <p className="text-xs sm:text-sm font-semibold text-blue-300 mt-0.5">
+            {membre.role}
+          </p>
         </div>
-
-        {/* FOOTER : RÉSEAUX SOCIAUX */}
-        {hasSocials && <Socials className="px-5 pb-5 pt-2" />}
       </motion.div>
 
-      {/* MODAL */}
-      <AnimatePresence>
-        {isModalOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
-            onClick={() => setIsModalOpen(false)}
-          >
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              transition={{ duration: 0.2, ease: 'easeOut' }}
-              onClick={e => e.stopPropagation()}
-              className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto relative"
-            >
-              <button
-                type="button"
-                onClick={() => setIsModalOpen(false)}
-                className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/90 text-slate-500 hover:text-slate-900 hover:bg-slate-100 shadow-sm transition-colors"
-                aria-label="Fermer"
-              >
-                <X className="w-4 h-4" />
-              </button>
-
-              {/* PHOTO */}
-              {/* PHOTO */}
-              <div className="w-full h-80 sm:h-96 overflow-hidden bg-slate-100">
-                {photoSrc ? (
-                  <img
-                    src={photoSrc}
-                    alt={membre.nom}
-                    className="w-full h-full object-cover object-[center_10%]"
-                  />
-                ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-slate-200 to-slate-300 text-slate-500 font-bold text-4xl">
-                    {initiales}
-                  </div>
-                )}
-              </div>
-
-              {/* CONTENU */}
-              <div className="p-6 space-y-4">
-                <div>
-                  <h3 className="text-lg font-bold text-slate-900">
-                    {membre.nom}
-                  </h3>
-                  <p className="text-xs font-semibold text-blue-600 mt-1">
-                    {membre.role}
-                  </p>
-                </div>
-
-                <p className="text-sm text-slate-600 leading-relaxed whitespace-pre-line">
-                  {description}
-                </p>
-
-                {membre.sources && membre.sources.length > 0 && (
-                  <div className="pt-3 border-t border-slate-100 space-y-2">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                      <Link2 className="w-4 h-4 text-blue-500 shrink-0" />
-                      <span>Sources</span>
-                    </div>
-                    <ul className="space-y-1.5 flex gap-3 flex-wrap ">
-                      {membre.sources.map((source, index) => (
-                        <li key={index}>
-                          <a
-                            href={source.url}
-                            target="_blank"
-                            rel="noreferrer"
-                            className="inline-flex items-center gap-1.5 text-xs text-blue-600 hover:text-blue-700 hover:underline transition-colors"
-                          >
-                            <ExternalLink className="w-3 h-3 shrink-0" />
-                            {source.label}
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )}
-
-                {membre.sujetMemoire && (
-                  <div className="pt-3 border-t border-slate-100 space-y-1">
-                    <div className="flex items-center gap-1.5 text-xs font-bold text-slate-400">
-                      <BookOpen className="w-4 h-4 text-blue-500 shrink-0" />
-                      <span>Mémoire soutenu</span>
-                    </div>
-                    <p className="text-xs text-slate-600 italic leading-snug">
-                      "{membre.sujetMemoire}"
-                    </p>
-                  </div>
-                )}
-
-                {hasSocials && (
-                  <div className="pt-2">
-                    <Socials />
-                  </div>
-                )}
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      {/* MODAL — inchangée, avec les détails complets */}
+      <MembreModal
+        membre={membre}
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+      />
     </>
   )
 }

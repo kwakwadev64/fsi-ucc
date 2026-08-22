@@ -4,9 +4,51 @@ import axios from 'axios'
 import type { Galerie } from '../types/types'
 import { env } from '@/config/env'
 
+// Formes brutes telles que renvoyées par l'API — distinctes du type Galerie
+// utilisé côté front, qui attend `legende` fusionnée dans chaque image.
+interface RawImage {
+  id: number
+  url: string
+  title: string
+}
+
+interface RawDescription {
+  desc: string
+}
+
+interface RawGalerie {
+  id: string
+  promotion: string
+  displayName: string
+  mainImage: string
+  evenement: string
+  desc: string
+  images: RawImage[]
+  descriptions: RawDescription[]
+}
+
 type GalerieResponse = {
   success: boolean
-  data: Galerie[]
+  data: RawGalerie[]
+}
+
+// Fusionne images[] et descriptions[] (tableaux parallèles côté API)
+// en un seul tableau ImageType[] avec `legende` intégrée.
+function normalizeAlbum(raw: RawGalerie): Galerie {
+  return {
+    id: raw.id,
+    promotion: raw.promotion,
+    displayName: raw.displayName,
+    mainImage: raw.mainImage,
+    evenement: raw.evenement,
+    desc: raw.desc,
+    images: raw.images.map((img, i) => ({
+      id: img.id,
+      url: img.url,
+      title: img.title,
+      legende: raw.descriptions?.[i]?.desc ?? '',
+    })),
+  }
 }
 
 async function fetchGalerie(): Promise<Galerie[]> {
@@ -18,7 +60,7 @@ async function fetchGalerie(): Promise<Galerie[]> {
     throw new Error('Erreur lors de la récupération des données')
   }
 
-  return data.data
+  return data.data.map(normalizeAlbum)
 }
 
 export function useGalerieAlbums() {

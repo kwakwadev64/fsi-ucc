@@ -58,7 +58,7 @@ export const historiqueData: HistoriqueData = {
           annee: '2020-2021',
           titre: "Des professeurs invités d'autres facultés",
           description:
-            "La FSI fait également appel à des enseignants d'autres facultés de l'UCC : le Prof. Kojo (Droit), le Prof. Yenga (Économie) et le Prof. Nzinga (Communication Sociale).",
+            "La FSI fait également appel à des enseignants d'autres facultés de l'UCC : le Prof. Kodjo (Droit), le Prof. Yenga (Économie) et le Prof. Nzinga (Communication Sociale).",
         },
         {
           annee: '2021',

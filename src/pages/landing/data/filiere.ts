@@ -1,5 +1,5 @@
 import reseau from '@/assets/reseau.png'
-import logiciel from '@/assets/conception.png'
+import logiciel from '@/assets/conception.jpg'
 import { Network, Code } from 'lucide-react'
 
 export const filieresData = [

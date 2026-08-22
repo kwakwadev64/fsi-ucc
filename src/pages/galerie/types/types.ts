@@ -1,5 +1,5 @@
 export interface Galerie {
-  id: number
+  id: string
   promotion: string
   displayName: string
   mainImage: string
@@ -8,7 +8,8 @@ export interface Galerie {
   images: ImageType[]
 }
 
-interface ImageType {
+export interface ImageType {
+  id: number
   url: string
   title: string
   legende: string

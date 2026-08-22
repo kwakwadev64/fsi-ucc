@@ -189,6 +189,8 @@ export function useEquipeSelection() {
 
   const aucuneDonneeAnnee = sectionsBrutes.length === 0
 
+  console.log(selectedAnnee)
+
   return {
     loading,
     isError,
