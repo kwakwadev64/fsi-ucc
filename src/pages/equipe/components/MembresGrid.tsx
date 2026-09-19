@@ -1,7 +1,7 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { containerVariants } from '@/lib/motionVariants'
+import { containerVariants } from '@/shared/lib/motionVariants'
 import MembreCard from './MembreCard'
-import type { Membre } from '@/types/types'
+import type { Membre } from '@/entities/equipe/model'
 
 interface MembresGridProps {
   membres: Membre[]

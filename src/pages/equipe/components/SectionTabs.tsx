@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import IconeSection from './IconeSection'
-import type { SectionEquipe } from '../types/types'
+import type { SectionEquipe } from '@/entities/equipe/model'
 
 interface SectionTabsProps {
   sections: SectionEquipe[]

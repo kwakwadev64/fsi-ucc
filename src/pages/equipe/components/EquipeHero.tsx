@@ -1,29 +1,21 @@
-import { Users } from 'lucide-react'
-import uccbatiment from '@/assets/DJI_0349-1536x864.jpg'
+import uccbatiment from '@/shared/assets/DJI_0349-1536x864.jpg'
+import PageHero from '@/shared/ui/PageHero'
 
 export default function EquipeHero() {
   return (
-    <div
-      className="px-4 md:px-20 w-full h-112.5 flex flex-col items-center justify-center text-center bg-cover bg-center relative"
-      style={{ backgroundImage: `url(${uccbatiment})` }}
-    >
-      <div className="absolute inset-0 bg-black/50"></div>
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center md:text-center">
-        <div className="inline-flex items-center gap-2.5 mb-5">
-          <span className="h-px w-6 bg-blue-400" />
-          <span className="text-[11px] sm:text-xs text-blue-300 font-semibold uppercase tracking-[0.2em]">
-            Membres & Collaborateurs
-          </span>
-          <span className="h-px w-6 bg-blue-400" />
-        </div>
-        <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-4 tracking-tight">
-          Notre <span className="text-blue-400">Équipe</span> & Lauréats
-        </h1>
-        <p className="text-base md:text-lg text-slate-300 max-w-2xl font-light">
-          Découvrez la délégation facultaire, les chefs de promotion ainsi que
-          l'équipe technique derrière la plateforme.
-        </p>
-      </div>
-    </div>
+    <PageHero
+      image={uccbatiment}
+      eyebrow="Membres & Collaborateurs"
+      title={
+        <>
+          Notre{' '}
+          <span className="bg-linear-to-r from-blue-400 via-blue-300 to-cyan-300 bg-clip-text text-transparent">
+            Équipe
+          </span>{' '}
+          & Lauréats
+        </>
+      }
+      subtitle="Découvrez la délégation facultaire, les chefs de promotion ainsi que l'équipe technique derrière la plateforme."
+    />
   )
 }

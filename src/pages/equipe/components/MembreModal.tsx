@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { X, Link2, ExternalLink, BookOpen } from 'lucide-react'
 import { LuLinkedin, LuGithub, LuGlobe } from 'react-icons/lu'
-import type { Membre } from '../types/types'
+import type { Membre } from '@/entities/equipe/model'
 
 interface MembreModalProps {
   membre: Membre

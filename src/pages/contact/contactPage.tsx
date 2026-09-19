@@ -1,6 +1,4 @@
-import Navbar from '@/layout/Navbar'
-import Footer from '@/layout/Footer'
-import { useContactForm } from './hooks/useContactForm'
+import { useContactForm } from '@/features/contact-form/useContactForm'
 import ContactHero from './components/ContactHero'
 import ContactInfoCards from './components/ContactInfoCards'
 import ContactForm from './components/ContactForm'
@@ -11,8 +9,6 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900">
-      <Navbar />
-
       <ContactHero />
       <ContactInfoCards />
 
@@ -27,7 +23,6 @@ export default function ContactPage() {
         </div>
       </div>
 
-      <Footer />
     </div>
   )
 }

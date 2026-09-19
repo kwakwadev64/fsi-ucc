@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { LuLinkedin, LuGithub, LuGlobe } from 'react-icons/lu'
-import { itemVariants } from '@/lib/motionVariants'
-import type { Membre } from '../types/types'
+import { itemVariants } from '@/shared/lib/motionVariants'
+import type { Membre } from '@/entities/equipe/model'
 import MembreModal from './MembreModal'
 
 export default function MembreCard({ membre }: { membre: Membre }) {

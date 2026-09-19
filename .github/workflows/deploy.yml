@@ -24,6 +24,8 @@ jobs:
         working-directory: .
         run: |
           npm ci
+          npm run lint
+          npm run typecheck
           npm run build
 
       - name: 📂 Sync files via FTP

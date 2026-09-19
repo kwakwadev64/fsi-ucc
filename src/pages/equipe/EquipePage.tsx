@@ -1,6 +1,4 @@
-import Navbar from '@/layout/Navbar'
-import Footer from '@/layout/Footer'
-import { useEquipeSelection } from '@/pages/equipe/hooks/useEquipeSelection'
+import { useEquipeSelection } from '@/features/equipe-selection/useEquipeSelection'
 import EquipeHero from './components/EquipeHero'
 import AnneeSelector from './components/AnneeSelector'
 import SectionTabs from './components/SectionTabs'
@@ -22,7 +20,6 @@ export default function EquipePage() {
 
   return (
     <div className="min-h-screen bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
-      <Navbar />
       <EquipeHero />
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -74,7 +71,6 @@ export default function EquipePage() {
         )}
       </main>
 
-      <Footer />
     </div>
   )
 }

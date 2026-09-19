@@ -1,14 +1,12 @@
 import { useState } from 'react'
 import { AnimatePresence } from 'framer-motion'
-import Navbar from '@/layout/Navbar'
-import Footer from '@/layout/Footer'
 import { useGalerieAlbums } from './hooks/useGalerieAlbums'
-import { useAutoDownload } from './hooks/useAutoDownload'
+import { useAutoDownload } from '@/features/galerie-lightbox/hooks/useAutoDownload'
 import GalerieHero from './components/GalerieHero'
 import PromotionFilterBar from './components/PromotionFilterBar'
 import AlbumsGrid from './components/AlbumsGrid'
 import AlbumPhotoGrid from './components/AlbumPhotoGrid'
-import type { Galerie } from './types/types'
+import type { Galerie } from '@/entities/galerie/model'
 
 export default function GaleriePage() {
   const [isLoggedIn] = useState(false)
@@ -20,8 +18,6 @@ export default function GaleriePage() {
 
   return (
     <div className="min-h-screen bg-[#F8FAFC]">
-      <Navbar />
-
       <GalerieHero albums={filteredData} />
 
       <PromotionFilterBar filter={filter} onFilterChange={setFilter} />
@@ -44,7 +40,6 @@ export default function GaleriePage() {
         )}
       </AnimatePresence>
 
-      <Footer />
     </div>
   )
 }

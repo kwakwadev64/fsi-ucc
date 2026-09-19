@@ -1,6 +1,6 @@
 import { Images, Download } from 'lucide-react'
 import { FiFacebook, FiLinkedin } from 'react-icons/fi'
-import type { Galerie } from '../types/types'
+import type { Galerie } from '@/entities/galerie/model'
 
 interface AlbumCardProps {
   album: Galerie

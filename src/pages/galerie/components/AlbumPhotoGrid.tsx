@@ -2,9 +2,9 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { X } from 'lucide-react'
-import { containerVariants, itemVariants } from '@/lib/motionVariants'
-import type { Galerie } from '../types/types'
-import PhotoLightbox from './PhotoLightbox'
+import { containerVariants, itemVariants } from '@/shared/lib/motionVariants'
+import type { Galerie } from '@/entities/galerie/model'
+import PhotoLightbox from '@/features/galerie-lightbox/components/PhotoLightbox'
 
 interface AlbumPhotoGridProps {
   album: Galerie

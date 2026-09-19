@@ -1,4 +1,4 @@
-import type { Galerie } from '../types/types'
+import type { Galerie } from '@/entities/galerie/model'
 
 interface GalerieHeroProps {
   albums: Galerie[]
