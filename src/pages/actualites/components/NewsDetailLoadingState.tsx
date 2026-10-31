@@ -1,8 +1,8 @@
 export default function NewsDetailLoadingState() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F6F8FB]">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50">
       <div className="flex flex-col items-center gap-3">
-        <div className="w-10 h-10 border-4 border-[#0B2545]/15 border-t-[#0B2545] rounded-full animate-spin" />
+        <div className="w-10 h-10 border-4 border-blue-800/15 border-t-blue-800 rounded-full animate-spin" />
         <p className="text-slate-500 font-medium text-sm">
           Chargement de l&apos;actualité...
         </p>

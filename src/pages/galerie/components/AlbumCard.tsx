@@ -1,4 +1,5 @@
-import { Images, Download } from 'lucide-react'
+import type { MouseEvent } from 'react'
+import { Download, Images } from 'lucide-react'
 import { FiFacebook, FiLinkedin } from 'react-icons/fi'
 import type { Galerie } from '@/entities/galerie/model'
 
@@ -10,8 +11,8 @@ interface AlbumCardProps {
 export default function AlbumCard({ album, onClick }: AlbumCardProps) {
   const shareUrl = typeof window !== 'undefined' ? window.location.href : ''
 
-  const handleDownload = (e: React.MouseEvent) => {
-    e.stopPropagation()
+  const handleDownload = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation()
     const link = document.createElement('a')
     link.href = album.mainImage
     link.download = album.evenement || 'photo'
@@ -20,132 +21,55 @@ export default function AlbumCard({ album, onClick }: AlbumCardProps) {
     link.click()
   }
 
-  const handleLinkedin = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    window.open(
-      `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`,
-      '_blank',
-      'noreferrer'
-    )
+  const share = (event: MouseEvent<HTMLButtonElement>, network: 'facebook' | 'linkedin') => {
+    event.stopPropagation()
+    const url = network === 'facebook'
+      ? `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`
+      : `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(shareUrl)}`
+    window.open(url, '_blank', 'noopener,noreferrer')
   }
-
-  const handleFacebook = (e: React.MouseEvent) => {
-    e.stopPropagation()
-    window.open(
-      `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(shareUrl)}`,
-      '_blank',
-      'noreferrer'
-    )
-  }
-
-  // Photos secondaires pour l'effet pile — celles qui dépassent derrière la photo principale
-  const backPhoto1 = album.images?.[1]?.url ?? album.mainImage
-  const backPhoto2 = album.images?.[2]?.url ?? album.mainImage
 
   return (
-    <div onClick={onClick} className="group relative cursor-pointer pb-2">
-      {/* ---- PILE : cartes fantômes derrière, façon dossier photo ---- */}
-      <div
-        className="absolute inset-x-3 top-3 h-64 rounded-2xl bg-white border border-gray-100 shadow-md
-                  -rotate-3 origin-bottom
-                  transition-transform duration-500 ease-out
-                  group-hover:-rotate-6 group-hover:-translate-x-1.5"
-      >
-        <img
-          src={backPhoto2}
-          alt=""
-          aria-hidden
-          className="w-full h-full object-cover rounded-2xl opacity-70"
-        />
-      </div>
-      <div
-        className="absolute inset-x-1.5 top-1.5 h-64 rounded-2xl bg-white border border-gray-100 shadow-md
-                  rotate-2 origin-bottom
-                  transition-transform duration-500 ease-out
-                  group-hover:rotate-4 group-hover:translate-x-1.5"
-      >
-        <img
-          src={backPhoto1}
-          alt=""
-          aria-hidden
-          className="w-full h-full object-cover rounded-2xl opacity-85"
-        />
-      </div>
-
-      {/* ---- CARTE PRINCIPALE : photo plein cadre + infos en overlay ---- */}
-      <div
-        className="relative h-64 overflow-hidden rounded-2xl bg-slate-100
-                  shadow-xl shadow-slate-300/40 border border-white
-                  transition-transform duration-500 ease-out
-                  group-hover:-translate-y-1"
-      >
-        <img
-          src={album.mainImage}
-          alt={album.displayName}
-          className="w-full h-full object-cover object-top transform group-hover:scale-105 transition duration-500 select-none"
-        />
-
-        {/* Voile dégradé — lisibilité du texte, cohérent avec MembreCard */}
-        <div className="absolute inset-0 bg-linear-to-t from-slate-950/85 via-slate-950/15 to-transparent" />
-
-        {/* Badge nombre de photos — coin haut gauche */}
-        <span className="absolute top-4 left-4 flex items-center gap-1.5 bg-white/95 backdrop-blur-sm text-[#0D3B66] text-xs font-bold px-3 py-1.5 rounded-full shadow-sm z-10">
-          <Images size={13} />
-          {album.images.length} photos
-        </span>
-
-        {/* Actions flottantes — verre, apparaissent au hover */}
-        <div className="absolute top-4 right-4 flex flex-col gap-2 opacity-0 translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 z-10">
-          <button
-            type="button"
-            onClick={handleDownload}
-            title="Télécharger"
-            className="flex h-9 w-9 items-center justify-center rounded-full
-                      bg-white/20 backdrop-blur-md border border-white/30
-                      text-white shadow-sm
-                      hover:bg-[#0D3B66] hover:border-[#0D3B66] hover:scale-110
-                      transition-all duration-200"
-          >
-            <Download size={15} />
-          </button>
-
-          <button
-            type="button"
-            onClick={handleLinkedin}
-            title="Partager sur LinkedIn"
-            className="flex h-9 w-9 items-center justify-center rounded-full
-                      bg-white/20 backdrop-blur-md border border-white/30
-                      text-white shadow-sm
-                      hover:bg-[#0A66C2] hover:border-[#0A66C2] hover:scale-110
-                      transition-all duration-200"
-          >
-            <FiLinkedin size={15} />
-          </button>
-
-          <button
-            type="button"
-            onClick={handleFacebook}
-            title="Partager sur Facebook"
-            className="flex h-9 w-9 items-center justify-center rounded-full
-                      bg-white/20 backdrop-blur-md border border-white/30
-                      text-white shadow-sm
-                      hover:bg-[#1877F2] hover:border-[#1877F2] hover:scale-110
-                      transition-all duration-200"
-          >
-            <FiFacebook size={15} />
-          </button>
-        </div>
-
-        {/* Titre & évènement — en bas de la photo, style identique à MembreCard */}
-        <div className="absolute inset-x-0 bottom-0 p-5 z-10">
-          <span className="inline-block text-[10px] font-bold text-white bg-white/15 backdrop-blur-sm border border-white/25 px-2.5 py-1 rounded-full uppercase tracking-wide mb-2">
-            {album.displayName}
+    <article className="group border border-slate-200 bg-white transition-colors hover:border-blue-300">
+      <div className="relative">
+        <button
+          type="button"
+          onClick={onClick}
+          aria-label={`Ouvrir l’album ${album.evenement}`}
+          className="block w-full text-left"
+        >
+          <div className="aspect-[4/3] overflow-hidden bg-slate-100">
+            <img
+              src={album.mainImage}
+              alt={album.displayName}
+              loading="lazy"
+              onContextMenu={event => event.preventDefault()}
+              className="h-full w-full select-none object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              style={{ WebkitTouchCallout: 'none' }}
+            />
+          </div>
+          <span className="absolute left-3 top-3 inline-flex items-center gap-1.5 bg-white px-2.5 py-1.5 text-[10px] font-bold text-[#0D3B66]">
+            <Images size={13} aria-hidden="true" />
+            {album.images.length} photos
           </span>
-          <h3 className="text-base sm:text-lg font-bold text-white leading-snug drop-shadow-sm">
-            {album.evenement}
-          </h3>
+          <div className="border-t border-slate-200 px-4 py-4">
+            <p className="text-[10px] font-bold uppercase tracking-[0.12em] text-blue-700">{album.displayName}</p>
+            <h3 className="mt-1 text-base font-bold leading-snug text-slate-950 group-hover:text-blue-700">{album.evenement}</h3>
+          </div>
+        </button>
+
+        <div className="absolute right-3 top-3 flex gap-1.5">
+          <button type="button" onClick={handleDownload} title="Télécharger l’album" aria-label="Télécharger l’album" className="flex h-8 w-8 items-center justify-center border border-white/70 bg-white/90 text-[#0D3B66] transition hover:bg-[#0D3B66] hover:text-white">
+            <Download size={14} aria-hidden="true" />
+          </button>
+          <button type="button" onClick={event => share(event, 'linkedin')} title="Partager sur LinkedIn" aria-label="Partager sur LinkedIn" className="flex h-8 w-8 items-center justify-center border border-white/70 bg-white/90 text-[#0D3B66] transition hover:bg-[#0A66C2] hover:text-white">
+            <FiLinkedin size={14} />
+          </button>
+          <button type="button" onClick={event => share(event, 'facebook')} title="Partager sur Facebook" aria-label="Partager sur Facebook" className="flex h-8 w-8 items-center justify-center border border-white/70 bg-white/90 text-[#0D3B66] transition hover:bg-[#1877F2] hover:text-white">
+            <FiFacebook size={14} />
+          </button>
         </div>
       </div>
-    </div>
+    </article>
   )
 }

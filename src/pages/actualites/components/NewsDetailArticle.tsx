@@ -12,22 +12,22 @@ export default function NewsDetailArticle({
   onShare,
 }: NewsDetailArticleProps) {
   return (
-    <article className="lg:col-span-2 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+    <article className="lg:col-span-2 overflow-hidden border border-slate-200 bg-white">
       <div className="p-6 sm:p-10">
         <p className="text-slate-700 leading-relaxed whitespace-pre-line text-base sm:text-lg">
           {description}
         </p>
       </div>
 
-      <div className="px-6 sm:px-10 py-5 border-t border-slate-100 bg-slate-50/60 flex flex-wrap items-center justify-between gap-3">
+      <div className="flex flex-wrap items-center justify-between gap-3 border-t border-slate-200 bg-slate-50 px-6 py-5 sm:px-10">
         <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-500">
-          <GraduationCap className="w-4 h-4 text-[#0B2545]" />
+          <GraduationCap className="w-4 h-4 text-blue-800" />
           Faculté des Sciences Informatiques — UCC
         </span>
 
         <button
           onClick={onShare}
-          className="inline-flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-[#0B2545] bg-white border border-slate-200 rounded-lg hover:bg-[#0B2545] hover:text-white hover:border-[#0B2545] transition shadow-sm"
+          className="inline-flex items-center gap-2 border border-slate-300 bg-white px-3.5 py-2 text-xs font-semibold text-blue-800 transition hover:border-blue-800 hover:bg-blue-800 hover:text-white"
         >
           <Share2 className="w-3.5 h-3.5" />
           {copied ? 'Lien copié !' : 'Partager'}

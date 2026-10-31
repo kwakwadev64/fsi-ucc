@@ -28,14 +28,14 @@ export default function SemestreColumn({
     <div className="space-y-4 md:space-y-6">
       <div className="flex items-center justify-between border-b border-slate-200 pb-4">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 shrink-0">
+          <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-blue-50 text-blue-700">
             <Calendar size={20} />
           </div>
           <h2 className="text-lg md:text-xl font-bold text-slate-900 wrap-break-word">
             {semestreInfo.semestre}
           </h2>
         </div>
-        <span className="text-xs font-semibold px-3 py-1 rounded-full bg-slate-100 text-slate-500 border border-slate-200 shrink-0 whitespace-nowrap">
+        <span className="shrink-0 whitespace-nowrap border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-600">
           {semestreInfo.total_cours} cours
         </span>
       </div>

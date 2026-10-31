@@ -2,8 +2,8 @@ import { Link } from 'react-router-dom'
 
 export default function HomeCta() {
   return (
-    <section className="bg-[#050b18] px-6 py-20 text-center text-white sm:py-24">
-      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-400">
+    <section className="bg-[#102D4D] px-6 py-16 text-center text-white sm:py-20">
+      <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-blue-200">
         Rejoignez-nous
       </p>
       <h2 className="mx-auto mt-3 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
@@ -18,13 +18,13 @@ export default function HomeCta() {
           href="https://e-acade.ucc.ac.cd/registration/program"
           target="_blank"
           rel="noopener noreferrer"
-          className="rounded-md bg-blue-500 px-5 py-3 text-sm font-semibold hover:bg-blue-400"
+          className="border border-white bg-white px-5 py-3 text-sm font-semibold text-[#0D3B66] transition hover:bg-slate-100"
         >
           Préparer mon inscription
         </a>
         <Link
           to="/etude"
-          className="rounded-md border border-slate-600 px-5 py-3 text-sm font-semibold hover:border-slate-400"
+          className="border border-white/50 px-5 py-3 text-sm font-semibold transition hover:border-white hover:bg-white/10"
         >
           Explorer les études
         </Link>

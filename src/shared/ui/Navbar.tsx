@@ -1,151 +1,122 @@
 import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { motion, AnimatePresence } from 'framer-motion'
-import {
-  Home,
-  GraduationCap,
-  Users,
-  Clock,
-  ImageIcon,
-  Mail,
-  Menu,
-  X,
-} from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import LogoFsiUcc from '@/shared/assets/logo_fsi_tranparent.png'
 
-interface NavbarProps {
-  compact?: boolean
-}
+const navigation = [
+  { to: '/', label: 'Accueil' },
+  { to: '/formations', label: 'Formations' },
+  { to: '/etude', label: 'Espace étudiant' },
+  { to: '/evenements', label: 'Événements' },
+  { to: '/historique', label: 'La faculté' },
+  { to: '/equipe', label: 'Équipe' },
+  { to: '/galerie', label: 'Galerie' },
+  { to: '/contact', label: 'Contact' },
+]
 
-const Navbar = ({ compact = false }: NavbarProps) => {
+const admissionUrl = 'https://e-acade.ucc.ac.cd/registration/program'
+
+export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
-  const location = useLocation() // Permet de savoir quel onglet est actif dynamiquement
+  const location = useLocation()
 
-  const navLinks = [
-    { to: '/', label: 'Accueil', icon: Home },
-    { to: '/etude', label: 'Études', icon: GraduationCap },
-    { to: '/equipe', label: 'Équipe', icon: Users },
-    { to: '/historique', label: 'Historique', icon: Clock },
-    { to: '/galerie', label: 'Galerie', icon: ImageIcon },
-    { to: '/contact', label: 'Contact', icon: Mail },
-  ]
+  const isActive = (path: string) =>
+    path === '/' ? location.pathname === '/' : location.pathname.startsWith(path)
 
   return (
-    <nav className="fixed top-0 z-50 w-full bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-xs">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className={`flex justify-between items-center ${compact ? 'h-14' : 'h-20'}`}>
-          {/* LOGO & BRANDING */}
-          <Link
-            to="/"
-            className="flex items-center gap-2 sm:gap-3 min-w-0 z-50"
-          >
-            <img
-              src={LogoFsiUcc}
-              alt="logo-fsi-ucc"
-              className={compact ? 'h-8 w-8 shrink-0' : 'w-12 h-12 sm:w-16 sm:h-16 shrink-0'}
-            />
-            <div className={`flex flex-col min-w-0 ${compact ? 'hidden' : 'sm:flex'}`}>
-              <span className="font-bold text-lg sm:text-xl leading-tight text-slate-900 tracking-tight">
-                FSI-UCC
-              </span>
-              <span className="text-[10px] sm:text-xs text-slate-500 font-medium truncate">
-                Faculté des Sciences Informatiques
-              </span>
-            </div>
-          </Link>
-
-          {/* DESKTOP NAVIGATION (Visible uniquement sur les écrans larges) */}
-          <div className="hidden lg:flex items-center space-x-6 xl:space-x-8 text-sm font-medium">
-            {navLinks.map(link => {
-              const Icon = link.icon
-              const isActive = location.pathname === link.to
-              return (
-                <Link
-                  key={link.to}
-                  to={link.to}
-                  className={`flex items-center gap-2 py-2 px-1 relative transition-colors duration-200 ${
-                    isActive
-                      ? 'text-blue-600'
-                      : 'text-slate-600 hover:text-blue-600'
-                  }`}
-                >
-                  {!compact && <Icon size={18} />}
-                  <span>{link.label}</span>
-                  {isActive && (
-                    <motion.div
-                      layoutId="activeIndicator"
-                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue-600 rounded-full"
-                      transition={{
-                        type: 'spring',
-                        stiffness: 380,
-                        damping: 30,
-                      }}
-                    />
-                  )}
-                </Link>
-              )
-            })}
-          </div>
-
-          {/* MOBILE MENU BUTTON (Visible uniquement sur mobile/tablette) */}
-          <div className="hidden lg:flex items-center">
-            {compact && (
-              <a href="http://e-acade.ucc.ac.cd/" target="_blank" rel="noreferrer" className="rounded-md bg-blue-500 px-3 py-2 text-xs font-semibold text-white hover:bg-blue-600">
-                Voir mes résultats
-              </a>
-            )}
-          </div>
-          <div className="flex lg:hidden items-center z-50">
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className="p-2 rounded-xl text-slate-600 hover:bg-slate-50 focus:outline-hidden transition-colors cursor-pointer"
-              aria-label="Toggle Menu"
-            >
-              {isOpen ? <X size={24} /> : <Menu size={24} />}
-            </button>
+    <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white">
+      <div className="border-b border-white/10 bg-[#102D4D] text-white">
+        <div className="mx-auto flex min-h-9 max-w-[90rem] items-center justify-between gap-4 px-4 text-[11px] sm:px-6 lg:px-10">
+          <span className="truncate font-medium text-blue-100">
+            Université Catholique du Congo <span className="mx-1 text-cyan-300">/</span> Faculté des Sciences Informatiques
+          </span>
+          <div className="hidden shrink-0 items-center gap-6 sm:flex">
+            <Link to="/contact" className="text-blue-100 transition hover:text-white">
+              Demande d’information
+            </Link>
+            <a href="https://e-acade.ucc.ac.cd/" target="_blank" rel="noopener noreferrer" className="text-blue-100 transition hover:text-white">
+              Espace étudiant
+            </a>
           </div>
         </div>
       </div>
 
-      {/* MOBILE DROPDOWN NAVIGATION */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2, ease: 'easeInOut' }}
-            className={`absolute ${compact ? 'top-14' : 'top-20'} left-0 right-0 bg-white border-b border-slate-100 shadow-xl lg:hidden max-h-[calc(100vh-5rem)] overflow-y-auto`}
-          >
-            <div className="px-4 pt-3 pb-6 space-y-2">
-              {navLinks.map(link => {
-                const Icon = link.icon
-                const isActive = location.pathname === link.to
-                return (
-                  <Link
-                    key={link.to}
-                    to={link.to}
-                    onClick={() => setIsOpen(false)} // Ferme le menu au clic
-                    className={`flex items-center gap-4 px-4 py-3.5 rounded-xl text-base font-semibold transition-all duration-200 ${
-                      isActive
-                        ? 'bg-blue-50 text-blue-600'
-                        : 'text-slate-600 hover:bg-slate-50 hover:text-blue-600'
-                    }`}
-                  >
-                    <Icon
-                      size={20}
-                      className={isActive ? 'text-blue-600' : 'text-slate-400'}
-                    />
-                    <span>{link.label}</span>
-                  </Link>
-                )
-              })}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </nav>
+      <div className="mx-auto flex min-h-[78px] max-w-[90rem] items-center justify-between gap-5 px-4 sm:px-6 lg:px-10">
+        <Link to="/" className="flex min-w-0 shrink-0 items-center gap-3" onClick={() => setIsOpen(false)}>
+          <img src={LogoFsiUcc} alt="Logo de la Faculté des Sciences Informatiques" className="h-12 w-12 shrink-0 object-contain sm:h-14 sm:w-14" />
+          <span className="min-w-0">
+            <span className="block text-base font-bold leading-tight tracking-tight text-slate-950 sm:text-lg">FSI-UCC</span>
+            <span className="mt-1 hidden max-w-52 text-[11px] leading-tight text-slate-600 sm:block">
+              Faculté des Sciences Informatiques
+            </span>
+          </span>
+        </Link>
+
+        <nav aria-label="Navigation principale" className="hidden items-center gap-3 xl:flex 2xl:gap-4">
+          {navigation.map(item => {
+            const active = isActive(item.to)
+            return (
+              <Link
+                key={item.to}
+                to={item.to}
+                aria-current={active ? 'page' : undefined}
+                className={`relative whitespace-nowrap py-3 text-[11px] font-semibold transition-colors 2xl:text-xs ${
+                  active ? 'text-blue-700' : 'text-slate-700 hover:text-blue-700'
+                }`}
+              >
+                {item.label}
+                {active && <span className="absolute inset-x-0 -bottom-px h-[2px] bg-cyan-500" />}
+              </Link>
+            )
+          })}
+        </nav>
+
+        <a
+          href={admissionUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hidden min-h-11 shrink-0 items-center justify-center border border-blue-700 bg-blue-700 px-4 text-xs font-semibold text-white transition hover:border-blue-800 hover:bg-blue-800 2xl:inline-flex"
+        >
+          Candidater
+        </a>
+
+        <button
+          type="button"
+          onClick={() => setIsOpen(open => !open)}
+          className="inline-flex h-11 w-11 items-center justify-center border border-slate-300 text-slate-800 transition hover:border-blue-700 hover:text-blue-700 xl:hidden"
+          aria-label={isOpen ? 'Fermer le menu' : 'Ouvrir le menu'}
+          aria-expanded={isOpen}
+          aria-controls="mobile-navigation"
+        >
+          {isOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </div>
+
+      {isOpen && (
+        <nav id="mobile-navigation" aria-label="Navigation mobile" className="border-t border-slate-200 bg-white px-4 py-3 xl:hidden">
+          <div className="mx-auto grid max-w-[90rem] sm:grid-cols-2">
+            {navigation.map(item => {
+              const active = isActive(item.to)
+              return (
+                <Link
+                  key={item.to}
+                  to={item.to}
+                  onClick={() => setIsOpen(false)}
+                  aria-current={active ? 'page' : undefined}
+                  className={`border-b border-slate-100 px-2 py-3 text-sm font-semibold transition-colors ${
+                    active ? 'text-blue-700' : 'text-slate-700 hover:text-blue-700'
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
+            <a href={admissionUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 w-fit items-center border border-blue-700 bg-blue-700 px-4 text-sm font-semibold text-white sm:col-span-2">
+              Candidater
+            </a>
+          </div>
+        </nav>
+      )}
+    </header>
   )
 }
-
-export default Navbar

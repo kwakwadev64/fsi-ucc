@@ -11,16 +11,16 @@ export default function NewsDetailErrorState({
   const navigate = useNavigate()
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#F6F8FB] p-4">
-      <div className="max-w-md w-full bg-white rounded-2xl shadow-sm p-8 text-center border border-slate-100">
-        <div className="w-12 h-12 bg-red-50 text-red-600 rounded-full flex items-center justify-center mx-auto mb-4 font-bold text-xl">
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 p-4">
+      <div className="w-full max-w-md border border-slate-200 bg-white p-8 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center border border-red-100 bg-red-50 text-xl font-bold text-red-600">
           !
         </div>
         <h2 className="text-lg font-bold text-slate-900 mb-2">Oups !</h2>
         <p className="text-slate-600 text-sm mb-6">{message}</p>
         <button
           onClick={() => navigate('/')}
-          className="inline-flex items-center gap-2 px-4 py-2.5 bg-[#0B2545] text-white text-sm font-semibold rounded-lg hover:bg-[#0B2545]/90 transition"
+          className="inline-flex items-center gap-2 border border-blue-800 bg-blue-800 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-900"
         >
           <ArrowLeft className="w-4 h-4" /> Retour à l&apos;accueil
         </button>

@@ -15,8 +15,8 @@ export default function ShareButtons({
   onCopyLink,
 }: ShareButtonsProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-5">
-      <h3 className="text-sm font-bold text-slate-900 mb-4">
+    <div className="border border-slate-200 bg-white p-5">
+      <h3 className="border-b border-slate-200 pb-3 text-sm font-bold text-slate-900">
         Partager cette actualité
       </h3>
       <div className="flex items-center gap-2">
@@ -24,7 +24,7 @@ export default function ShareButtons({
           href={FSI_FACEBOOK_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-50 text-slate-500 hover:bg-[#0B2545] hover:text-white transition"
+          className="flex h-9 w-9 items-center justify-center border border-slate-200 bg-white text-slate-500 transition hover:bg-blue-800 hover:text-white"
           aria-label="Partager sur Facebook"
         >
           <FiFacebook className="w-4 h-4" />
@@ -33,7 +33,7 @@ export default function ShareButtons({
           href={getTwitterShareUrl(title, url)}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-50 text-slate-500 hover:bg-[#0B2545] hover:text-white transition"
+          className="flex h-9 w-9 items-center justify-center border border-slate-200 bg-white text-slate-500 transition hover:bg-blue-800 hover:text-white"
           aria-label="Partager sur X"
         >
           <FiTwitter className="w-4 h-4" />
@@ -42,14 +42,14 @@ export default function ShareButtons({
           href={FSI_LINKEDIN_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-50 text-slate-500 hover:bg-[#0B2545] hover:text-white transition"
+          className="flex h-9 w-9 items-center justify-center border border-slate-200 bg-white text-slate-500 transition hover:bg-blue-800 hover:text-white"
           aria-label="Partager sur LinkedIn"
         >
           <FiLinkedin className="w-4 h-4" />
         </a>
         <button
           onClick={onCopyLink}
-          className="w-9 h-9 flex items-center justify-center rounded-full bg-slate-50 text-slate-500 hover:bg-[#F2A93B] hover:text-[#0B2545] transition"
+          className="flex h-9 w-9 items-center justify-center border border-slate-200 bg-white text-slate-500 transition hover:bg-cyan-200 hover:text-blue-900"
           aria-label="Copier le lien"
         >
           <Link2 className="w-4 h-4" />

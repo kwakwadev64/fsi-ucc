@@ -12,7 +12,7 @@ export default function AnneeSelector({
   onChange,
 }: AnneeSelectorProps) {
   return (
-    <div className="flex flex-col items-center gap-2 mb-8">
+    <div className="mb-7 flex flex-col items-start gap-2">
       <label
         htmlFor="annee-select"
         className="text-sm font-semibold text-slate-500"
@@ -24,7 +24,7 @@ export default function AnneeSelector({
           id="annee-select"
           value={selectedAnnee}
           onChange={e => onChange(e.target.value)}
-          className="appearance-none pl-5 pr-10 py-2.5 rounded-full text-sm font-semibold bg-white border border-slate-200 shadow-sm text-blue-600 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-500/30 hover:border-blue-300 transition-colors"
+          className="appearance-none border border-slate-300 bg-white py-2.5 pl-4 pr-10 text-sm font-semibold text-slate-800 transition-colors hover:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500/30"
         >
           {anneesDisponibles.map(annee => (
             <option key={annee} value={annee}>
@@ -37,4 +37,3 @@ export default function AnneeSelector({
     </div>
   )
 }
- 

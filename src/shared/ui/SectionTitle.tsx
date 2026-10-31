@@ -12,14 +12,13 @@ export default function SectionTitle({
   const alignClass = align === 'left' ? 'text-left' : 'text-center'
 
   return (
-    <div className={`${alignClass} mb-16`}>
-      <h2 className="relative inline-block text-2xl font-bold text-slate-900 sm:text-3xl">
+    <div className={`${alignClass} mb-12`}>
+      <h2 className="relative inline-block text-2xl font-semibold text-slate-950 sm:text-3xl">
         {title}
-        <span className="absolute -bottom-3 left-0 h-1 w-1/3 rounded-full bg-blue-600" />
-        <span className="absolute -bottom-3 left-1/3 h-px w-2/3 bg-slate-200" />
+        <span className="absolute -bottom-2 left-0 h-[3px] w-12 bg-cyan-500" />
       </h2>
       {subtitle && (
-        <p className="mx-auto mt-5 max-w-md px-2 text-xs text-slate-500 sm:text-sm">
+        <p className={`${align === 'center' ? 'mx-auto' : ''} mt-5 max-w-2xl text-sm leading-7 text-slate-600`}>
           {subtitle}
         </p>
       )}

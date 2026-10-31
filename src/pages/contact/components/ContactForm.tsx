@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { toFormikValidationSchema } from 'zod-formik-adapter'
 import { Send, Loader2 } from 'lucide-react'
@@ -17,13 +16,8 @@ export default function ContactForm({
   onSubmit,
 }: ContactFormProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -20 }}
-      animate={{ opacity: 1, x: 0 }}
-      transition={{ duration: 0.6, delay: 0.2 }}
-      className="lg:col-span-3 bg-white rounded-2xl shadow-xl p-8 md:p-10"
-    >
-      <div className="mb-8">
+    <section className="lg:col-span-3 border border-slate-200 bg-white p-5 sm:p-7 md:p-9">
+      <div className="mb-7 border-b border-slate-200 pb-5">
         <h2 className="text-2xl font-bold text-slate-900">
           Envoyez-nous un message
         </h2>
@@ -52,7 +46,7 @@ export default function ContactForm({
                   name="name"
                   type="text"
                   placeholder="Jean Dupont"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
+                  className="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-[#0D3B66] focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20"
                 />
                 <ErrorMessage
                   name="name"
@@ -73,7 +67,7 @@ export default function ContactForm({
                   name="email"
                   type="email"
                   placeholder="jean.dupont@email.com"
-                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
+                  className="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-[#0D3B66] focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20"
                 />
                 <ErrorMessage
                   name="email"
@@ -95,7 +89,7 @@ export default function ContactForm({
                 name="subject"
                 type="text"
                 placeholder="Objet de votre message"
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200"
+                className="w-full border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-[#0D3B66] focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20"
               />
               <ErrorMessage
                 name="subject"
@@ -117,7 +111,7 @@ export default function ContactForm({
                 as="textarea"
                 placeholder="Décrivez votre demande en détail..."
                 rows={5}
-                className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50/50 text-slate-900 placeholder-slate-400 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20 focus:border-[#0D3B66] transition-all duration-200 resize-none"
+                className="w-full resize-y border border-slate-300 bg-white px-4 py-3 text-sm text-slate-900 placeholder-slate-400 transition focus:border-[#0D3B66] focus:outline-none focus:ring-2 focus:ring-[#0D3B66]/20"
               />
               <ErrorMessage
                 name="message"
@@ -129,10 +123,10 @@ export default function ContactForm({
             <button
               type="submit"
               disabled={isPending}
-              className={`w-full py-4 px-6 rounded-xl text-sm font-bold tracking-wide text-white transition-all duration-300 flex items-center justify-center gap-3 ${
+              className={`flex w-full items-center justify-center gap-3 border border-[#0D3B66] px-6 py-4 text-sm font-bold tracking-wide text-white transition-colors ${
                 isPending
                   ? 'bg-slate-400 cursor-not-allowed'
-                  : 'bg-[#0D3B66] hover:bg-[#0a2d4a] hover:shadow-lg hover:shadow-[#0D3B66]/25 active:scale-[0.98]'
+                  : 'bg-[#0D3B66] hover:bg-[#0a2d4a]'
               }`}
             >
               {isPending ? (
@@ -150,6 +144,6 @@ export default function ContactForm({
           </Form>
         )}
       </Formik>
-    </motion.div>
+    </section>
   )
 }

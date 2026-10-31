@@ -17,19 +17,19 @@ export default function DelegueHistoriqueModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4"
           onClick={onClose}
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.2 }}
-            className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto relative"
+            className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto border border-slate-200 bg-white shadow-xl"
             onClick={e => e.stopPropagation()}
           >
             <button
-              className="absolute top-4 right-4 z-50 bg-black/50 text-white rounded-full p-2 hover:bg-black/70 transition-colors"
+              className="absolute right-4 top-4 z-50 flex h-9 w-9 items-center justify-center border border-white/50 bg-slate-950/60 text-white transition-colors hover:bg-slate-950"
               onClick={onClose}
             >
               <X className="w-4 h-4" />
@@ -52,7 +52,7 @@ export default function DelegueHistoriqueModal({
                 </div>
               )}
 
-              <div className="absolute top-4 left-4 inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/90 backdrop-blur-sm text-xs font-bold text-slate-700 shadow-sm">
+              <div className="absolute left-4 top-4 inline-flex items-center gap-1.5 border border-white/60 bg-white/95 px-3 py-1.5 text-xs font-bold text-slate-700">
                 <CalendarDays className="w-3.5 h-3.5 text-blue-500" />
                 {delegue.annee}
               </div>
@@ -81,7 +81,7 @@ export default function DelegueHistoriqueModal({
                       href={delegue.portfolio}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center gap-1.5 text-sm hover:text-emerald-600 transition-colors"
+                      className="flex items-center gap-1.5 text-sm transition-colors hover:text-cyan-700"
                     >
                       <LuGlobe className="w-4 h-4" />
                       Portfolio

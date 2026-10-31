@@ -1,65 +1,50 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import { useHeroSlide } from '../hooks/useHeroSilde'
-import PrevNextButton from './PrevNextButton'
-import { HeroPhotoSlide } from './HeroPhotoSlide'
-import HeroLogoSlide from './HeroLogoSlide'
-import Dots from './Dots'
-import { slides } from '../data/slideData'
+import { motion } from 'framer-motion'
+import { ArrowRight, ExternalLink, MapPin } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import CampusImageSlider, { campusSlides } from '@/shared/ui/CampusImageSlider'
 
-export default function HeroSlider() {
-  const { setIsPaused, slide } = useHeroSlide()
+const admissionUrl = 'https://e-acade.ucc.ac.cd/registration/program'
 
+export default function HeroSection() {
   return (
-    <section
-      className="relative h-[520px] w-full overflow-hidden bg-[#0B132B] sm:h-[620px] lg:h-[720px]"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
-    >
-      <AnimatePresence mode="sync">
+    <section className="home-hero">
+      <div className="home-hero__frame">
         <motion.div
-          key={`${slide.id}-bg`}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7, ease: 'easeInOut' }}
-          className="absolute inset-0"
+          className="home-hero__copy"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.55, ease: 'easeOut' }}
         >
-          {slide.layout === 'photo' ? (
-            <>
-              <img
-                src={slide.image}
-                alt=""
-                className="h-full w-full object-cover"
-                style={{ objectPosition: slide.imagePosition ?? 'center' }}
-              />
-              <div className="absolute inset-0 bg-black/20" />
-              <div className="absolute inset-0 bg-linear-to-t from-black/30 via-black/10 to-transparent" />
-            </>
-          ) : (
-            <>
-              <div className="absolute inset-0 bg-[#0B132B]" />
-              <div className="absolute inset-0 bg-linear-to-br from-blue-900/40 via-transparent to-blue-800/20" />
-            </>
-          )}
+          <p className="home-hero__eyebrow">
+            <span className="home-hero__mark" aria-hidden="true" />
+            Université Catholique du Congo
+          </p>
+          <h1 className="home-hero__title">
+            Faculté des <span>Sciences Informatiques</span>
+          </h1>
+          <p className="home-hero__description">
+            Deux filières d’excellence, un encadrement de qualité et une communauté qui innove.
+          </p>
+
+          <div className="home-hero__actions">
+            <Link to="/formations" className="home-hero__primary">
+              Voir les formations
+              <ArrowRight size={16} aria-hidden="true" />
+            </Link>
+            <a href={admissionUrl} target="_blank" rel="noopener noreferrer" className="home-hero__secondary">
+              Candidater
+              <ExternalLink size={15} aria-hidden="true" />
+            </a>
+          </div>
+
+          <p className="home-hero__location">
+            <MapPin size={15} aria-hidden="true" />
+            Faculté des Sciences Informatiques · UCC
+          </p>
         </motion.div>
-      </AnimatePresence>
 
-      {/* -------- Contenu -------- */}
-      <AnimatePresence mode="wait">
-        {slide.layout === 'photo' ? (
-          //  LAYOUT "photo" : contenu centré
-          <HeroPhotoSlide slide={slide} />
-        ) : (
-          // LAYOUT logo : texte à gauche + logo à droite (ancien hero)
-          <HeroLogoSlide />
-        )}
-      </AnimatePresence>
-
-      {/* -------- Flèches précédent / suivant -------- */}
-      {slides.length > 1 && <PrevNextButton />}
-
-      {/* -------- Indicateurs (dots) -------- */}
-      {slides.length > 1 && <Dots />}
+        <CampusImageSlider slides={campusSlides} className="home-hero__image" />
+      </div>
     </section>
   )
 }

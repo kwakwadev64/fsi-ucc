@@ -36,12 +36,12 @@ export default function NewsDetailPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#F6F8FB] font-sans text-slate-900 overflow-x-hidden">
+    <div className="min-h-screen bg-slate-50 font-sans text-slate-900 overflow-x-hidden">
       <ReadingProgressBar progress={progress} />
 
       <NewsDetailHero actualite={actualite} />
 
-      <main className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 -mt-6 sm:-mt-10 relative z-10 pb-16">
+      <main className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
           <NewsDetailArticle
             description={actualite.description}

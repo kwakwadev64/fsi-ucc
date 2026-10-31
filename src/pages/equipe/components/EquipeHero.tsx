@@ -6,15 +6,7 @@ export default function EquipeHero() {
     <PageHero
       image={uccbatiment}
       eyebrow="Membres & Collaborateurs"
-      title={
-        <>
-          Notre{' '}
-          <span className="bg-linear-to-r from-blue-400 via-blue-300 to-cyan-300 bg-clip-text text-transparent">
-            Équipe
-          </span>{' '}
-          & Lauréats
-        </>
-      }
+      title="Notre Équipe & Lauréats"
       subtitle="Découvrez la délégation facultaire, les chefs de promotion ainsi que l'équipe technique derrière la plateforme."
     />
   )

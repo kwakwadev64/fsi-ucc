@@ -10,17 +10,28 @@ const stats = [
 
 export default function StatsSection() {
   return (
-    <section className="px-6 py-14 sm:py-18">
-      <div className="mx-auto max-w-5xl">
-        <h2 className="text-center text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
-          La FSI en un coup d’œil
-        </h2>
-        <motion.div variants={containerVariants} initial="hidden" whileInView="visible" viewport={{ once: true }} className="mt-9 grid grid-cols-2 gap-3 md:grid-cols-4">
+    <section className="border-b border-slate-200 bg-white px-5 py-6 sm:px-8 lg:px-12">
+      <div className="mx-auto max-w-7xl">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          className="grid grid-cols-2 border-l border-t border-slate-200 sm:grid-cols-4"
+        >
           {stats.map(stat => (
-            <motion.article key={stat.label} variants={itemVariants} className="rounded-md border border-slate-300 bg-slate-50 px-4 py-5">
-              <p className="text-2xl font-bold tracking-tight text-slate-950">{stat.value}</p>
-              <p className="mt-3 text-[11px] font-semibold leading-tight text-slate-700">{stat.label}</p>
-            </motion.article>
+            <motion.div
+              key={stat.label}
+              variants={itemVariants}
+              className="flex min-h-24 flex-col justify-center border-b border-r border-slate-200 px-4 py-4 sm:min-h-28 sm:px-6"
+            >
+              <p className="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
+                {stat.value}
+              </p>
+              <p className="mt-2 text-[10px] font-medium leading-relaxed text-slate-600 sm:text-xs">
+                {stat.label}
+              </p>
+            </motion.div>
           ))}
         </motion.div>
       </div>

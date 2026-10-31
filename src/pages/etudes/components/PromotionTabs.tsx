@@ -8,29 +8,29 @@ interface PromotionTabsProps {
   onSelect: (index: number) => void
 }
 
-export default function PromotionTabs({
-  promotions,
-  selectedIndex,
-  onSelect,
-}: PromotionTabsProps) {
+export default function PromotionTabs({ promotions, selectedIndex, onSelect }: PromotionTabsProps) {
   return (
-    <div className="flex gap-2 justify-start bg-white p-2 rounded-2xl md:rounded-full border border-slate-100 shadow-xs mb-8 md:mb-12 overflow-x-auto scrollbar-none snap-x custom-scrollbar">
-      {promotions.map((promo, index) => {
-        const isSelected = selectedIndex === index
-        return (
-          <button
-            key={index}
-            onClick={() => onSelect(index)}
-            className={`px-5 py-2.5 rounded-xl md:rounded-full text-sm font-semibold transition-all duration-200 cursor-pointer whitespace-nowrap snap-mt-2 ${
-              isSelected
-                ? 'bg-blue-600 text-white shadow-md shadow-blue-600/20'
-                : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
-            }`}
-          >
-            {promo.nom}
-          </button>
-        )
-      })}
+    <div className="mb-8 overflow-x-auto border-b border-slate-300 md:mb-10">
+      <div className="flex min-w-max gap-5 sm:gap-8">
+        {promotions.map((promo, index) => {
+          const selected = selectedIndex === index
+          return (
+            <button
+              key={promo.nom}
+              type="button"
+              onClick={() => onSelect(index)}
+              aria-pressed={selected}
+              className={`border-b-2 px-1 py-3 text-sm font-semibold transition-colors ${
+                selected
+                  ? 'border-blue-700 text-blue-700'
+                  : 'border-transparent text-slate-500 hover:border-slate-300 hover:text-slate-900'
+              }`}
+            >
+              {promo.nom}
+            </button>
+          )
+        })}
+      </div>
     </div>
   )
 }

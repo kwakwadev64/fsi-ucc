@@ -6,14 +6,7 @@ export default function HistoriqueHero() {
     <PageHero
       image={uccbatiment}
       eyebrow="Notre Héritage Institutionnel"
-      title={
-        <>
-          Histoire de la{' '}
-          <span className="bg-linear-to-r from-blue-400 via-blue-300 to-cyan-300 bg-clip-text text-transparent">
-            Faculté
-          </span>
-        </>
-      }
+      title="Histoire de la Faculté"
       subtitle="Parcourez les grandes étapes, les réalisations majeures et les évolutions pédagogiques qui ont forgé l'excellence de notre établissement au fil des décennies."
     />
   )

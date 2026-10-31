@@ -6,14 +6,7 @@ export default function ContactHero() {
     <PageHero
       image={uccbatiment}
       eyebrow="Nous contacter"
-      title={
-        <>
-          Contactez-{' '}
-          <span className="bg-linear-to-r from-blue-400 via-blue-300 to-cyan-300 bg-clip-text text-transparent">
-            nous
-          </span>
-        </>
-      }
+      title="Contactez-nous"
       subtitle="Faculté des Sciences Informatiques - UCC. Envoyez vos requêtes administratives ou académiques."
     />
   )

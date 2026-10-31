@@ -6,14 +6,7 @@ export default function HistoriqueHero() {
     <PageHero
       image={uccbatiment}
       eyebrow="Historique"
-      title={
-        <>
-          Historique des{' '}
-          <span className="bg-linear-to-r from-blue-400 via-blue-300 to-cyan-300 bg-clip-text text-transparent">
-            Délégués
-          </span>
-        </>
-      }
+      title="Historique des Délégués"
       subtitle="Retour sur les délégué(e)s facultaires qui se sont succédé à la tête de la Faculté des Sciences Informatiques au fil des années."
     />
   )

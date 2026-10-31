@@ -27,14 +27,14 @@ export default function DelegueHistoriqueCard({
       role="button"
       tabIndex={0}
       onKeyDown={e => e.key === 'Enter' && onLireLaSuite(delegue)}
-      className="group relative aspect-[3/4] sm:aspect-[4/5] w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+      className="group relative aspect-[3/4] sm:aspect-[4/5] w-full cursor-pointer overflow-hidden border border-slate-200 transition-colors duration-300 hover:border-blue-300"
     >
       {/* PHOTO OU INITIALES (plein cadre) */}
       {photoSrc ? (
         <img
           src={photoSrc}
           alt={delegue.nom}
-          className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+          className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
           loading="lazy"
         />
       ) : (
@@ -47,7 +47,7 @@ export default function DelegueHistoriqueCard({
       <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-slate-950/10 to-transparent" />
 
       {/* Badge année — en haut à gauche */}
-      <div className="absolute top-3 left-3 z-10 inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-white/90 backdrop-blur-sm text-[11px] font-bold text-slate-700 shadow-sm">
+      <div className="absolute left-3 top-3 z-10 inline-flex items-center gap-1.5 border border-white/60 bg-white/95 px-2.5 py-1.5 text-[10px] font-bold text-slate-700">
         <CalendarDays className="w-3 h-3 text-blue-500" />
         {delegue.annee}
       </div>
@@ -61,7 +61,7 @@ export default function DelegueHistoriqueCard({
               target="_blank"
               rel="noreferrer"
               onClick={e => e.stopPropagation()}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-emerald-500 hover:border-emerald-500 transition-colors"
+              className="flex h-8 w-8 items-center justify-center border border-white/30 bg-white/10 text-white transition-colors hover:bg-cyan-600 hover:border-cyan-600"
               title="Portfolio"
             >
               <LuGlobe className="w-3.5 h-3.5" />
@@ -73,7 +73,7 @@ export default function DelegueHistoriqueCard({
               target="_blank"
               rel="noreferrer"
               onClick={e => e.stopPropagation()}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-slate-900 hover:border-slate-900 transition-colors"
+              className="flex h-8 w-8 items-center justify-center border border-white/30 bg-white/10 text-white transition-colors hover:bg-slate-900 hover:border-slate-900"
               title="GitHub"
             >
               <LuGithub className="w-3.5 h-3.5" />
@@ -85,7 +85,7 @@ export default function DelegueHistoriqueCard({
               target="_blank"
               rel="noreferrer"
               onClick={e => e.stopPropagation()}
-              className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-blue-600 hover:border-blue-600 transition-colors"
+              className="flex h-8 w-8 items-center justify-center border border-white/30 bg-white/10 text-white transition-colors hover:bg-blue-600 hover:border-blue-600"
               title="LinkedIn"
             >
               <LuLinkedin className="w-3.5 h-3.5" />

@@ -19,15 +19,15 @@ export default function ActionLink({
   className = '',
 }: ActionLinkProps) {
   const baseClass =
-    'inline-flex items-center justify-center gap-2 rounded-full font-semibold transition-all duration-200 hover:-translate-y-0.5'
+    'inline-flex items-center justify-center gap-2 border font-semibold transition-colors duration-200'
 
   const primaryClass =
-    'bg-blue-600 text-white shadow-lg shadow-blue-600/30 hover:bg-blue-500'
+    'border-[#0D3B66] bg-[#0D3B66] text-white hover:bg-[#0a2d4a]'
   const secondaryClass =
-    'border border-white/20 bg-white/5 text-white backdrop-blur-sm hover:bg-white/10'
+    'border-white/40 bg-white/10 text-white hover:bg-white/20'
 
   const classes = `${baseClass} ${variant === 'primary' ? primaryClass : secondaryClass} ${
-    variant === 'primary' ? 'px-3 py-3.5' : 'px-6 py-3.5'
+    variant === 'primary' ? 'px-4 py-3' : 'px-5 py-3'
   } ${className}`
 
   if (external) {

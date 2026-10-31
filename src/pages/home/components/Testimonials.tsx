@@ -34,17 +34,17 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
   const goNext = () => goTo(index + 1)
 
   return (
-    <section className="bg-[#41698d] px-6 py-16 text-white sm:py-20">
-      <div className="mx-auto max-w-6xl">
-        <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-blue-200">
+    <section className="border-y border-blue-900 bg-[#17477D] px-5 py-14 text-white sm:px-8 sm:py-16 lg:px-12">
+      <div className="mx-auto max-w-7xl">
+        <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-100">
           Témoignages
         </p>
-        <h2 className="mt-2 text-2xl font-bold sm:text-3xl">
+        <h2 className="mt-2 text-2xl font-bold text-white sm:text-3xl">
           Ce que disent nos anciens
         </h2>
 
-        <div className="mt-8 grid items-center gap-8 md:grid-cols-[0.95fr_1.05fr]">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] bg-[#d8d2a4] shadow-[0_18px_40px_rgba(11,28,40,0.18)]">
+        <div className="mt-7 grid items-center gap-6 md:grid-cols-[0.75fr_1.25fr] lg:gap-10">
+          <div className="relative aspect-[4/3] overflow-hidden border border-slate-200 bg-slate-100">
             {current.photoUrl ? (
               <img
                 src={current.photoUrl}
@@ -59,7 +59,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                   type="button"
                   onClick={goPrev}
                   aria-label="Témoignage précédent"
-                  className="ml-3 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/20"
+                  className="ml-3 flex h-10 w-10 items-center justify-center border border-slate-300 bg-white/95 text-slate-900 transition hover:border-blue-700 hover:text-blue-700"
                 >
                   <ArrowLeft size={18} />
                 </button>
@@ -72,7 +72,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                   type="button"
                   onClick={goNext}
                   aria-label="Témoignage suivant"
-                  className="mr-3 flex h-11 w-11 items-center justify-center rounded-full border border-white/40 bg-white/10 text-white backdrop-blur-sm transition hover:bg-white/20"
+                  className="mr-3 flex h-10 w-10 items-center justify-center border border-slate-300 bg-white/95 text-slate-900 transition hover:border-blue-700 hover:text-blue-700"
                 >
                   <ArrowRight size={18} />
                 </button>
@@ -82,7 +82,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
 
           <div className="min-h-[320px]">
             <blockquote>
-              <p className="max-w-[640px] text-base font-semibold leading-relaxed text-white/95 sm:text-[1.15rem] lg:text-[1.5rem] lg:leading-[1.7]">
+              <p className="max-w-[760px] text-base font-medium leading-relaxed text-white/95 sm:text-lg lg:text-xl lg:leading-[1.7]">
                 {current.quote}
               </p>
 
@@ -91,7 +91,7 @@ export default function Testimonials({ testimonials }: TestimonialsProps) {
                   <img
                     src={current.photoUrl}
                     alt=""
-                    className="h-10 w-10 rounded-full border border-white/30 object-cover"
+                    className="h-11 w-11 border border-slate-300 object-cover"
                   />
                 )}
 

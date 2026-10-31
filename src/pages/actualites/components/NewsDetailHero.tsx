@@ -10,7 +10,7 @@ export default function NewsDetailHero({ actualite }: NewsDetailHeroProps) {
   const { image_url, titre, filter_type, location, created_at } = actualite
 
   return (
-    <div className="relative w-full h-85 sm:h-110 lg:h-130 overflow-hidden bg-linear-to-br from-[#0B2545] to-[#123A6B]">
+      <div className="relative w-full h-85 sm:h-110 lg:h-130 overflow-hidden bg-linear-to-br from-[#102D4D] to-[#17477D]">
       {image_url && (
         <img
           src={image_url}
@@ -18,7 +18,7 @@ export default function NewsDetailHero({ actualite }: NewsDetailHeroProps) {
           className="absolute inset-0 w-full h-full object-cover"
         />
       )}
-      <div className="absolute inset-0 bg-linear-to-t from-[#0B2545] via-[#0B2545]/60 to-[#0B2545]/10" />
+      <div className="absolute inset-0 bg-linear-to-t from-[#102D4D] via-[#102D4D]/60 to-[#102D4D]/10" />
 
       <div className="relative z-10 max-w-6xl mx-auto h-full px-4 sm:px-6 lg:px-8 flex flex-col justify-end pb-8 sm:pb-12">
         <Link
@@ -30,7 +30,7 @@ export default function NewsDetailHero({ actualite }: NewsDetailHeroProps) {
         </Link>
 
         <div className="flex flex-wrap items-center gap-3 mb-4">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-[#F2A93B] text-[#0B2545] text-xs font-bold rounded-full uppercase tracking-wide">
+          <span className="inline-flex items-center gap-1.5 border border-white/30 bg-cyan-200 px-3 py-1.5 text-[10px] font-bold uppercase tracking-wide text-[#102D4D]">
             <Tag className="w-3.5 h-3.5" />
             {filter_type}
           </span>
@@ -42,7 +42,7 @@ export default function NewsDetailHero({ actualite }: NewsDetailHeroProps) {
           )}
         </div>
 
-        <h1 className="font-serif text-2xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight max-w-3xl">
+        <h1 className="text-2xl font-bold leading-tight text-white sm:text-4xl lg:text-5xl max-w-3xl">
           {titre}
         </h1>
 

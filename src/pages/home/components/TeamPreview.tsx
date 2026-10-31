@@ -17,7 +17,7 @@ function TeamCard({ membre }: { membre: Membre }) {
 
   return (
     <article className="min-w-0">
-      <div className="relative aspect-[4/5] overflow-hidden rounded-[18px] bg-slate-100">
+      <div className="relative aspect-[4/5] overflow-hidden border border-slate-200 bg-slate-100">
         {image ? (
           <img
             src={image}
@@ -39,7 +39,7 @@ function TeamCard({ membre }: { membre: Membre }) {
             target="_blank"
             rel="noreferrer"
             aria-label={`LinkedIn de ${membre.nom}`}
-            className="absolute right-3.5 top-3.5 grid h-8 w-8 place-items-center rounded-full border border-white/35 bg-white/15 text-white backdrop-blur-sm sm:right-4 sm:top-4 sm:h-9 sm:w-9"
+            className="absolute right-3.5 top-3.5 grid h-8 w-8 place-items-center border border-white/50 bg-[#102D4D]/55 text-white sm:right-4 sm:top-4 sm:h-9 sm:w-9"
           >
             <FiLinkedin size={16} />
           </a>
@@ -73,24 +73,25 @@ export default function TeamPreview({
   if (isError) return null
 
   return (
-    <section className="bg-white px-4 py-12 sm:px-6 sm:py-16 lg:py-20">
-      <div className="mx-auto w-full max-w-6xl">
-        <header className="mx-auto max-w-xl text-center">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl lg:text-[2.2rem]">
+    <section className="bg-white px-5 py-12 sm:px-8 sm:py-14 lg:px-12">
+      <div className="mx-auto w-full max-w-7xl">
+        <header className="max-w-2xl border-b border-slate-200 pb-5">
+          <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-700">La faculté</p>
+          <h2 className="mt-2 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
             Notre équipe facultaire
           </h2>
-          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-slate-700 sm:text-[0.95rem]">
+          <p className="mt-2 max-w-lg text-sm leading-relaxed text-slate-600">
             Des enseignants-chercheurs et responsables engagés pour votre
             réussite.
           </p>
         </header>
 
         {isLoading && !providedMembers ? (
-          <div className="mt-9 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          <div className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
             {Array.from({ length: limit }, (_, index) => (
               <div
                 key={index}
-                className="aspect-[4/5] animate-pulse rounded-[18px] bg-slate-100"
+                className="aspect-[4/5] animate-pulse border border-slate-200 bg-slate-100"
               />
             ))}
           </div>
@@ -100,7 +101,7 @@ export default function TeamPreview({
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="mt-8 grid grid-cols-2 gap-3 sm:mt-9 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5"
+            className="mt-7 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4 lg:gap-5"
           >
             {members.slice(0, limit).map(member => (
               <motion.div variants={itemVariants} key={member.nom}>
@@ -110,17 +111,17 @@ export default function TeamPreview({
           </motion.div>
         )}
 
-        <div className="mx-auto mt-8 max-w-lg text-center sm:mt-10">
-          <h3 className="text-lg font-bold text-slate-950 sm:text-[1.3rem]">
+        <div className="mt-6 max-w-lg border-t border-slate-200 pt-5">
+          <h3 className="text-base font-bold text-slate-950 sm:text-lg">
             Découvrez toute l’équipe facultaire
           </h3>
-          <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-slate-600 sm:text-[0.95rem]">
+          <p className="mt-2 max-w-md text-sm leading-relaxed text-slate-600">
             Une communauté d’enseignants-chercheurs, de secrétaires et
             d’assistants engagés pour votre réussite.
           </p>
           <Link
             to="/equipe"
-            className="mt-4 inline-flex rounded-md border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-blue-500 hover:text-blue-600 sm:px-5"
+            className="mt-4 inline-flex border border-slate-300 px-4 py-2.5 text-sm font-semibold text-slate-900 transition hover:border-blue-700 hover:text-blue-700 sm:px-5"
           >
             Voir toute l’équipe
           </Link>

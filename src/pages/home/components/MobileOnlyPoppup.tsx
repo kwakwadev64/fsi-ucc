@@ -22,26 +22,27 @@ export default function MobileOnlyPopup({
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-900/50 backdrop-blur-sm z-50"
+            className="fixed inset-0 z-50 bg-slate-900/55"
           />
 
           {/* Popup */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-50 w-[90%] max-w-sm bg-white rounded-3xl shadow-2xl border border-slate-100 p-6 sm:p-8"
+            className="fixed left-1/2 top-1/2 z-50 w-[90%] max-w-sm -translate-x-1/2 -translate-y-1/2 border border-slate-200 bg-white p-6 shadow-xl sm:p-8"
           >
             <button
               onClick={onClose}
-              className="absolute top-4 right-4 text-slate-400 hover:text-slate-600 transition-colors"
+              aria-label="Fermer"
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
             >
               <X size={20} />
             </button>
 
             <div className="flex flex-col items-center text-center">
-              <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 mb-5 shadow-inner">
+              <div className="mb-5 flex h-14 w-14 items-center justify-center border border-blue-100 bg-blue-50 text-blue-700">
                 <Smartphone size={28} />
               </div>
 
@@ -59,7 +60,7 @@ export default function MobileOnlyPopup({
                   href={storeLink}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full px-5 py-2.5 rounded-xl bg-blue-600 text-white text-sm font-semibold hover:bg-blue-700 transition-colors duration-300 text-center cursor-pointer"
+                  className="w-full cursor-pointer border border-blue-600 bg-blue-600 px-5 py-2.5 text-center text-sm font-semibold text-white transition-colors duration-300 hover:bg-blue-700"
                   onClick={() =>
                     alert('application en maintenace revenez plus tard')
                   }
@@ -69,7 +70,7 @@ export default function MobileOnlyPopup({
 
                 <button
                   onClick={onClose}
-                  className="w-full px-5 py-2.5 rounded-xl bg-slate-50 text-slate-600 text-sm font-semibold hover:bg-slate-100 transition-colors duration-300 cursor-pointer"
+                  className="w-full cursor-pointer border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-600 transition-colors duration-300 hover:bg-slate-50"
                 >
                   Fermer
                 </button>

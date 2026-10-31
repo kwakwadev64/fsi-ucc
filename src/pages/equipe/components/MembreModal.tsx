@@ -29,21 +29,21 @@ export const MembreModal = ({ membre, isOpen, onClose }: MembreModalProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/60 backdrop-blur-sm"
+            className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-4"
             onClick={onClose}
           >
             <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
               onClick={e => e.stopPropagation()}
-              className="bg-white rounded-2xl shadow-xl w-full max-w-lg max-h-[90vh] overflow-y-auto relative"
+              className="relative max-h-[90vh] w-full max-w-lg overflow-y-auto border border-slate-200 bg-white shadow-xl"
             >
               <button
                 type="button"
                 onClick={onClose}
-                className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/90 text-slate-500 hover:text-slate-900 hover:bg-slate-100 shadow-sm transition-colors"
+                className="absolute right-3 top-3 z-10 flex h-9 w-9 items-center justify-center border border-slate-200 bg-white text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
                 aria-label="Fermer"
               >
                 <X className="w-4 h-4" />
@@ -124,7 +124,7 @@ export const MembreModal = ({ membre, isOpen, onClose }: MembreModalProps) => {
                         href={membre.portfolio}
                         target="_blank"
                         rel="noreferrer"
-                        className="hover:text-emerald-600 transition-colors"
+                        className="transition-colors hover:text-cyan-700"
                         title="Portfolio"
                       >
                         <LuGlobe className="w-4 h-4" />

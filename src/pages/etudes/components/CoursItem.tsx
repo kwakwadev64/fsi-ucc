@@ -27,18 +27,15 @@ export default function CoursItem({
       <motion.div
         variants={itemVariants}
         onClick={() => hasDescription && setOuvert(prev => !prev)}
-        className={`group bg-white rounded-2xl border border-slate-100
-          shadow-[0_2px_10px_rgba(15,23,42,0.03)] hover:shadow-[0_8px_24px_rgba(37,99,235,0.08)]
-          hover:border-blue-100 transition-all duration-300
+        className={`group border border-slate-200 bg-white
+          transition-colors duration-200 hover:border-blue-300
           ${hasDescription ? 'cursor-pointer' : ''}`}
       >
         <div className="flex items-start sm:items-center gap-4 p-4 sm:p-5 flex-wrap sm:flex-nowrap">
           {/* Pastille document */}
           <div
-            className="flex h-11 w-11 sm:h-12 sm:w-12 shrink-0 items-center justify-center rounded-xl
-              bg-blue-50 text-blue-600
-              group-hover:bg-blue-600 group-hover:text-white
-              transition-colors duration-300"
+            className="flex h-11 w-11 shrink-0 items-center justify-center bg-blue-50 text-blue-700 transition-colors duration-200 sm:h-12 sm:w-12
+              group-hover:bg-blue-700 group-hover:text-white"
           >
             <FileText size={19} strokeWidth={2} />
           </div>
@@ -69,7 +66,7 @@ export default function CoursItem({
                   setIsVisible(true)
                 }}
                 aria-label={`Télécharger le support de ${nom}`}
-                className="flex items-center gap-1.5 px-3 py-2 rounded-full
+                className="flex items-center gap-1.5 border border-blue-100 px-3 py-2
                   bg-blue-50 text-blue-600 text-xs font-semibold
                   hover:bg-blue-600 hover:text-white
                   transition-colors duration-200"
@@ -84,7 +81,7 @@ export default function CoursItem({
               <motion.div
                 animate={{ rotate: ouvert ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
-                className="flex h-9 w-9 items-center justify-center rounded-full text-slate-300 group-hover:text-blue-500 transition-colors"
+                className="flex h-9 w-9 items-center justify-center text-slate-400 group-hover:text-blue-700 transition-colors"
               >
                 <ChevronDown size={17} />
               </motion.div>
@@ -103,7 +100,7 @@ export default function CoursItem({
               className="overflow-hidden"
             >
               <div className="px-4 sm:px-5 pb-4 sm:pb-5 pl-[3.75rem] sm:pl-[4.25rem]">
-                <p className="text-xs sm:text-sm text-slate-500 leading-relaxed border-t border-slate-50 pt-3">
+                <p className="border-t border-slate-200 pt-3 text-xs leading-relaxed text-slate-600 sm:text-sm">
                   {description}
                 </p>
               </div>

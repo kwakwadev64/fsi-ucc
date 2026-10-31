@@ -28,7 +28,7 @@ export default function MembreCard({ membre }: { membre: Membre }) {
             target="_blank"
             rel="noreferrer"
             onClick={e => e.stopPropagation()}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-emerald-500 hover:border-emerald-500 transition-colors"
+            className="flex h-8 w-8 items-center justify-center border border-white/30 bg-white/10 text-white transition-colors hover:bg-cyan-600 hover:border-cyan-600"
             title="Portfolio"
           >
             <LuGlobe className="w-3.5 h-3.5" />
@@ -40,7 +40,7 @@ export default function MembreCard({ membre }: { membre: Membre }) {
             target="_blank"
             rel="noreferrer"
             onClick={e => e.stopPropagation()}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-slate-900 hover:border-slate-900 transition-colors"
+            className="flex h-8 w-8 items-center justify-center border border-white/30 bg-white/10 text-white transition-colors hover:bg-slate-900 hover:border-slate-900"
             title="GitHub"
           >
             <LuGithub className="w-3.5 h-3.5" />
@@ -52,7 +52,7 @@ export default function MembreCard({ membre }: { membre: Membre }) {
             target="_blank"
             rel="noreferrer"
             onClick={e => e.stopPropagation()}
-            className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-md border border-white/20 hover:bg-blue-600 hover:border-blue-600 transition-colors"
+            className="flex h-8 w-8 items-center justify-center border border-white/30 bg-white/10 text-white transition-colors hover:bg-blue-600 hover:border-blue-600"
             title="LinkedIn"
           >
             <LuLinkedin className="w-3.5 h-3.5" />
@@ -70,14 +70,14 @@ export default function MembreCard({ membre }: { membre: Membre }) {
         role="button"
         tabIndex={0}
         onKeyDown={e => e.key === 'Enter' && setIsModalOpen(true)}
-        className="group relative aspect-3/4 sm:aspect-4/5 w-full overflow-hidden rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer"
+        className="group relative aspect-3/4 sm:aspect-4/5 w-full cursor-pointer overflow-hidden border border-slate-200 transition-colors duration-300 hover:border-blue-300"
       >
         {/* PHOTO OU INITIALES (plein cadre) */}
         {photoSrc ? (
           <img
             src={photoSrc}
             alt={membre.nom}
-            className="absolute inset-0 h-full w-full object-cover object-top group-hover:scale-105 transition-transform duration-500 ease-out"
+            className="absolute inset-0 h-full w-full object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.02]"
             loading="lazy"
           />
         ) : (

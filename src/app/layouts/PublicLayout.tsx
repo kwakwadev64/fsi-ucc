@@ -6,7 +6,7 @@ import Footer from '@/shared/ui/Footer'
 export default function PublicLayout() {
   return (
     <div className="min-h-screen">
-      <Navbar compact />
+      <Navbar />
       <Outlet />
       <PublicChatbot />
       <Footer />

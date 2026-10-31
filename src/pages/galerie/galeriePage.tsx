@@ -17,7 +17,7 @@ export default function GaleriePage() {
   useAutoDownload(isLoggedIn)
 
   return (
-    <div className="min-h-screen bg-[#F8FAFC]">
+    <div className="min-h-screen bg-slate-50">
       <GalerieHero albums={filteredData} />
 
       <PromotionFilterBar filter={filter} onFilterChange={setFilter} />

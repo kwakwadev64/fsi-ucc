@@ -20,31 +20,29 @@ export default function EvenementModal({
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center px-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 px-4"
           onClick={onClose}
         >
           {/* Overlay */}
-          <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-sm" />
-
           {/* Contenu du modal */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: 10 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.2 }}
             onClick={e => e.stopPropagation()}
-            className="relative bg-white rounded-2xl shadow-2xl max-w-lg w-full p-6 md:p-8"
+            className="relative w-full max-w-lg border border-slate-200 bg-white p-6 shadow-xl md:p-8"
           >
             <button
               onClick={onClose}
               aria-label="Fermer"
-              className="absolute top-4 right-4 p-1.5 rounded-full text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
+              className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center border border-slate-200 text-slate-500 transition-colors hover:bg-slate-50 hover:text-slate-900"
             >
               <X size={18} />
             </button>
 
             <div className="flex items-center gap-2 mb-4">
-              <span className="inline-flex items-center gap-1.5 text-sm font-black text-blue-600 bg-blue-50/70 px-3 py-1 rounded-lg">
+              <span className="inline-flex items-center gap-1.5 border border-slate-200 bg-slate-50 px-3 py-1.5 text-xs font-bold text-[#0D3B66]">
                 <Calendar size={14} />
                 {evenement.annee}
               </span>

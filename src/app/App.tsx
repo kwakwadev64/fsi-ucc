@@ -1,5 +1,10 @@
 import AppRouter from './router/AppRouter'
+import { MotionConfig } from 'framer-motion'
 
 export default function App() {
-  return <AppRouter />
+  return (
+    <MotionConfig reducedMotion="user">
+      <AppRouter />
+    </MotionConfig>
+  )
 }
