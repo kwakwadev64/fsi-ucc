@@ -1,5 +1,6 @@
 import { ArrowRight, ExternalLink } from 'lucide-react'
 import { Link } from 'react-router-dom'
+import { ADMISSION_URL } from '@/shared/config/admissions'
 
 const steps = [
   {
@@ -14,7 +15,7 @@ const steps = [
     number: '02',
     title: 'Vérifier les démarches',
     description: 'Retrouvez les informations d’inscription sur la plateforme officielle de l’UCC.',
-    href: 'https://e-acade.ucc.ac.cd/registration/program',
+    href: ADMISSION_URL,
     label: 'Ouvrir la plateforme',
     external: true,
   },

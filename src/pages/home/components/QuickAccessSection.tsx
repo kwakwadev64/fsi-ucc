@@ -9,25 +9,24 @@ export default function QuickAccessSection() {
         <div className="mb-6 flex flex-col justify-between gap-2 sm:flex-row sm:items-end">
           <div>
             <p className="text-[10px] font-bold uppercase tracking-[0.16em] text-blue-700 sm:text-xs">
-              Espace étudiant
+              Découvrir la FSI
             </p>
             <h2 className="mt-1 text-xl font-bold tracking-tight text-slate-950 sm:text-2xl">
               Accès rapides
             </h2>
           </div>
           <p className="max-w-lg text-xs leading-6 text-slate-600 sm:text-sm">
-            Les ressources de cours et les informations utiles à votre promotion.
+            Accédez aux cours, aux formations, aux filières et aux délégués.
           </p>
         </div>
 
         <div className="grid border-l border-t border-slate-200 sm:grid-cols-2 lg:grid-cols-4">
           {accesRapide.map(card => {
             const Icon = card.icon
-            const to = card.link === '/archive' || card.link === '/Calendar' ? '/etude' : card.link
             return (
               <Link
                 key={card.title}
-                to={to}
+                to={card.link}
                 className="group flex min-h-32 items-start gap-4 border-b border-r border-slate-200 bg-white px-4 py-5 transition-colors hover:bg-slate-50 sm:px-5"
               >
                 <Icon size={20} className="mt-0.5 shrink-0 text-blue-700" aria-hidden="true" />

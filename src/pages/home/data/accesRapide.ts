@@ -1,4 +1,4 @@
-import { Archive, BookOpen, Calendar, UserCheck } from 'lucide-react'
+import { BookOpen, GraduationCap, Network, UserCheck } from 'lucide-react'
 
 export const accesRapide = [
   {
@@ -8,16 +8,16 @@ export const accesRapide = [
     link: '/etude',
   },
   {
-    icon: Archive,
-    title: 'Annales',
-    desc: 'Consultez et préparez vos examens avec les sessions précédentes.',
-    link: '/archive',
+    icon: GraduationCap,
+    title: 'Formations',
+    desc: 'Consultez les quatre parcours annoncés et leur disponibilité.',
+    link: '/formations',
   },
   {
-    icon: Calendar,
-    title: 'Horaires',
-    desc: "Suivez en temps réel l'évolution des emplois du temps.",
-    link: '/Calendar',
+    icon: Network,
+    title: 'Filières',
+    desc: 'Découvrez les deux filières principales de la FSI.',
+    link: '/#filieres',
   },
   {
     icon: UserCheck,

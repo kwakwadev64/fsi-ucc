@@ -2,8 +2,7 @@ import { motion } from 'framer-motion'
 import { ArrowRight, ExternalLink, MapPin } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import CampusImageSlider, { campusSlides } from '@/shared/ui/CampusImageSlider'
-
-const admissionUrl = 'https://e-acade.ucc.ac.cd/registration/program'
+import { ADMISSION_URL } from '@/shared/config/admissions'
 
 export default function HeroSection() {
   return (
@@ -23,7 +22,7 @@ export default function HeroSection() {
             Faculté des <span>Sciences Informatiques</span>
           </h1>
           <p className="home-hero__description">
-            Deux filières d’excellence, un encadrement de qualité et une communauté qui innove.
+            Deux filières principales, un encadrement de qualité et une communauté qui innove.
           </p>
 
           <div className="home-hero__actions">
@@ -31,7 +30,7 @@ export default function HeroSection() {
               Voir les formations
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
-            <a href={admissionUrl} target="_blank" rel="noopener noreferrer" className="home-hero__secondary">
+            <a href={ADMISSION_URL} target="_blank" rel="noopener noreferrer" className="home-hero__secondary">
               Candidater
               <ExternalLink size={15} aria-hidden="true" />
             </a>

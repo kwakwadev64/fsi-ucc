@@ -34,7 +34,7 @@ export default function ProgramFinder() {
             value={query}
             onChange={event => setQuery(event.target.value)}
             type="search"
-            placeholder="Réseaux, développement logiciel…"
+            placeholder="Cybersécurité, IA, web, IoT…"
             className="min-w-0 flex-1 border-0 bg-transparent px-3 text-sm text-slate-900 outline-none placeholder:text-slate-400 focus:ring-0"
           />
           <button

@@ -5,11 +5,11 @@ import ProgramFinder from './components/ProgramFinder'
 import StatsSection from './components/StatsSection'
 import QuickAccessSection from './components/QuickAccessSection'
 import FilieresSection from './components/FilieresSection'
+import FormationsPreviewSection from './components/FormationsPreviewSection'
 import AdmissionsSection from './components/AdmissionsSection'
 import CampusPreview from './components/CampusPreview'
 import TeamPreview from './components/TeamPreview'
 import ActualitesSection from './components/ActualitesSection'
-import EventsPreviewSection from './components/EventsPreviewSection'
 import Testimonials from './components/Testimonials'
 import FaqSection from './components/FaqSection'
 import HomeCta from './components/HomeCta'
@@ -24,13 +24,13 @@ export default function LandingPage() {
         <HeroSection />
         <ProgramFinder />
         <FilieresSection />
+        <FormationsPreviewSection />
         <AdmissionsSection />
         <QuickAccessSection />
         <CampusPreview />
         <StatsSection />
         <TeamPreview limit={4} />
         <ActualitesSection data={data} isError={isError} loading={isLoading} />
-        <EventsPreviewSection />
         <Testimonials testimonials={testimonials} />
         <FaqSection />
         <HomeCta />

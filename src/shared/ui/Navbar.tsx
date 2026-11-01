@@ -2,19 +2,18 @@ import { useState } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import LogoFsiUcc from '@/shared/assets/logo_fsi_tranparent.png'
+import { ADMISSION_URL } from '@/shared/config/admissions'
+import AppDownloadNotice from '@/shared/ui/AppDownloadNotice'
 
 const navigation = [
   { to: '/', label: 'Accueil' },
   { to: '/formations', label: 'Formations' },
   { to: '/etude', label: 'Espace étudiant' },
-  { to: '/evenements', label: 'Événements' },
   { to: '/historique', label: 'La faculté' },
   { to: '/equipe', label: 'Équipe' },
   { to: '/galerie', label: 'Galerie' },
   { to: '/contact', label: 'Contact' },
 ]
-
-const admissionUrl = 'https://e-acade.ucc.ac.cd/registration/program'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
@@ -26,15 +25,16 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-slate-200 bg-white">
       <div className="border-b border-white/10 bg-[#102D4D] text-white">
-        <div className="mx-auto flex min-h-9 max-w-[90rem] items-center justify-between gap-4 px-4 text-[11px] sm:px-6 lg:px-10">
-          <span className="truncate font-medium text-blue-100">
+        <div className="mx-auto flex min-h-9 max-w-[90rem] items-center justify-between gap-3 px-4 text-[11px] sm:gap-4 sm:px-6 lg:px-10">
+          <span className="min-w-0 flex-1 truncate font-medium text-blue-100">
             Université Catholique du Congo <span className="mx-1 text-cyan-300">/</span> Faculté des Sciences Informatiques
           </span>
-          <div className="hidden shrink-0 items-center gap-6 sm:flex">
-            <Link to="/contact" className="text-blue-100 transition hover:text-white">
+          <div className="flex shrink-0 items-center gap-3 sm:gap-6">
+            <AppDownloadNotice className="!min-h-8 !border-0 !bg-transparent !px-0 !py-0 !text-[11px] !font-medium !text-blue-100 hover:!bg-transparent hover:!text-white" />
+            <Link to="/contact" className="hidden text-blue-100 transition hover:text-white sm:block">
               Demande d’information
             </Link>
-            <a href="https://e-acade.ucc.ac.cd/" target="_blank" rel="noopener noreferrer" className="text-blue-100 transition hover:text-white">
+            <a href="https://e-acade.ucc.ac.cd/" target="_blank" rel="noopener noreferrer" className="hidden text-blue-100 transition hover:text-white sm:block">
               Espace étudiant
             </a>
           </div>
@@ -72,7 +72,7 @@ export default function Navbar() {
         </nav>
 
         <a
-          href={admissionUrl}
+          href={ADMISSION_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="hidden min-h-11 shrink-0 items-center justify-center border border-blue-700 bg-blue-700 px-4 text-xs font-semibold text-white transition hover:border-blue-800 hover:bg-blue-800 2xl:inline-flex"
@@ -111,9 +111,10 @@ export default function Navbar() {
                 </Link>
               )
             })}
-            <a href={admissionUrl} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 w-fit items-center border border-blue-700 bg-blue-700 px-4 text-sm font-semibold text-white sm:col-span-2">
+            <a href={ADMISSION_URL} target="_blank" rel="noopener noreferrer" className="mt-3 inline-flex min-h-11 w-fit items-center border border-blue-700 bg-blue-700 px-4 text-sm font-semibold text-white sm:col-span-2">
               Candidater
             </a>
+            <AppDownloadNotice variant="primary" className="mt-3 w-fit sm:col-span-2" />
           </div>
         </nav>
       )}

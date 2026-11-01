@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Link, Navigate, Route, Routes } from 'react-router-dom'
 import PublicLayout from '@/app/layouts/PublicLayout'
 import LandingPage from '@/pages/home/LadingPage'
 import ContactPage from '@/pages/contact/contactPage'
@@ -8,9 +8,7 @@ import HistoriquePage from '@/pages/historique/HistoriquePage'
 import EquipePage from '@/pages/equipe/EquipePage'
 import NewsDetailPage from '@/pages/actualites/NewsDetailPage'
 import DeleguesPage from '@/pages/delegues/DeleguePage'
-import EvenementsPage from '@/pages/evenements/EvenementsPage'
 import FormationsPage from '@/pages/formations/FormationsPage'
-import { Link } from 'react-router-dom'
 
 function NotFound() {
   return (
@@ -33,8 +31,8 @@ export default function AppRouter() {
         <Route path="contact" element={<ContactPage />} />
         <Route path="formations" element={<FormationsPage />} />
         <Route path="formation" element={<FormationsPage />} />
-        <Route path="evenements" element={<EvenementsPage />} />
-        <Route path="evenement" element={<EvenementsPage />} />
+        <Route path="evenements" element={<Navigate to="/formations" replace />} />
+        <Route path="evenement" element={<Navigate to="/formations" replace />} />
         <Route path="etude" element={<EtudesPage />} />
         <Route path="equipe" element={<EquipePage />} />
         <Route path="historique" element={<HistoriquePage />} />

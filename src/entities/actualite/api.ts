@@ -18,6 +18,5 @@ export async function getActualite(
       headers: token ? { Authorization: `Bearer ${token}` } : undefined,
     },
   );
-  console.log(token);
   return data.data;
 }

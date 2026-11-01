@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ADMISSION_URL } from '@/shared/config/admissions'
 
 export default function HomeCta() {
   return (
@@ -15,7 +16,7 @@ export default function HomeCta() {
       </p>
       <div className="mt-8 flex flex-wrap justify-center gap-3">
         <a
-          href="https://e-acade.ucc.ac.cd/registration/program"
+          href={ADMISSION_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="border border-white bg-white px-5 py-3 text-sm font-semibold text-[#0D3B66] transition hover:bg-slate-100"

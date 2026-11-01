@@ -1,38 +1,44 @@
-import { useEffect, useRef, useState, type FormEvent, type KeyboardEvent } from 'react'
-import { Bot, LoaderCircle, MessageCircle, Send, X } from 'lucide-react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import {
+  useEffect,
+  useRef,
+  useState,
+  type FormEvent,
+  type KeyboardEvent,
+} from "react";
+import { Bot, LoaderCircle, MessageCircle, Send, X } from "lucide-react";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import {
   getPublicChatbotErrorMessage,
   sendPublicChatbotMessage,
-} from '@/features/public-chatbot/api'
+} from "@/features/public-chatbot/api";
 
 type ChatMessage = {
-  id: string
-  role: 'assistant' | 'visitor'
-  content: string
-}
+  id: string;
+  role: "assistant" | "visitor";
+  content: string;
+};
 
 const initialMessage: ChatMessage = {
-  id: 'welcome',
-  role: 'assistant',
+  id: "welcome",
+  role: "assistant",
   content:
-    'Bonjour ! Je peux vous renseigner à partir des informations officielles publiées par la FSI-UCC.',
-}
+    "Bonjour ! Je peux vous renseigner à partir des informations officielles publiées par la FSI-UCC.",
+};
 
-function newMessage(role: ChatMessage['role'], content: string): ChatMessage {
+function newMessage(role: ChatMessage["role"], content: string): ChatMessage {
   return {
     id: `${Date.now()}-${Math.random()}`,
     role,
     content,
-  }
+  };
 }
 
 function ChatMessageContent({ message }: { message: ChatMessage }) {
-  const isVisitor = message.role === 'visitor'
+  const isVisitor = message.role === "visitor";
   const linkClassName = isVisitor
-    ? 'font-medium text-blue-100 underline underline-offset-2 hover:text-white'
-    : 'font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900'
+    ? "font-medium text-blue-100 underline underline-offset-2 hover:text-white"
+    : "font-medium text-blue-700 underline underline-offset-2 hover:text-blue-900";
 
   return (
     <ReactMarkdown
@@ -49,25 +55,31 @@ function ChatMessageContent({ message }: { message: ChatMessage }) {
         ),
         p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
         ul: ({ children }) => (
-          <ul className="mb-2 list-disc space-y-1 pl-5 last:mb-0">{children}</ul>
+          <ul className="mb-2 list-disc space-y-1 pl-5 last:mb-0">
+            {children}
+          </ul>
         ),
         ol: ({ children }) => (
-          <ol className="mb-2 list-decimal space-y-1 pl-5 last:mb-0">{children}</ol>
+          <ol className="mb-2 list-decimal space-y-1 pl-5 last:mb-0">
+            {children}
+          </ol>
         ),
-        strong: ({ children }) => <strong className="font-semibold">{children}</strong>,
+        strong: ({ children }) => (
+          <strong className="font-semibold">{children}</strong>
+        ),
         a: ({ href, children }) => {
-          const opensNewTab = Boolean(href?.match(/^https?:\/\//i))
+          const opensNewTab = Boolean(href?.match(/^https?:\/\//i));
 
           return (
             <a
               href={href}
-              target={opensNewTab ? '_blank' : undefined}
-              rel={opensNewTab ? 'noopener noreferrer' : undefined}
+              target={opensNewTab ? "_blank" : undefined}
+              rel={opensNewTab ? "noopener noreferrer" : undefined}
               className={`${linkClassName} break-all`}
             >
               {children}
             </a>
-          )
+          );
         },
         code: ({ children }) => (
           <code className="rounded bg-slate-900/10 px-1 py-0.5 font-mono text-[0.85em]">
@@ -78,80 +90,80 @@ function ChatMessageContent({ message }: { message: ChatMessage }) {
     >
       {message.content}
     </ReactMarkdown>
-  )
+  );
 }
 
 export default function PublicChatbot() {
-  const [isOpen, setIsOpen] = useState(false)
-  const [input, setInput] = useState('')
-  const [messages, setMessages] = useState<ChatMessage[]>([initialMessage])
-  const [isSending, setIsSending] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const inputReference = useRef<HTMLTextAreaElement>(null)
-  const messagesReference = useRef<HTMLDivElement>(null)
+  const [isOpen, setIsOpen] = useState(false);
+  const [input, setInput] = useState("");
+  const [messages, setMessages] = useState<ChatMessage[]>([initialMessage]);
+  const [isSending, setIsSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const inputReference = useRef<HTMLTextAreaElement>(null);
+  const messagesReference = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
-      inputReference.current?.focus()
+      inputReference.current?.focus();
     }
-  }, [isOpen])
+  }, [isOpen]);
 
   useEffect(() => {
-    if (!isOpen) return
+    if (!isOpen) return;
 
     const closeOnEscape = (event: globalThis.KeyboardEvent) => {
-      if (event.key === 'Escape') setIsOpen(false)
-    }
+      if (event.key === "Escape") setIsOpen(false);
+    };
 
-    window.addEventListener('keydown', closeOnEscape)
+    window.addEventListener("keydown", closeOnEscape);
 
-    return () => window.removeEventListener('keydown', closeOnEscape)
-  }, [isOpen])
+    return () => window.removeEventListener("keydown", closeOnEscape);
+  }, [isOpen]);
 
   useEffect(() => {
     messagesReference.current?.scrollTo({
       top: messagesReference.current.scrollHeight,
-      behavior: 'smooth',
-    })
-  }, [messages, isSending])
+      behavior: "smooth",
+    });
+  }, [messages, isSending]);
 
   const sendMessage = async () => {
-    const question = input.trim()
+    const question = input.trim();
 
-    if (question.length < 2 || isSending) return
+    if (question.length < 2 || isSending) return;
 
-    setMessages(currentMessages => [
+    setMessages((currentMessages) => [
       ...currentMessages,
-      newMessage('visitor', question),
-    ])
-    setInput('')
-    setError(null)
-    setIsSending(true)
+      newMessage("visitor", question),
+    ]);
+    setInput("");
+    setError(null);
+    setIsSending(true);
 
     try {
-      const answer = await sendPublicChatbotMessage(question)
-      setMessages(currentMessages => [
+      const answer = await sendPublicChatbotMessage(question);
+      setMessages((currentMessages) => [
         ...currentMessages,
-        newMessage('assistant', answer),
-      ])
+        newMessage("assistant", answer),
+      ]);
     } catch (requestError) {
-      setError(getPublicChatbotErrorMessage(requestError))
+      setError(getPublicChatbotErrorMessage(requestError));
     } finally {
-      setIsSending(false)
+      setIsSending(false);
     }
-  }
+  };
 
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-    void sendMessage()
-  }
+    event.preventDefault();
+    void sendMessage();
+  };
 
   const handleKeyDown = (event: KeyboardEvent<HTMLTextAreaElement>) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
-      event.preventDefault()
-      void sendMessage()
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault();
+      void sendMessage();
     }
-  }
+  };
 
   return (
     <div className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-[60] sm:bottom-6 sm:right-6">
@@ -185,16 +197,16 @@ export default function PublicChatbot() {
             aria-live="polite"
             className="min-h-0 flex-1 space-y-3 overflow-y-auto bg-slate-50 p-3 sm:p-4"
           >
-            {messages.map(message => (
+            {messages.map((message) => (
               <div
                 key={message.id}
-                className={`flex ${message.role === 'visitor' ? 'justify-end' : 'justify-start'}`}
+                className={`flex ${message.role === "visitor" ? "justify-end" : "justify-start"}`}
               >
                 <div
                   className={`min-w-0 max-w-[90%] [overflow-wrap:anywhere] rounded-2xl px-3 py-2 text-sm leading-6 sm:max-w-[85%] ${
-                    message.role === 'visitor'
-                      ? 'rounded-br-md bg-[#0D3B66] text-white'
-                      : 'rounded-bl-md bg-white text-slate-700 shadow-sm ring-1 ring-slate-200'
+                    message.role === "visitor"
+                      ? "rounded-br-md bg-[#0D3B66] text-white"
+                      : "rounded-bl-md bg-white text-slate-700 shadow-sm ring-1 ring-slate-200"
                   }`}
                 >
                   <ChatMessageContent message={message} />
@@ -203,9 +215,15 @@ export default function PublicChatbot() {
             ))}
 
             {isSending && (
-              <div className="flex justify-start" aria-label="Réponse en cours de génération">
+              <div
+                className="flex justify-start"
+                aria-label="Réponse en cours de génération"
+              >
                 <div className="flex items-center gap-2 rounded-2xl rounded-bl-md bg-white px-3 py-2 text-sm text-slate-500 shadow-sm ring-1 ring-slate-200">
-                  <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  <LoaderCircle
+                    className="h-4 w-4 animate-spin"
+                    aria-hidden="true"
+                  />
                   L’assistant répond…
                 </div>
               </div>
@@ -229,7 +247,7 @@ export default function PublicChatbot() {
                 ref={inputReference}
                 id="public-chatbot-message"
                 value={input}
-                onChange={event => setInput(event.target.value)}
+                onChange={(event) => setInput(event.target.value)}
                 onKeyDown={handleKeyDown}
                 maxLength={1000}
                 rows={2}
@@ -243,14 +261,18 @@ export default function PublicChatbot() {
                 className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-[#0D3B66] text-white transition hover:bg-[#0a2d4a] disabled:cursor-not-allowed disabled:bg-slate-300"
               >
                 {isSending ? (
-                  <LoaderCircle className="h-4 w-4 animate-spin" aria-hidden="true" />
+                  <LoaderCircle
+                    className="h-4 w-4 animate-spin"
+                    aria-hidden="true"
+                  />
                 ) : (
                   <Send className="h-4 w-4" aria-hidden="true" />
                 )}
               </button>
             </div>
             <p className="mt-2 text-[11px] leading-4 text-slate-400">
-              Les réponses reposent sur les pages officielles de la FSI-UCC. N’envoyez pas de données personnelles sensibles.
+              Les réponses reposent sur les pages officielles de la FSI-UCC.
+              N’envoyez pas de données personnelles sensibles.
             </p>
           </form>
         </section>
@@ -268,5 +290,5 @@ export default function PublicChatbot() {
         </button>
       )}
     </div>
-  )
+  );
 }
